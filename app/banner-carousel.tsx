@@ -8,10 +8,10 @@ import { useEffect, useState } from 'react';
 const slides = [
   {
     image: '/banner-shipping-v1.png',
-    eyebrow: 'PESANAN PERTAMA',
-    title: 'Belanja pertama, ongkir lebih enteng.',
-    copy: 'Potongan ongkir sampai Rp30 ribu buat pesanan pertamamu.',
-    cta: 'Lihat barangnya',
+    eyebrow: 'GRATIS ONGKIR PERTAMA',
+    title: 'Ongkir pertama, NEMU bantu.',
+    copy: 'Dapat potongan ongkir hingga Rp30.000 untuk pesanan pertamamu.',
+    cta: 'Pakai promonya',
     href: '#produk',
     accent: '#704BFD',
   },
@@ -59,10 +59,10 @@ export function BannerCarousel() {
         >
           <Image className="object-cover object-center" src={slide.image} alt="" fill priority={index === 0} sizes="(max-width: 1280px) 100vw, 1240px" />
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/75 to-transparent sm:via-white/45" />
-          <div className="relative flex min-h-[360px] max-w-[620px] flex-col justify-center px-6 pb-16 pt-9 sm:min-h-[330px] sm:px-11 sm:pb-12" style={{ color: '#393047' }}>
+          <div className="relative flex min-h-[360px] max-w-[620px] flex-col justify-center px-6 pb-16 pt-9 sm:min-h-[330px] sm:px-11 sm:pb-12" style={{ color: '#0B0B0E' }}>
             <span className="w-fit rounded-full bg-white/85 px-3 py-1.5 text-[8px] font-black tracking-[.13em] shadow-sm backdrop-blur" style={{ color: slide.accent }}>{slide.eyebrow}</span>
             <h2 className="mt-4 max-w-[520px] font-[var(--font-display)] text-[2.45rem] font-black leading-[.96] tracking-[-.055em] sm:text-5xl">{slide.title}</h2>
-            <p className="mt-3 max-w-[430px] text-[11px] font-semibold leading-5 text-[#62576f] sm:text-xs">{slide.copy}</p>
+            <p className="mt-3 max-w-[430px] text-[11px] font-semibold leading-5 text-[#6B6B75] sm:text-xs">{slide.copy}</p>
             <Link className="mt-5 inline-flex w-fit items-center gap-2 rounded-full px-5 py-3 text-[9px] font-black text-white shadow-lg transition hover:-translate-y-0.5" href={slide.href} style={{ backgroundColor: slide.accent }}>
               {slide.cta} <ChevronRight size={14} />
             </Link>
@@ -71,12 +71,12 @@ export function BannerCarousel() {
       ))}
 
       <div className="absolute bottom-4 left-5 z-20 flex items-center gap-2 sm:left-11">
-        <button className="grid size-8 place-items-center rounded-full border border-white/80 bg-white/85 text-[#655a72] shadow-sm backdrop-blur transition hover:bg-white" onClick={() => move(-1)} aria-label="Banner sebelumnya"><ChevronLeft size={15} /></button>
+        <button className="grid size-8 place-items-center rounded-full border border-white/80 bg-white/85 text-[#704BFD] shadow-sm backdrop-blur transition hover:bg-white" onClick={() => move(-1)} aria-label="Banner sebelumnya"><ChevronLeft size={15} /></button>
         <div className="flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-2 shadow-sm backdrop-blur">
-          {slides.map((slide, index) => <button className={`h-1.5 rounded-full transition-all ${index === active ? 'w-5 bg-[#6d4cff]' : 'w-1.5 bg-[#aaa1b7] hover:bg-[#776d83]'}`} onClick={() => setActive(index)} aria-current={index === active ? 'true' : undefined} aria-label={`Buka banner ${index + 1}: ${slide.eyebrow}`} key={slide.image} />)}
+          {slides.map((slide, index) => <button className={`h-1.5 rounded-full transition-all ${index === active ? 'w-5 bg-[#704BFD]' : 'w-1.5 bg-[#B7B2BF] hover:bg-[#6B6B75]'}`} onClick={() => setActive(index)} aria-current={index === active ? 'true' : undefined} aria-label={`Buka banner ${index + 1}: ${slide.eyebrow}`} key={slide.image} />)}
         </div>
-        <button className="grid size-8 place-items-center rounded-full border border-white/80 bg-white/85 text-[#655a72] shadow-sm backdrop-blur transition hover:bg-white" onClick={() => setPlaying((value) => !value)} aria-label={playing ? 'Jeda pergantian banner' : 'Putar pergantian banner'}>{playing ? <Pause size={13} /> : <Play size={13} />}</button>
-        <button className="grid size-8 place-items-center rounded-full border border-white/80 bg-white/85 text-[#655a72] shadow-sm backdrop-blur transition hover:bg-white" onClick={() => move(1)} aria-label="Banner berikutnya"><ChevronRight size={15} /></button>
+        <button className="grid size-8 place-items-center rounded-full border border-white/80 bg-white/85 text-[#704BFD] shadow-sm backdrop-blur transition hover:bg-white" onClick={() => setPlaying((value) => !value)} aria-label={playing ? 'Jeda pergantian banner' : 'Putar pergantian banner'}>{playing ? <Pause size={13} /> : <Play size={13} />}</button>
+        <button className="grid size-8 place-items-center rounded-full border border-white/80 bg-white/85 text-[#704BFD] shadow-sm backdrop-blur transition hover:bg-white" onClick={() => move(1)} aria-label="Banner berikutnya"><ChevronRight size={15} /></button>
       </div>
     </section>
   );
