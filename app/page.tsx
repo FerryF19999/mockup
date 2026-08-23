@@ -1,6 +1,25 @@
 import Link from 'next/link';
-import { ArrowRight, BadgeCheck, Check, ChevronRight, MessageCircleMore, Search, ShieldCheck, Sparkles, Store } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, BadgeCheck, Check, ChevronRight, CirclePlus, MessageCircleMore, Search, ShieldCheck, ShoppingBag, Sparkles, Store } from 'lucide-react';
 import { Footer, Header } from './components';
+import { SectionTransitions, ThreeUiParticleNetwork } from './experience';
+
+const faq = [
+  ['Apa itu NEMU AI?', 'NEMU adalah marketplace Indonesia yang membantu kamu mencari barang dengan kalimat biasa. Sebutkan kebutuhan, budget, warna, ukuran, atau lokasi; NEMU akan menyaring pilihan yang relevan.'],
+  ['Bagaimana cara mencari barang di NEMU?', 'Ketik nama barang atau ceritakan kebutuhanmu di kolom pencarian. Kamu tetap bisa membuka kategori, membandingkan harga, melihat kondisi barang, dan memilih seller seperti di marketplace lain.'],
+  ['Apakah ada barang baru dan preloved?', 'Ada. Setiap produk menampilkan kondisi barang agar pembeli bisa membedakan barang baru dan preloved sebelum memilih.'],
+  ['Apakah seller bisa membuka toko di NEMU?', 'Bisa. Seller lokal, UMKM, brand, dan penjual barang preloved dapat mendaftar, mengunggah foto, mengatur harga, lalu menerbitkan produk.'],
+  ['Bagaimana AI membantu seller?', 'AI membantu menyiapkan judul, deskripsi, dan kategori dari foto dan detail produk. Seller tetap memeriksa hasilnya sebelum listing tayang.'],
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization', name: 'NEMU AI', url: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/', logo: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/favicon.svg', sameAs: ['https://www.instagram.com/nemu_ai_/', 'https://www.tiktok.com/@nemu_ai_'] },
+    { '@type': 'WebSite', '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#website', url: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/', name: 'NEMU AI', inLanguage: 'id-ID', publisher: { '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization' }, potentialAction: { '@type': 'SearchAction', target: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/shop?q={search_term_string}', 'query-input': 'required name=search_term_string' } },
+    { '@type': 'FAQPage', mainEntity: faq.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
+  ],
+};
 
 const miniProducts = [
   ['Vivo V11 Pro', 'Rp950.000', 'https://s3.ap-southeast-3.amazonaws.com/s3-production-nemu-ai/products/7008540f-9a9c-4917-9368-55b0e5335908.png'],
@@ -17,7 +36,9 @@ const steps = [
 export default function Home() {
   return (
     <main className="overflow-hidden bg-[#fffdf8] text-zinc-950">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
+      <SectionTransitions />
 
       <section className="mx-auto grid min-h-[610px] max-w-[1180px] items-center gap-14 px-4 py-16 sm:px-6 lg:grid-cols-[.88fr_1.12fr] lg:py-20">
         <div>
@@ -28,10 +49,12 @@ export default function Home() {
           <div className="mt-7 flex flex-wrap gap-4 text-[9px] font-bold text-zinc-500">{['Harga terlihat dari awal','Seller sudah dicek','AI bantu menyaring'].map(item=><span className="flex items-center gap-1.5" key={item}><Check size={17} className="rounded-full bg-lime-300 p-1 text-zinc-900"/>{item}</span>)}</div>
         </div>
 
-        <div className="relative rounded-[28px] border border-lime-500 bg-lime-300 p-4 shadow-[15px_15px_0_#694cff] sm:p-6">
+        <div className="relative isolate overflow-hidden rounded-[32px] border border-white/15 bg-violet-950 p-4 text-white shadow-[15px_15px_0_#d9ff43] sm:p-6">
+          <ThreeUiParticleNetwork className="absolute inset-0 -z-10 size-full opacity-75" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-violet-950/45 via-transparent to-zinc-950/70" />
           <div className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-lg shadow-lime-900/10 sm:p-4"><Sparkles className="shrink-0 text-violet-600" size={19}/><p className="min-w-0 flex-1 truncate text-[11px] font-semibold">“Cari HP bagus di bawah Rp1 juta”</p><span className="grid size-9 shrink-0 place-items-center rounded-xl bg-violet-600 text-white"><ArrowRight size={16}/></span></div>
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">{miniProducts.map(([name,price,img],index)=><article className={`overflow-hidden rounded-2xl bg-white shadow-sm ${index===2?'hidden sm:block':''}`} key={name}><img className="aspect-square w-full object-cover" src={img} alt={name}/><div className="p-3"><p className="text-[8px] font-black uppercase tracking-wider text-violet-600">Pas buat kamu</p><h3 className="mt-1 truncate text-[11px] font-extrabold">{name}</h3><strong className="mt-1 block text-[11px]">{price}</strong></div></article>)}</div>
-          <p className="mt-4 flex items-center gap-2 text-[9px] font-extrabold"><Sparkles size={13} className="text-violet-700"/> 120 produk disaring. Tiga yang paling cocok muncul dulu.</p>
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">{miniProducts.map(([name,price,img],index)=><article className={`overflow-hidden rounded-2xl bg-white text-zinc-950 shadow-sm ${index===2?'hidden sm:block':''}`} key={name}><Image className="aspect-square w-full object-cover" src={img} alt={name} width={260} height={260} sizes="(max-width: 640px) 42vw, 180px" priority={index===0}/><div className="p-3"><p className="text-[8px] font-black uppercase tracking-wider text-violet-600">Pas buat kamu</p><h3 className="mt-1 truncate text-[11px] font-extrabold">{name}</h3><strong className="mt-1 block text-[11px]">{price}</strong></div></article>)}</div>
+          <p className="mt-4 flex items-center gap-2 text-[9px] font-extrabold text-lime-300"><Sparkles size={13}/> 120 produk disaring. Tiga yang paling cocok muncul dulu.</p>
         </div>
       </section>
 
@@ -47,6 +70,24 @@ export default function Home() {
       <section className="mx-auto grid min-h-[590px] max-w-[1180px] items-center gap-16 px-4 py-24 sm:px-6 lg:grid-cols-[1fr_.8fr]">
         <div><p className="mb-3 flex items-center gap-2 text-[10px] font-black uppercase tracking-[.16em] text-violet-700"><Store size={14}/> Jualan di NEMU</p><h2 className="font-[var(--font-display)] text-5xl font-black leading-[.95] tracking-[-.06em] sm:text-6xl">Upload foto.<br/>Listing siap tayang.</h2><p className="mt-6 max-w-lg text-xs leading-6 text-zinc-500">Judul, deskripsi, dan kategori dibantu AI. Kamu tinggal cek detailnya, atur harga, lalu mulai jualan.</p><a className="mt-7 inline-flex items-center gap-5 rounded-xl bg-violet-600 px-5 py-4 text-[10px] font-black text-white" href="https://seller.nemu-ai.com/register">Buka toko saya <ArrowRight size={17}/></a></div>
         <div className="rotate-1 rounded-[30px] border-[8px] border-zinc-950 bg-white p-6 shadow-[18px_18px_0_#d9ff43]"><div className="flex items-center justify-between border-b border-zinc-100 pb-5"><div className="flex items-center gap-3"><span className="grid size-10 place-items-center rounded-xl bg-violet-100 text-violet-700"><Store size={18}/></span><div><b className="block text-xs">Toko Kriya</b><small className="text-[8px] text-zinc-400">Dashboard seller</small></div></div><span className="rounded-lg bg-green-50 px-2.5 py-1 text-[8px] font-black text-green-700">LIVE</span></div><div className="relative py-6"><small className="text-[9px] text-zinc-400">Omzet bulan ini</small><strong className="mt-1 block text-3xl font-black tracking-tight">Rp18,4 jt</strong><em className="absolute right-0 top-7 rounded-full bg-green-50 px-2 py-1 text-[9px] font-black not-italic text-green-700">+24%</em></div><div className="flex h-28 items-end gap-2">{[40,55,38,72,58,86,70,98].map((h,i)=><i className={`flex-1 rounded-t ${i%2?'bg-violet-600':'bg-lime-300'}`} key={i} style={{height:h}} />)}</div><div className="mt-5 flex gap-3 rounded-2xl bg-violet-50 p-4"><span className="grid size-9 shrink-0 place-items-center rounded-xl bg-violet-600 text-white"><Sparkles size={16}/></span><div><b className="text-[9px] text-violet-700">Saran dari NEMU</b><p className="mt-1 text-[9px] leading-4 text-zinc-600">Foto pertama yang lebih terang berpotensi mendapat lebih banyak klik.</p></div></div></div>
+      </section>
+
+      <section className="section-glow bg-white px-4 py-24 sm:px-6" aria-labelledby="untuk-siapa">
+        <div className="mx-auto max-w-[1180px]">
+          <p className="text-[10px] font-black uppercase tracking-[.16em] text-violet-700">Satu tempat, dua kebutuhan</p>
+          <h2 id="untuk-siapa" className="mt-3 max-w-3xl font-[var(--font-display)] text-5xl font-black leading-[.95] tracking-[-.06em] sm:text-6xl">Mudah buat yang belanja.<br/>Ringan buat yang jualan.</h2>
+          <div className="mt-12 grid gap-5 lg:grid-cols-2">
+            <article className="group rounded-[32px] border border-violet-100 bg-violet-50 p-8 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-950/10 sm:p-10"><span className="grid size-12 place-items-center rounded-2xl bg-violet-600 text-white"><ShoppingBag size={21}/></span><p className="mt-10 text-[9px] font-black uppercase tracking-[.14em] text-violet-700">Untuk pembeli</p><h3 className="mt-2 text-3xl font-black tracking-[-.05em]">Cari lebih cepat, pilih lebih yakin.</h3><p className="mt-4 max-w-lg text-xs leading-6 text-zinc-600">Tulis kebutuhan dengan bahasamu sendiri. Lihat harga, kondisi, lokasi, dan status seller sebelum membeli.</p><Link className="mt-6 inline-flex items-center gap-2 text-[10px] font-black text-violet-700" href="/shop">Mulai cari barang <ArrowRight size={15}/></Link></article>
+            <article className="group rounded-[32px] bg-zinc-950 p-8 text-white transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-zinc-950/20 sm:p-10"><span className="grid size-12 place-items-center rounded-2xl bg-lime-300 text-zinc-950"><Store size={21}/></span><p className="mt-10 text-[9px] font-black uppercase tracking-[.14em] text-lime-300">Untuk seller</p><h3 className="mt-2 text-3xl font-black tracking-[-.05em]">Upload foto, rapikan, lalu jual.</h3><p className="mt-4 max-w-lg text-xs leading-6 text-zinc-400">AI membantu menyiapkan judul, deskripsi, dan kategori. Kamu tetap mengatur harga dan memeriksa detailnya.</p><a className="mt-6 inline-flex items-center gap-2 text-[10px] font-black text-lime-300" href="https://seller.nemu-ai.com/register">Buka toko NEMU <ArrowRight size={15}/></a></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-24 sm:px-6" aria-labelledby="faq-heading">
+        <div className="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[.7fr_1fr]">
+          <div><p className="text-[10px] font-black uppercase tracking-[.16em] text-violet-700">Pertanyaan yang sering muncul</p><h2 id="faq-heading" className="mt-3 font-[var(--font-display)] text-5xl font-black leading-[.95] tracking-[-.06em]">Masih bingung?<br/>Jawabannya di sini.</h2><p className="mt-5 max-w-sm text-xs leading-6 text-zinc-500">Penjelasan singkat untuk pembeli dan seller yang baru kenal NEMU.</p></div>
+          <div className="divide-y divide-zinc-200 border-y border-zinc-200">{faq.map(([question,answer],index)=><details className="faq-item group" open={index===0} key={question}><summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-6 text-sm font-black"><span>{question}</span><CirclePlus className="shrink-0 text-violet-600" size={20}/></summary><p className="max-w-2xl pb-6 pr-10 text-xs leading-6 text-zinc-500">{answer}</p></details>)}</div>
+        </div>
       </section>
 
       <section className="bg-lime-300 px-4 py-24 text-center sm:px-6"><p className="text-[10px] font-black uppercase tracking-[.16em]">Barangnya sudah kebayang?</p><h2 className="mt-3 font-[var(--font-display)] text-5xl font-black tracking-[-.06em] sm:text-7xl">Ketik sekarang. <span className="text-violet-700">NEMU carikan.</span></h2><Link className="mt-8 inline-flex items-center gap-3 rounded-xl bg-violet-600 px-5 py-4 text-[10px] font-black text-white" href="/shop">Cari produk saya <ArrowRight size={17}/></Link></section>

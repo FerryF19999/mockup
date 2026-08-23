@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 import { ArrowRight, Heart, Sparkles } from 'lucide-react';
+import { Button } from '@astryxdesign/core/Button';
 
 const suggestions = ['Outfit kondangan di bawah Rp300 ribu', 'Kado untuk ibu', 'HP bagus di bawah Rp1 juta'];
 
@@ -9,7 +10,7 @@ export function ShopSearch() {
   const [query, setQuery] = useState('');
   const [message, setMessage] = useState('');
   function submit(event: FormEvent) { event.preventDefault(); const value=query.trim(); setMessage(value ? `NEMU sedang menyaring pilihan untuk “${value}”.` : 'Tulis barang atau kebutuhanmu dulu.'); }
-  return <div className="min-w-0"><form className="flex flex-col gap-2 rounded-2xl bg-white p-2 shadow-sm sm:flex-row sm:items-center" onSubmit={submit} role="search"><span className="hidden size-9 shrink-0 place-items-center rounded-xl bg-violet-50 text-violet-700 sm:grid"><Sparkles size={17}/></span><input className="min-w-0 flex-1 rounded-xl bg-zinc-50 px-4 py-3 text-[10px] outline-none placeholder:text-zinc-400 focus:ring-2 focus:ring-violet-200" value={query} onChange={(event)=>setQuery(event.target.value)} placeholder="Contoh: sepatu putih di bawah Rp200 ribu" aria-label="Cari produk dengan NEMU"/><button className="flex items-center justify-center gap-3 rounded-xl bg-violet-600 px-5 py-3 text-[9px] font-black text-white transition hover:bg-violet-700" type="submit">Cari produk <ArrowRight size={15}/></button></form><div className="mt-2 flex gap-1.5 overflow-x-auto [scrollbar-width:none]">{suggestions.map(item=><button className="shrink-0 rounded-full border border-violet-200 bg-white/70 px-3 py-1.5 text-[8px] font-semibold text-violet-800 transition hover:bg-white" type="button" key={item} onClick={()=>{setQuery(item);setMessage('')}}>{item}</button>)}</div><p className="mt-1.5 min-h-3 text-[8px] font-semibold text-violet-800" role="status" aria-live="polite">{message}</p></div>;
+  return <div className="min-w-0"><form className="flex flex-col gap-2 rounded-2xl bg-white p-2 shadow-sm sm:flex-row sm:items-center" onSubmit={submit} role="search"><span className="hidden size-9 shrink-0 place-items-center rounded-xl bg-violet-50 text-violet-700 sm:grid"><Sparkles size={17}/></span><input className="min-w-0 flex-1 rounded-xl bg-zinc-50 px-4 py-3 text-[10px] outline-none placeholder:text-zinc-400 focus:ring-2 focus:ring-violet-200" value={query} onChange={(event)=>setQuery(event.target.value)} placeholder="Contoh: sepatu putih di bawah Rp200 ribu" aria-label="Cari produk dengan NEMU"/><Button className="nemu-astryx-button" label="Cari produk" variant="primary" size="lg" type="submit" endContent={<ArrowRight size={15}/>} /></form><div className="mt-2 flex gap-1.5 overflow-x-auto [scrollbar-width:none]">{suggestions.map(item=><button className="shrink-0 rounded-full border border-violet-200 bg-white/70 px-3 py-1.5 text-[8px] font-semibold text-violet-800 transition hover:bg-white" type="button" key={item} onClick={()=>{setQuery(item);setMessage('')}}>{item}</button>)}</div><p className="mt-1.5 min-h-3 text-[8px] font-semibold text-violet-800" role="status" aria-live="polite">{message}</p></div>;
 }
 
 export function FavoriteButton({ name }: { name:string }) {

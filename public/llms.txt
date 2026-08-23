@@ -1,0 +1,19 @@
+# NEMU AI
+
+NEMU AI adalah marketplace Indonesia dengan pencarian produk berbantuan AI.
+
+## Untuk pembeli
+- Cari barang dengan nama produk atau kalimat biasa.
+- Sebutkan budget, warna, ukuran, kondisi, atau lokasi.
+- Bandingkan produk baru, preloved, harga, kondisi, dan seller.
+
+## Untuk seller
+- Seller lokal, UMKM, brand, dan penjual preloved dapat membuka toko.
+- AI membantu menyiapkan judul, deskripsi, dan kategori dari informasi produk.
+- Seller tetap mengatur harga dan memeriksa listing sebelum tayang.
+
+## Halaman utama
+- https://nemu-ai-redesign.openclawid6.chatgpt.site/
+- https://nemu-ai-redesign.openclawid6.chatgpt.site/shop
+
+Bahasa utama: Indonesia (id-ID).

@@ -1,4 +1,11 @@
-@import 'tailwindcss';
+@layer reset, theme, base, astryx-base, astryx-theme, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import '@astryxdesign/core/reset.css';
+@import '@astryxdesign/core/astryx.css';
+@import '@astryxdesign/theme-neutral/theme.css';
+@import 'tailwindcss/utilities.css' layer(utilities);
 
 :root {
   color-scheme: light;
@@ -20,6 +27,57 @@ button, input { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 img { max-width: 100%; }
 ::selection { color: #18181b; background: #d9ff43; }
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.reveal-section[data-visible='true'] { opacity: 1; transform: translateY(0); }
+.section-transition {
+  position: relative;
+  opacity: 0;
+  transform: translateY(34px) scale(.992);
+  transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.section-transition[data-revealed='true'] { opacity: 1; transform: translateY(0) scale(1); }
+.section-transition::after {
+  position: absolute;
+  right: max(1rem, calc((100vw - 1180px) / 2));
+  top: 0;
+  width: clamp(60px, 10vw, 140px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(105, 76, 255, .38));
+  content: '';
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item[open] summary svg { transform: rotate(45deg); }
+.faq-item summary svg { transition: transform .25s ease; }
+.section-glow { position: relative; isolation: isolate; }
+.section-glow::before {
+  position: absolute;
+  z-index: -1;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 999px;
+  background: rgba(105, 76, 255, .09);
+  filter: blur(70px);
+  content: '';
+  pointer-events: none;
+}
+.nemu-astryx-button {
+  min-width: 132px;
+  height: 42px !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  background: #694cff !important;
+  color: white !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  box-shadow: 0 5px 0 #402db6 !important;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease !important;
+}
+.nemu-astryx-button:hover { background: #5b3ff3 !important; transform: translateY(-1px); box-shadow: 0 6px 0 #402db6 !important; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
