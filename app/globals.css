@@ -103,6 +103,22 @@ img { max-width: 100%; }
 }
 .market-hero > div { box-shadow: 0 16px 48px rgba(54, 41, 92, .07); }
 
+.home-page > section { padding-right: 20px; padding-left: 20px; }
+.home-page > section > div { width: 100%; max-width: 1180px; margin-right: auto; margin-left: auto; }
+
+@media (min-width: 640px) {
+  .home-page > section { padding-right: 32px; padding-left: 32px; }
+}
+
+@media (min-width: 1024px) {
+  .home-page > section { padding-right: 64px; padding-left: 64px; }
+  .home-page > section > div { max-width: 1120px; }
+}
+
+@media (min-width: 1440px) {
+  .home-page > section { padding-right: 80px; padding-left: 80px; }
+}
+
 .scroll-depth {
   --depth-y: 0px;
   --depth-y-reverse: 0px;
