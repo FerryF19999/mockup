@@ -27,7 +27,7 @@ export function ThreeUiParticleNetwork({ className = '' }: { className?: string 
       next.y = Math.sin(angle) * radius;
       next.z = 80 + Math.random() * 920;
       next.previousZ = next.z + 20;
-      next.color = Math.random() > 0.45 ? '#d9ff43' : Math.random() > 0.5 ? '#9f8cff' : '#ffffff';
+      next.color = Math.random() > 0.45 ? '#704BFD' : Math.random() > 0.5 ? '#b9a8ff' : '#ffffff';
       return next;
     };
 
