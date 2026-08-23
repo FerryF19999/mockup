@@ -25,7 +25,7 @@ export default function AiModePage() {
     url: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/ai-mode', inLanguage: 'id-ID',
   };
 
-  return <main className="overflow-hidden bg-[#F7F5FC] text-[#0B0B0E]">
+  return <main className="overflow-hidden bg-[#fbfbfc] text-[#0b0b0e]">
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(jsonLd)}}/>
     <Header showSearch={false}/>
     <MobileDock/>
@@ -33,19 +33,19 @@ export default function AiModePage() {
     <section className="px-3 pb-14 pt-3 sm:px-6 lg:pb-20">
       <div className="mx-auto max-w-[1280px]">
         <Link className="mb-4 inline-flex items-center gap-2 px-2 text-[9px] font-black text-[#6B6B75] transition hover:text-[#704BFD]" href="/shop"><ArrowLeft size={14}/> Kembali ke Shop</Link>
-        <div className="relative isolate min-h-[680px] overflow-hidden rounded-[36px] border border-[#7f68df] bg-[#0B0B0E] px-5 py-12 text-white shadow-[0_32px_90px_rgba(69,45,121,.28)] sm:px-10 lg:px-16">
-          <span className="absolute inset-x-0 bottom-0 h-[72%] bg-[radial-gradient(circle_at_50%_100%,#704BFD_0%,#3e2b91_33%,transparent_70%)] opacity-95"/>
-          <span className="absolute -bottom-52 left-1/2 size-[650px] -translate-x-1/2 rounded-full bg-[#EDE8FF]/85 blur-[90px]"/>
-          <span className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.18)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,transparent,black)]"/>
+        <div className="relative isolate min-h-[680px] overflow-hidden rounded-[36px] border border-[#dcdce0] bg-[#f4f0ff] px-5 py-12 text-[#0b0b0e] shadow-[0_16px_40px_rgba(20,20,30,.12)] sm:px-10 lg:px-16">
+          <span className="absolute inset-x-0 bottom-0 h-[72%] bg-[radial-gradient(circle_at_50%_100%,#e7dfff_0%,#f4f0ff_48%,transparent_76%)]"/>
+          <span className="absolute -bottom-52 left-1/2 size-[650px] -translate-x-1/2 rounded-full bg-white blur-[90px]"/>
+          <span className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(112,75,253,.10)_1px,transparent_1px),linear-gradient(90deg,rgba(112,75,253,.10)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,transparent,black)]"/>
           <div className="relative z-10 mx-auto flex max-w-[980px] flex-col items-center text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[9px] font-black uppercase tracking-[.14em] text-[#EDE8FF] backdrop-blur"><Sparkles size={14}/> Mode AI NEMU</span>
-            <h1 className="mt-7 max-w-4xl font-[var(--font-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-7xl">Cari barang tinggal <span className="text-[#B9A8FF]">cerita.</span></h1>
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/70">Nggak perlu nebak kata kunci. Sebut kebutuhan, budget, ukuran, warna, atau mau dipakai buat apa.</p>
-            <div className="mt-10 w-full rounded-[30px] border border-white/30 bg-white p-4 text-left text-[#0B0B0E] shadow-[0_30px_80px_rgba(0,0,0,.34)] sm:p-6 lg:p-8">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#dcdce0] bg-white/80 px-4 py-2 text-[9px] font-black uppercase tracking-[.14em] text-[#704bfd] backdrop-blur"><Sparkles size={14}/> Mode AI NEMU</span>
+            <h1 className="mt-7 max-w-4xl font-[var(--font-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-7xl">Cari barang tinggal <span className="text-[#704bfd]">cerita.</span></h1>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-[#6b6b75]">Nggak perlu nebak kata kunci. Sebut kebutuhan, budget, ukuran, warna, atau mau dipakai buat apa.</p>
+            <div className="mt-10 w-full rounded-[30px] border border-[#dcdce0] bg-white p-4 text-left text-[#0b0b0e] shadow-[0_16px_40px_rgba(20,20,30,.12)] sm:p-6 lg:p-8">
               <div className="mb-5 flex items-center justify-between gap-4"><div><p className="text-[8px] font-black uppercase tracking-[.14em] text-[#704BFD]">Tanya NEMU</p><h2 className="mt-1 text-2xl font-black tracking-[-.04em]">Lagi butuh apa?</h2></div><span className="hidden items-center gap-2 rounded-full bg-[#F2EFFF] px-3 py-2 text-[8px] font-black text-[#704BFD] sm:flex"><span className="size-2 rounded-full bg-[#704BFD]"/> Siap bantu</span></div>
               <AiShoppingAssistant/>
             </div>
-            <div className="mt-7 flex flex-wrap justify-center gap-2 text-[8px] font-black text-white/75"><span className="rounded-full border border-white/20 bg-white/10 px-3 py-2">Bahasa sehari-hari</span><span className="rounded-full border border-white/20 bg-white/10 px-3 py-2">Budget ikut dihitung</span><span className="rounded-full border border-white/20 bg-white/10 px-3 py-2">Baru + preloved</span></div>
+            <div className="mt-7 flex flex-wrap justify-center gap-2 text-[8px] font-black text-[#5a36e8]"><span className="rounded-full border border-[#dcdce0] bg-white/65 px-3 py-2">Bahasa sehari-hari</span><span className="rounded-full border border-[#dcdce0] bg-white/65 px-3 py-2">Budget ikut dihitung</span><span className="rounded-full border border-[#dcdce0] bg-white/65 px-3 py-2">Baru + preloved</span></div>
           </div>
         </div>
       </div>
