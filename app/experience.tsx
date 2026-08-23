@@ -111,6 +111,46 @@ export function Reveal({ children, className = '' }: { children: React.ReactNode
   return <div ref={ref} className={`reveal-section ${className}`}>{children}</div>;
 }
 
+export function ScrollDepth({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let frame = 0;
+
+    const update = () => {
+      const rect = node.getBoundingClientRect();
+      const range = window.innerHeight + rect.height;
+      const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / range));
+      const centered = progress - .5;
+      if (!reducedMotion) {
+        node.style.setProperty('--depth-y', `${centered * -72}px`);
+        node.style.setProperty('--depth-y-reverse', `${centered * 46}px`);
+        node.style.setProperty('--depth-rotate', `${centered * 9}deg`);
+        node.style.setProperty('--depth-rotate-reverse', `${centered * -6}deg`);
+      }
+      node.style.setProperty('--depth-progress', progress.toFixed(3));
+      frame = 0;
+    };
+
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    return () => {
+      window.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return <div ref={ref} className={`scroll-depth ${className}`}>{children}</div>;
+}
+
 export function SectionTransitions() {
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>('main > section'));

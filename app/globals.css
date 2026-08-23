@@ -90,6 +90,36 @@ img { max-width: 100%; }
 }
 .market-hero > div { box-shadow: 0 16px 48px rgba(54, 41, 92, .07); }
 
+.scroll-depth {
+  --depth-y: 0px;
+  --depth-y-reverse: 0px;
+  --depth-rotate: 0deg;
+  --depth-rotate-reverse: 0deg;
+  perspective: 1400px;
+}
+.depth-stage { transform-style: preserve-3d; }
+.depth-layer-back {
+  transform: translate3d(-18px, var(--depth-y-reverse), -70px) rotateX(var(--depth-rotate-reverse)) rotateY(-7deg);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.depth-layer-mid {
+  transform: translate3d(8px, var(--depth-y), 25px) rotateX(var(--depth-rotate)) rotateY(4deg);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.depth-layer-front {
+  transform: translate3d(0, var(--depth-y-reverse), 95px) rotateX(var(--depth-rotate-reverse)) rotateY(-2deg);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.depth-float-soft {
+  transform: translate3d(0, var(--depth-y), 130px) rotate(var(--depth-rotate));
+  will-change: transform;
+}
+.depth-interactive { transition: box-shadow .25s ease, border-color .25s ease; }
+.depth-interactive:hover { border-color: rgba(143,113,255,.48); box-shadow: 0 24px 60px rgba(48,28,78,.16); }
+
 .mobile-dock { display: none; }
 
 @media (max-width: 767px) {

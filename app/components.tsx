@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight, Camera, ChevronDown, Heart, HelpCircle, Home, Mail, Menu, Music2, Search, ShoppingBag, Sparkles, Store, UserRound } from 'lucide-react';
 
 export function Logo({ light = false }: { light?: boolean }) {
-  return <Link className="inline-flex items-center gap-2.5" href="/" aria-label="NEMU AI beranda"><Image src="/nemu-mark.svg" alt="" width={36} height={36} priority/><span className={`logo-wordmark items-baseline text-[22px] font-black tracking-[-0.065em] ${light ? 'text-white' : 'text-[#30293a]'}`}>nemu<span className={light?'ml-0.5 text-[#dfff5b]':'ml-0.5 text-[#6b4de6]'}>.ai</span></span></Link>;
+  return <Link className="inline-flex items-center gap-1.5" href="/" aria-label="NEMU AI beranda"><Image src="/nemu-spark-mark.svg" alt="" width={29} height={29} priority/><span className={`logo-wordmark items-baseline text-[24px] font-semibold tracking-[-0.06em] ${light ? 'text-white' : 'text-[#30293a]'}`}>nemu<span className={light?'text-white':'text-[#30293a]'}>.ai</span></span></Link>;
 }
 
 export function Header({ showSearch = true }: { showSearch?: boolean }) {
