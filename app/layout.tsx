@@ -7,11 +7,11 @@ const body = Manrope({ variable: '--font-body', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nemu-ai-redesign.openclawid6.chatgpt.site'),
-  title: 'NEMU AI — Belanja lokal, ditemukan untukmu',
-  description: 'Marketplace lokal dengan asisten AI yang membantu buyer menemukan produk terbaik dan seller tumbuh lebih mudah.',
+  title: 'NEMU AI — Ketik maumu. NEMU carikan.',
+  description: 'Marketplace lokal dengan AI. Tulis kebutuhanmu, bandingkan produk dan seller, lalu checkout.',
   openGraph: {
-    title: 'NEMU AI — Yang kamu cari, NEMU bantu temukan.',
-    description: 'Marketplace lokal dengan AI. Cari barang cukup pakai bahasa sehari-hari.',
+    title: 'NEMU AI — Ketik maumu. NEMU carikan.',
+    description: 'Tulis kebutuhanmu. NEMU menyaring produk lokal, harga, dan seller yang paling cocok.',
     url: 'https://nemu-ai-redesign.openclawid6.chatgpt.site',
     siteName: 'NEMU AI',
     locale: 'id_ID',
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NEMU AI — Yang kamu cari, NEMU bantu temukan.',
-    description: 'Marketplace lokal dengan AI. Cari barang cukup pakai bahasa sehari-hari.',
+    title: 'NEMU AI — Ketik maumu. NEMU carikan.',
+    description: 'Tulis kebutuhanmu. NEMU menyaring produk lokal, harga, dan seller yang paling cocok.',
     images: ['https://nemu-ai-redesign.openclawid6.chatgpt.site/og.png'],
   },
 };
