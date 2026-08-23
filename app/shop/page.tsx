@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   ArrowRight, BadgeCheck, ChevronRight,
+  Footprints,
   MapPin, PackageCheck, RotateCcw,
-  ShieldCheck, Sparkles, Star, Store,
+  MountainSnow, Palette, ShieldCheck, Sparkles, Star, Store,
+  TentTree,
   Zap,
 } from 'lucide-react';
 import { BannerCarousel } from '../banner-carousel';
@@ -42,10 +44,10 @@ const products = [
 ];
 
 const shops = [
-  {name:'AREI',category:'Outdoor & travel',initial:'AR',tone:'bg-[#237454]',score:'4,9'},
-  {name:'TRACKER',category:'Sepatu & sandal',initial:'TR',tone:'bg-[#5b3fd5]',score:'4,8'},
-  {name:'Cartenz',category:'Gear pendakian',initial:'CA',tone:'bg-[#d9652b]',score:'4,9'},
-  {name:'KRIYA.',category:'Produk lokal pilihan',initial:'KR',tone:'bg-[#292333]',score:'4,9'},
+  {name:'AREI',category:'Outdoor & travel',icon:MountainSnow,tone:'bg-[#237454]',accent:'text-[#dfff5b]',score:'4,9'},
+  {name:'TRACKER',category:'Sepatu & sandal',icon:Footprints,tone:'bg-[#5b3fd5]',accent:'text-white',score:'4,8'},
+  {name:'Cartenz',category:'Gear pendakian',icon:TentTree,tone:'bg-[#d9652b]',accent:'text-[#fff1c9]',score:'4,9'},
+  {name:'KRIYA.',category:'Produk lokal pilihan',icon:Palette,tone:'bg-[#292333]',accent:'text-[#d8c9ff]',score:'4,9'},
 ];
 
 export default function ShopPage() {
@@ -90,7 +92,7 @@ export default function ShopPage() {
 
       <section className="mx-auto max-w-[1240px] px-4 py-16 sm:px-6" aria-labelledby="toko-heading">
         <div className="flex items-end justify-between"><div><p className="text-[8px] font-black uppercase tracking-[.14em] text-[#5b3fd5]">Seller pilihan</p><h2 id="toko-heading" className="mt-1 text-3xl font-black tracking-[-.045em]">Tokonya jelas. Belanjanya lega.</h2></div><a className="hidden items-center gap-1 text-[9px] font-black text-[#5b3fd5] sm:flex" href="https://shop.nemu-ai.com/toko">Lihat semua toko <ChevronRight size={13}/></a></div>
-        <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">{shops.map(shop=><article className="rounded-[24px] border border-[#e8e4f0] bg-white p-5 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-violet-950/5" key={shop.name}><div className="flex items-start justify-between"><span className={`grid size-12 place-items-center rounded-2xl text-sm font-black text-white ${shop.tone}`}>{shop.initial}</span><span className="flex items-center gap-1 rounded-full bg-[#eaf8f1] px-2 py-1 text-[7px] font-black text-[#237454]"><BadgeCheck size={11}/> Terverifikasi</span></div><h3 className="mt-8 text-lg font-black">{shop.name}</h3><p className="mt-1 text-[8px] text-[#716979]">{shop.category}</p><p className="mt-3 flex items-center gap-1 text-[8px] font-bold"><Star size={11} fill="#f7b928" className="text-[#f7b928]"/> {shop.score} · respon cepat</p></article>)}</div>
+        <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">{shops.map(shop=>{const ShopIcon=shop.icon;return <article className="rounded-[24px] border border-[#e8e4f0] bg-white p-5 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-violet-950/5" key={shop.name}><div className="flex items-start justify-between"><span className={`relative grid size-14 place-items-center overflow-hidden rounded-[18px] shadow-sm ${shop.tone} ${shop.accent}`}><span className="absolute -right-3 -top-3 size-9 rounded-full border border-white/20 bg-white/10"/><ShopIcon size={27} strokeWidth={1.8}/></span><span className="flex items-center gap-1 rounded-full bg-[#eaf8f1] px-2 py-1 text-[7px] font-black text-[#237454]"><BadgeCheck size={11}/> Terverifikasi</span></div><h3 className="mt-7 text-lg font-black">{shop.name}</h3><p className="mt-1 text-[8px] text-[#716979]">{shop.category}</p><p className="mt-3 flex items-center gap-1 text-[8px] font-bold"><Star size={11} fill="#f7b928" className="text-[#f7b928]"/> {shop.score} · respon cepat</p></article>})}</div>
       </section>
 
       <section className="mx-auto max-w-[1240px] px-4 pb-16 sm:px-6" id="produk" aria-labelledby="produk-heading">
