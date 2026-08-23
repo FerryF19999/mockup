@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight, BadgeCheck, Camera, Check, ChevronRight, CirclePlus,
@@ -7,6 +6,7 @@ import {
 } from 'lucide-react';
 import { Footer, Header, MobileDock } from './components';
 import { SectionTransitions, ThreeUiParticleNetwork } from './experience';
+import { ProductQuickView } from './product-quick-view';
 
 const faq = [
   ['NEMU itu tempat belanja apa?', 'Marketplace buat cari barang baru, preloved, dan produk seller lokal. Kamu bisa cari seperti biasa atau ceritain barang yang kamu mau.'],
@@ -16,14 +16,14 @@ const faq = [
 ];
 
 const products = [
-  { name: 'Vivo V11 Pro 6/64', price: 'Rp950.000', note: 'Preloved · Klaten', image: 'https://s3.ap-southeast-3.amazonaws.com/s3-production-nemu-ai/products/7008540f-9a9c-4917-9368-55b0e5335908.png', badge: 'Hemat 10%' },
-  { name: 'GM Flat Sandal', price: 'Rp70.000', note: 'Baru · Jakarta', image: 'https://s3.ap-southeast-3.amazonaws.com/s3-production-nemu-ai/products/b65c53f0-b789-4dd0-84a0-ba883188e12a.jpg', badge: 'Produk lokal' },
-  { name: 'Kopi Gayo Arabika', price: 'Rp95.000', note: '250 gr · Aceh', image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=700&auto=format&fit=crop&q=82', badge: 'Banyak dicari' },
-  { name: 'Arunika Work Tote', price: 'Rp749.000', note: 'Kulit asli · Bandung', image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=700&auto=format&fit=crop&q=82', badge: 'Seller pilihan' },
-  { name: 'Mug keramik handmade', price: 'Rp180.000', note: 'Buatan tangan · Bandung', image: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=700&auto=format&fit=crop&q=82', badge: 'Produk lokal' },
+  { name: 'Vivo V11 Pro 6/64', price: 'Rp950.000', note: 'Preloved · Klaten', sprite: '/product-sprite-a-v1.png', position: '0% 0%', badge: 'Hemat 10%', liveUrl: 'https://shop.nemu-ai.com/products/store/lenteraawan/vivo-v11-pro-6-64' },
+  { name: 'GM Flat Sandal', price: 'Rp70.000', note: 'Baru · Jakarta', sprite: '/product-sprite-a-v1.png', position: '50% 0%', badge: 'Produk lokal', liveUrl: 'https://shop.nemu-ai.com/products/store/gms-shoes/gm-shoes-sepatu-sandal-wanita-flatshoes-simple' },
+  { name: 'Kopi Gayo Arabika', price: 'Rp95.000', note: '250 gr · Aceh', sprite: '/product-sprite-a-v1.png', position: '100% 0%', badge: 'Banyak dicari' },
+  { name: 'Arunika Work Tote', price: 'Rp749.000', note: 'Kulit asli · Bandung', sprite: '/product-sprite-a-v1.png', position: '0% 100%', badge: 'Seller pilihan' },
+  { name: 'Mug keramik handmade', price: 'Rp180.000', note: 'Buatan tangan · Bandung', sprite: '/product-sprite-a-v1.png', position: '50% 100%', badge: 'Produk lokal' },
 ];
 
-const miniProducts = products.slice(0, 3).map(({ name, price, image }) => [name, price, image]);
+const miniProducts = products.slice(0, 3);
 
 const categories = [
   { name: 'Fashion', position: '0% 0%' },
@@ -62,7 +62,7 @@ export default function Home() {
           </div>
           <div className="relative isolate flex min-h-[350px] items-center overflow-hidden bg-[#f1eeff] p-6 sm:p-8 lg:min-h-full">
             <div className="absolute -right-20 -top-20 -z-10 size-72 rounded-full bg-[#5b3fd5] opacity-10"/>
-            <div className="w-full"><div className="mb-4 flex items-center justify-between"><b className="text-[10px] text-[#292333]">Pilihan yang lagi dicari</b><Link className="flex items-center gap-1 text-[9px] font-black text-[#5b3fd5]" href="/shop">Lihat semua <ChevronRight size={13}/></Link></div><div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">{miniProducts.map(([name,price,img],index)=><article className={`overflow-hidden rounded-2xl border border-white bg-white shadow-[0_10px_28px_rgba(54,41,92,.10)] ${index===2?'hidden sm:block lg:hidden xl:block':''}`} key={name}><Image className="aspect-[1.08] w-full object-cover" src={img} alt={name} width={280} height={260} sizes="(max-width: 640px) 42vw, 190px" priority={index===0}/><div className="p-3 text-[#292333]"><h3 className="truncate text-[9px] font-extrabold">{name}</h3><strong className="mt-1 block text-xs text-[#5b3fd5]">{price}</strong></div></article>)}</div><div className="mt-3 rounded-xl border border-[#ddd6ef] bg-white/70 px-4 py-3 text-[8px] font-bold text-[#625b6d]">Produk yang cocok muncul lebih dulu. Nggak perlu buka banyak tab.</div></div>
+            <div className="w-full"><div className="mb-4 flex items-center justify-between"><b className="text-[10px] text-[#292333]">Pilihan yang lagi dicari</b><Link className="flex items-center gap-1 text-[9px] font-black text-[#5b3fd5]" href="/shop#produk">Lihat semua <ChevronRight size={13}/></Link></div><div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">{miniProducts.map((product,index)=><article className={`overflow-hidden rounded-2xl border border-white bg-white shadow-[0_10px_28px_rgba(54,41,92,.10)] ${index===2?'hidden sm:block lg:hidden xl:block':''}`} key={product.name}><div className="aspect-[1.08] w-full bg-cover bg-center bg-no-repeat" role="img" aria-label={product.name} style={{backgroundImage:`url('${product.sprite}')`,backgroundSize:'300% 200%',backgroundPosition:product.position}}/><div className="p-3 text-[#292333]"><h3 className="truncate text-[9px] font-extrabold">{product.name}</h3><strong className="mt-1 block text-xs text-[#5b3fd5]">{product.price}</strong><ProductQuickView {...product}/></div></article>)}</div><div className="mt-3 rounded-xl border border-[#ddd6ef] bg-white/70 px-4 py-3 text-[8px] font-bold text-[#625b6d]">Produk yang cocok muncul lebih dulu. Nggak perlu buka banyak tab.</div></div>
           </div>
         </div>
       </section>
@@ -78,10 +78,19 @@ export default function Home() {
         <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:grid-rows-[190px_190px]">{categories.filter(({name})=>name!=='Elektronik').map(({name,position})=>{const featured=name==='Fashion';return <Link className={`group relative isolate overflow-hidden rounded-[22px] bg-[#ece8f4] transition duration-300 hover:-translate-y-1 hover:shadow-xl ${featured?'col-span-2 aspect-[1.55] md:row-span-2 md:aspect-auto':''}`} href="/shop" key={name}><span className="absolute inset-0 bg-cover bg-center bg-no-repeat transition duration-500 group-hover:scale-[1.035]" role="img" aria-label={`Kategori ${name}`} style={{backgroundImage:"url('/category-sprite-v1.png')",backgroundSize:'300% 200%',backgroundPosition:position}}/><span className="absolute inset-0 bg-gradient-to-t from-[#17151d]/75 via-transparent to-transparent"/><span className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4 sm:p-5"><span><small className="block text-[7px] font-black uppercase tracking-[.12em] text-white/70">Jelajahi</small><b className={`${featured?'text-2xl':'text-base'} mt-1 block text-white`}>{name}</b></span><span className="grid size-8 place-items-center rounded-full bg-white text-[#292333]"><ChevronRight size={15}/></span></span></Link>})}</div>
       </section>
 
+      <section className="mx-auto max-w-[1240px] px-4 pb-16 sm:px-6 lg:pb-20" aria-labelledby="pilihan-visual">
+        <div className="mb-7 flex items-end justify-between gap-5"><div><p className="text-[10px] font-black uppercase tracking-[.14em] text-[#5b3fd5]">Pilih suasananya</p><h2 id="pilihan-visual" className="mt-2 text-3xl font-black tracking-[-.045em] sm:text-4xl">Lagi pengin belanja yang mana?</h2></div></div>
+        <div className="grid gap-4 lg:grid-cols-[1.15fr_.85fr] lg:grid-rows-[205px_205px]">
+          <Link className="group relative isolate min-h-[300px] overflow-hidden rounded-[28px] lg:row-span-2" href="/shop#produk"><span className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-[1.025]" style={{backgroundImage:"url('/banner-local-v1.png')"}}/><span className="absolute inset-0 bg-gradient-to-r from-[#25382e]/80 via-[#25382e]/25 to-transparent"/><span className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-9"><small className="font-black uppercase tracking-[.13em] text-[#dfff5b]">Buatan lokal</small><h3 className="mt-2 max-w-sm text-3xl font-black tracking-[-.045em]">Bagusnya dekat. Ketemunya di NEMU.</h3><span className="mt-5 inline-flex items-center gap-2 text-[9px] font-black">Lihat produknya <ArrowRight size={14}/></span></span></Link>
+          <Link className="group relative isolate min-h-[220px] overflow-hidden rounded-[28px]" href="/shop#produk"><span className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-[1.025]" style={{backgroundImage:"url('/banner-shipping-v1.png')"}}/><span className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/45 to-transparent"/><span className="relative flex h-full max-w-[270px] flex-col justify-end p-7 text-[#393047]"><small className="font-black uppercase tracking-[.13em] text-[#5b3fd5]">Pesanan pertama</small><h3 className="mt-2 text-2xl font-black tracking-[-.04em]">Ongkirnya kami bantu.</h3></span></Link>
+          <Link className="group relative isolate min-h-[220px] overflow-hidden rounded-[28px]" href="/shop#produk"><span className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-[1.025]" style={{backgroundImage:"url('/banner-preloved-v1.png')"}}/><span className="absolute inset-0 bg-gradient-to-r from-[#5f3f61]/80 via-[#5f3f61]/20 to-transparent"/><span className="relative flex h-full max-w-[270px] flex-col justify-end p-7 text-white"><small className="font-black uppercase tracking-[.13em] text-[#ffd9e9]">Preloved pilihan</small><h3 className="mt-2 text-2xl font-black tracking-[-.04em]">Masih cakep. Lebih hemat.</h3></span></Link>
+        </div>
+      </section>
+
       <section className="bg-white px-4 py-16 sm:px-6 lg:py-20" aria-labelledby="lagi-rame">
         <div className="mx-auto max-w-[1240px]">
           <div className="flex items-end justify-between gap-5"><div><span className="inline-flex rounded-full bg-[#fff0da] px-3 py-1.5 text-[8px] font-black text-[#a95a00]">LAGI RAME</span><h2 id="lagi-rame" className="mt-3 text-3xl font-black tracking-[-.045em] sm:text-4xl">Banyak yang lagi ngincer ini</h2><p className="mt-2 text-sm text-[#6d6577]">Dari gadget sampai barang buatan seller lokal.</p></div><Link className="hidden items-center gap-1 text-[10px] font-black text-[#5b3fd5] sm:flex" href="/shop">Lihat lebih banyak <ChevronRight size={15}/></Link></div>
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">{products.map((product,index)=><article className={`group min-w-0 ${index>3?'hidden lg:block':''}`} key={product.name}><Link href="/shop"><div className="relative aspect-square overflow-hidden rounded-2xl bg-[#f4f2f6]"><Image className="object-cover transition duration-300 group-hover:scale-105" src={product.image} alt={product.name} fill sizes="(max-width: 640px) 46vw, (max-width: 1024px) 31vw, 224px"/><span className="absolute left-2 top-2 rounded-full bg-white/95 px-2.5 py-1 text-[7px] font-black text-[#5b3fd5] shadow-sm">{product.badge}</span></div><h3 className="mt-3 line-clamp-2 text-[11px] font-extrabold leading-5">{product.name}</h3><strong className="mt-1 block text-sm text-[#5b3fd5]">{product.price}</strong><p className="mt-1 text-[8px] text-[#7a7284]">{product.note}</p></Link></article>)}</div>
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">{products.map((product,index)=><article className={`group min-w-0 ${index>3?'hidden lg:block':''}`} key={product.name}><div className="relative aspect-square overflow-hidden rounded-2xl bg-[#f4f2f6]"><span className="absolute inset-0 bg-cover bg-center bg-no-repeat transition duration-300 group-hover:scale-105" role="img" aria-label={product.name} style={{backgroundImage:`url('${product.sprite}')`,backgroundSize:'300% 200%',backgroundPosition:product.position}}/><span className="absolute left-2 top-2 rounded-full bg-white/95 px-2.5 py-1 text-[7px] font-black text-[#5b3fd5] shadow-sm">{product.badge}</span></div><h3 className="mt-3 line-clamp-2 text-[11px] font-extrabold leading-5">{product.name}</h3><strong className="mt-1 block text-sm text-[#5b3fd5]">{product.price}</strong><p className="mt-1 text-[8px] text-[#7a7284]">{product.note}</p><ProductQuickView {...product}/></article>)}</div>
         </div>
       </section>
 

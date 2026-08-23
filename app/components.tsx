@@ -1,11 +1,12 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Camera, ChevronDown, Heart, HelpCircle, Home, Mail, Menu, Music2, Search, ShoppingBag, Sparkles, Store, UserRound } from 'lucide-react';
 
 export function Logo({ light = false }: { light?: boolean }) {
-  return <Link className="inline-flex items-center gap-2" href="/" aria-label="NEMU AI beranda"><Sparkles className={light?'text-white':'text-[#7446ff]'} size={25} strokeWidth={1.8}/><b className={`text-[21px] font-extrabold tracking-[-0.05em] ${light ? 'text-white' : 'text-[#1d1c24]'}`}>nemu.ai</b></Link>;
+  return <Link className="inline-flex items-center gap-2.5" href="/" aria-label="NEMU AI beranda"><Image src="/nemu-mark.svg" alt="" width={36} height={36} priority/><span className={`logo-wordmark items-baseline text-[22px] font-black tracking-[-0.065em] ${light ? 'text-white' : 'text-[#30293a]'}`}>nemu<span className={light?'ml-0.5 text-[#dfff5b]':'ml-0.5 text-[#6b4de6]'}>.ai</span></span></Link>;
 }
 
-export function Header() {
+export function Header({ showSearch = true }: { showSearch?: boolean }) {
   return (
     <div className="sticky top-0 z-50 border-b border-[#e8e4f0] bg-white/95 backdrop-blur-xl">
       <div className="bg-[#1d1c24] text-white">
@@ -15,8 +16,8 @@ export function Header() {
         </div>
       </div>
       <header className="mx-auto grid min-h-[70px] max-w-[1240px] grid-cols-[auto_1fr_auto] items-center gap-3 px-4 py-2.5 sm:gap-6 sm:px-6">
-        <div className="[&>a>b]:hidden sm:[&>a>b]:block"><Logo /></div>
-        <form className="group flex h-11 min-w-0 items-center rounded-[14px] border border-[#cfc7dc] bg-[#f8f7fa] pl-4 transition focus-within:border-[#5b3fd5] focus-within:bg-white focus-within:ring-4 focus-within:ring-violet-100" action="/shop" role="search"><Search size={18} className="shrink-0 text-[#5b3fd5]" /><input className="min-w-0 flex-1 bg-transparent px-3 text-xs font-medium text-[#332d3d] outline-none placeholder:text-[#7c7487]" name="q" placeholder="Cari barang atau ceritain yang kamu mau" aria-label="Cari produk" /><button className="m-1 hidden h-9 rounded-[10px] bg-[#5b3fd5] px-6 text-[10px] font-black text-white transition hover:bg-[#4d32c4] sm:block" type="submit">Cari</button></form>
+        <div className="[&_.logo-wordmark]:hidden sm:[&_.logo-wordmark]:inline-flex"><Logo /></div>
+        {showSearch ? <form className="group flex h-11 min-w-0 items-center rounded-[14px] border border-[#cfc7dc] bg-[#f8f7fa] pl-4 transition focus-within:border-[#5b3fd5] focus-within:bg-white focus-within:ring-4 focus-within:ring-violet-100" action="/shop" role="search"><Search size={18} className="shrink-0 text-[#5b3fd5]" /><input className="min-w-0 flex-1 bg-transparent px-3 text-xs font-medium text-[#332d3d] outline-none placeholder:text-[#7c7487]" name="q" placeholder="Cari barang atau ceritain yang kamu mau" aria-label="Cari produk" /><button className="m-1 hidden h-9 rounded-[10px] bg-[#5b3fd5] px-6 text-[10px] font-black text-white transition hover:bg-[#4d32c4] sm:block" type="submit">Cari</button></form> : <div className="flex min-w-0 items-center gap-2 text-[9px] font-bold text-[#736a7d]"><Sparkles size={14} className="shrink-0 text-[#7446ff]"/><span className="truncate">Baru, lokal, sampai preloved—semuanya bisa dicari</span></div>}
         <nav className="flex items-center gap-1 sm:gap-2" aria-label="Menu akun"><Link className="hidden size-10 place-items-center rounded-full text-[#625b6d] transition hover:bg-violet-50 hover:text-[#5b3fd5] sm:grid" href="/shop" aria-label="Favorit"><Heart size={19} /></Link><Link className="relative grid size-10 place-items-center rounded-full text-[#625b6d] transition hover:bg-violet-50 hover:text-[#5b3fd5]" href="/shop" aria-label="Keranjang"><ShoppingBag size={20} /><span className="absolute right-0 top-0 grid size-4 place-items-center rounded-full bg-[#ffb648] text-[8px] font-black text-[#32240d]">2</span></Link><a className="hidden rounded-full bg-[#292333] px-5 py-3 text-[10px] font-black text-white transition hover:bg-[#5b3fd5] md:block" href="https://shop.nemu-ai.com/login">Masuk</a></nav>
       </header>
       <nav className="mx-auto flex h-10 max-w-[1240px] items-center gap-6 overflow-x-auto px-4 text-[9px] font-bold text-[#625b6d] [scrollbar-width:none] sm:px-6" aria-label="Kategori populer"><Link className="flex shrink-0 items-center gap-2 font-black text-[#292333]" href="/shop"><Menu size={14} /> Semua kategori</Link>{['Lagi promo','Fashion','HP & gadget','Rumah','Beauty','Preloved'].map(item=><Link className="shrink-0 transition hover:text-[#5b3fd5]" href="/shop" key={item}>{item}</Link>)}<Link className="ml-auto flex shrink-0 items-center gap-1.5 font-black text-[#5b3fd5]" href="/shop#tanya-nemu"><Sparkles size={13} /> Tanya NEMU</Link></nav>
