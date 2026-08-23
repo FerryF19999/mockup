@@ -22,12 +22,20 @@ export const metadata: Metadata = {
 };
 
 const categories = [
-  {name:'Fashion',position:'0% 0%'},
-  {name:'HP & gadget',position:'50% 0%'},
-  {name:'Beauty',position:'100% 0%'},
-  {name:'Rumah',position:'0% 100%'},
-  {name:'Elektronik',position:'50% 100%'},
-  {name:'Preloved',position:'100% 100%'},
+  {name:'Fashion',image:'/collection-fashion-v1.jpg',focus:'center'},
+  {name:'HP & gadget',image:'/collection-gadget-v1.jpg',focus:'center'},
+  {name:'Beauty',image:'/collection-beauty-v1.jpg',focus:'center'},
+  {name:'Rumah',image:'/collection-home-v1.jpg',focus:'center'},
+  {name:'Elektronik',image:'/collection-gadget-v1.jpg',focus:'65% center'},
+  {name:'Preloved',image:'/banner-preloved-v1.png',focus:'72% center'},
+];
+
+const promoGallery = [
+  {label:'FLASH SALE',title:'Harga turun. Jangan cuma dilihatin.',image:'/campaign-flash-sale-v1.jpg',tone:'from-[#7d1f16]/95'},
+  {label:'LAGI FYP',title:'Yang rame di timeline, ada di sini.',image:'/campaign-fyp-v1.jpg',tone:'from-[#3d1b69]/95'},
+  {label:'GRATIS ONGKIR',title:'Belanjanya jalan. Ongkirnya dibantu.',image:'/campaign-free-shipping-v1.jpg',tone:'from-[#273783]/95'},
+  {label:'GAJIAN SALE',title:'Baru gajian? Pilih yang kepakai.',image:'/campaign-payday-v1.jpg',tone:'from-[#19583d]/95'},
+  {label:'9.9 SALE',title:'Tanggal cantik. Harganya ikut cakep.',image:'/campaign-99-v1.jpg',tone:'from-[#7a1649]/95'},
 ];
 
 const products = [
@@ -74,6 +82,11 @@ export default function ShopPage() {
         <BannerCarousel />
       </section>
 
+      <section className="mx-auto max-w-[1240px] px-4 py-8 sm:px-6" aria-labelledby="promo-gallery-heading">
+        <div className="flex items-end justify-between gap-4"><div><p className="text-[9px] font-black uppercase tracking-[.14em] text-[#5b3fd5]">Promo hari ini</p><h2 id="promo-gallery-heading" className="mt-2 text-3xl font-black tracking-[-.045em]">Pilih promonya. Baru pilih barangnya.</h2></div><span className="hidden text-[9px] font-bold text-[#81798d] sm:block">Geser ke samping →</span></div>
+        <div className="mt-6 flex snap-x gap-4 overflow-x-auto pb-4 [scrollbar-width:none]">{promoGallery.map((promo,index)=><a className={`group relative isolate min-h-[260px] min-w-[270px] snap-start overflow-hidden rounded-[28px] shadow-[0_18px_45px_rgba(45,30,65,.14)] sm:min-w-[360px] ${index===0?'sm:min-w-[470px]':''}`} href="#produk" key={promo.label}><span className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105" style={{backgroundImage:`url('${promo.image}')`}}/><span className={`absolute inset-0 bg-gradient-to-r ${promo.tone} via-black/30 to-transparent`}/><span className="relative flex min-h-[260px] max-w-[270px] flex-col justify-end p-6 text-white"><small className="w-fit rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[8px] font-black tracking-[.14em] backdrop-blur">{promo.label}</small><b className="mt-3 text-2xl leading-[1.02] tracking-[-.04em]">{promo.title}</b><span className="mt-4 inline-flex items-center gap-2 text-[9px] font-black">Lihat pilihan <ArrowRight size={13}/></span></span></a>)}</div>
+      </section>
+
       <section className="mx-auto max-w-[1240px] px-4 py-4 sm:px-6" id="tanya-nemu">
         <article className="rounded-[24px] border border-[#e3dfea] bg-white p-6 sm:p-8">
           <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.12em] text-[#5b3fd5]"><Search size={13}/> Cari produk</div>
@@ -84,7 +97,7 @@ export default function ShopPage() {
       </section>
 
       <section className="mx-auto mt-4 max-w-[1240px] px-4 sm:px-6" id="kategori">
-        <div className="rounded-[22px] border border-[#e8e4f0] bg-white p-5 sm:p-6"><div className="flex items-end justify-between"><div><p className="text-[8px] font-black uppercase tracking-[.12em] text-[#7446ff]">Belanja pakai mood</p><h2 className="mt-1 text-xl font-black tracking-[-.035em]">Mau lihat yang mana dulu?</h2></div><a className="hidden items-center gap-1 text-[9px] font-black text-[#7446ff] sm:flex" href="#produk">Semua produk <ChevronRight size={13}/></a></div><div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4 md:grid-rows-[150px_150px]">{categories.filter(({name})=>name!=='Elektronik').map(({name,position})=>{const featured=name==='Fashion';return <a className={`group relative isolate min-h-36 overflow-hidden rounded-[18px] bg-[#ece8f4] transition hover:-translate-y-0.5 hover:shadow-lg ${featured?'col-span-2 md:row-span-2':''}`} href="#produk" key={name}><span className="absolute inset-0 bg-cover bg-center bg-no-repeat transition duration-500 group-hover:scale-[1.035]" role="img" aria-label={`Kategori ${name}`} style={{backgroundImage:"url('/category-sprite-v1.png')",backgroundSize:'300% 200%',backgroundPosition:position}}/><span className="absolute inset-0 bg-gradient-to-t from-[#17151d]/75 via-transparent to-transparent"/><span className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4"><b className={`${featured?'text-xl':'text-sm'} text-white`}>{name}</b><span className="grid size-7 place-items-center rounded-full bg-white text-[#292333]"><ChevronRight size={13}/></span></span></a>})}</div></div>
+        <div className="rounded-[22px] border border-[#e8e4f0] bg-white p-5 sm:p-6"><div className="flex items-end justify-between"><div><p className="text-[8px] font-black uppercase tracking-[.12em] text-[#7446ff]">Belanja pakai mood</p><h2 className="mt-1 text-xl font-black tracking-[-.035em]">Mau lihat yang mana dulu?</h2></div><a className="hidden items-center gap-1 text-[9px] font-black text-[#7446ff] sm:flex" href="#produk">Semua produk <ChevronRight size={13}/></a></div><div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4 md:grid-rows-[150px_150px]">{categories.filter(({name})=>name!=='Elektronik').map(({name,image,focus})=>{const featured=name==='Fashion';return <a className={`group relative isolate min-h-36 overflow-hidden rounded-[18px] bg-[#ece8f4] transition hover:-translate-y-0.5 hover:shadow-lg ${featured?'col-span-2 md:row-span-2':''}`} href="#produk" key={name}><span className="absolute inset-0 bg-cover bg-no-repeat transition duration-500 group-hover:scale-[1.035]" role="img" aria-label={`Kategori ${name}`} style={{backgroundImage:`url('${image}')`,backgroundPosition:focus}}/><span className="absolute inset-0 bg-gradient-to-t from-[#17151d]/75 via-transparent to-transparent"/><span className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4"><b className={`${featured?'text-xl':'text-sm'} text-white`}>{name}</b><span className="grid size-7 place-items-center rounded-full bg-white text-[#292333]"><ChevronRight size={13}/></span></span></a>})}</div></div>
       </section>
 
       <section className="mx-auto mt-4 max-w-[1240px] px-4 sm:px-6" aria-labelledby="shop-picks">
