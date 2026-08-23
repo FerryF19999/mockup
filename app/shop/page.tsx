@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArrowRight, BadgeCheck, ChevronRight, Dumbbell, Headphones, House, MessageCircleMore, Palette, Recycle, RotateCcw, ShieldCheck, Shirt, ShoppingBag, Smartphone, Sparkles, Star, Store, Truck, Zap } from 'lucide-react';
-import { Footer, Header } from '../components';
+import { Footer, Header, MobileDock } from '../components';
 import { SectionTransitions, ThreeUiParticleNetwork } from '../experience';
 import { CategoryFilter, FavoriteButton, ShopSearch } from './shop-client';
 
@@ -34,9 +34,10 @@ export default function ShopPage() {
     <main className="bg-zinc-100 text-zinc-950">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(shopJsonLd) }} />
       <Header />
+      <MobileDock />
       <SectionTransitions />
 
-      <section className="mx-auto grid max-w-[1180px] gap-3 px-4 py-5 sm:px-6 lg:grid-cols-[2fr_1fr] lg:grid-rows-2">
+      <section className="shop-bento mx-auto grid max-w-[1180px] gap-3 px-4 py-5 sm:px-6 lg:grid-cols-[2fr_1fr] lg:grid-rows-2">
         <article className="relative isolate overflow-hidden rounded-3xl bg-violet-950 p-7 text-white lg:row-span-2 lg:min-h-[365px] lg:p-11"><ThreeUiParticleNetwork className="absolute inset-0 -z-10 size-full opacity-60"/><div className="absolute inset-0 -z-10 bg-gradient-to-r from-violet-950 via-violet-950/80 to-transparent"/><div className="relative z-10 max-w-xl"><span className="inline-flex items-center gap-1.5 rounded-full bg-lime-300 px-3 py-1.5 text-[8px] font-black uppercase tracking-widest text-zinc-950"><Sparkles size={12}/> Bilang aja, NEMU cariin</span><h1 className="mt-5 font-[var(--font-display)] text-5xl font-black leading-[.88] tracking-[-.065em] sm:text-7xl">Mau cari apa?<br/><span className="text-lime-300">Ketik aja di sini.</span></h1><p className="mt-5 max-w-md text-sm leading-7 text-violet-100">Punya budget 200 ribu? Maunya warna hitam? Bilang aja. NEMU bantu cariin yang paling pas.</p><a className="mt-6 inline-flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-[9px] font-black text-violet-800 transition hover:-translate-y-0.5 hover:shadow-xl" href="#tanya-nemu">Cariin sekarang <ArrowRight size={15}/></a></div><div className="absolute bottom-8 right-7 hidden w-64 rotate-2 rounded-2xl bg-white p-5 text-zinc-950 shadow-2xl sm:block"><Sparkles size={20} className="text-violet-600"/><p className="mt-3 text-sm font-semibold leading-6">“Cari kado buat ibu, budget 200 ribu.”</p><div className="mt-4 flex items-center justify-between border-t border-zinc-100 pt-3"><b className="text-[9px] text-violet-700">Ini yang paling cocok buat kamu</b><ChevronRight size={15}/></div></div></article>
         <article className="flex min-h-40 flex-col justify-between rounded-3xl bg-lime-300 p-6"><div className="flex items-center justify-between"><span className="rounded-full bg-zinc-950 px-3 py-1.5 text-[8px] font-black text-white">PESANAN PERTAMA</span><Truck size={22}/></div><div><h2 className="text-3xl font-black leading-[.95] tracking-[-.05em]">Belanja pertama.<br/>Ongkir kami bantu.</h2><p className="mt-2 text-[9px] font-bold">Gratis hingga Rp30 ribu</p></div></article>
         <article className="flex min-h-40 flex-col justify-between rounded-3xl bg-orange-500 p-6 text-white"><div className="flex items-center justify-between"><span className="rounded-full bg-white px-3 py-1.5 text-[8px] font-black text-orange-600">PRELOVED</span><Recycle size={22}/></div><div><h2 className="text-3xl font-black leading-[.95] tracking-[-.05em]">Kondisi bagus.<br/>Harga lebih ringan.</h2><p className="mt-2 flex items-center gap-1 text-[9px] font-bold">Lihat pilihan preloved <ChevronRight size={12}/></p></div></article>

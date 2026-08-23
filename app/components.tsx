@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight, Camera, ChevronDown, Heart, HelpCircle, Mail, Menu, Music2, Search, ShoppingBag, Sparkles, Store } from 'lucide-react';
+import { ArrowUpRight, Camera, ChevronDown, Heart, HelpCircle, Home, Mail, Menu, Music2, Search, ShoppingBag, Sparkles, Store, UserRound } from 'lucide-react';
 
 export function Logo({ light = false }: { light?: boolean }) {
   return <Link className="inline-flex items-center gap-2" href="/" aria-label="NEMU AI beranda"><span className={`grid size-10 place-items-center rounded-2xl rounded-bl-md text-xl font-black shadow-[0_5px_0_#d9ff43] ${light ? 'bg-white text-violet-700' : 'bg-violet-600 text-lime-300'}`}>n</span><b className={`text-xl font-black tracking-[-0.06em] ${light ? 'text-white' : 'text-zinc-950'}`}>nemu.ai</b></Link>;
@@ -22,6 +22,17 @@ export function Header() {
       <nav className="mx-auto flex h-10 max-w-[1180px] items-center gap-6 overflow-x-auto px-4 text-[10px] font-semibold text-zinc-600 [scrollbar-width:none] sm:px-6" aria-label="Kategori populer"><Link className="flex shrink-0 items-center gap-1.5 font-extrabold text-zinc-950" href="/shop"><Menu size={14} /> Semua kategori</Link>{['Fashion','Elektronik','Rumah tangga','Kecantikan','Preloved','Toko lokal'].map(item=><Link className="shrink-0 transition hover:text-violet-700" href="/shop" key={item}>{item}</Link>)}<Link className="ml-auto flex shrink-0 items-center gap-1.5 rounded-full bg-violet-50 px-3 py-1.5 font-extrabold text-violet-700" href="/shop"><Sparkles size={13} /> Tanya NEMU</Link></nav>
     </div>
   );
+}
+
+export function MobileDock() {
+  const items = [
+    { icon: Home, label: 'Beranda', href: '/' },
+    { icon: Search, label: 'Cari', href: '/shop' },
+    { icon: Sparkles, label: 'Tanya', href: '/shop#tanya-nemu', special: true },
+    { icon: ShoppingBag, label: 'Keranjang', href: '/shop' },
+    { icon: UserRound, label: 'Akun', href: 'https://shop.nemu-ai.com/login' },
+  ];
+  return <nav className="mobile-dock" aria-label="Navigasi cepat">{items.map(({icon:Icon,label,href,special})=><a className={special?'mobile-dock-special':''} href={href} key={label}><span><Icon size={18}/></span><b>{label}</b></a>)}</nav>;
 }
 
 export function Footer() {

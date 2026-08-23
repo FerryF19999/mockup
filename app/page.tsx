@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, BadgeCheck, Check, ChevronRight, CirclePlus, MessageCircleMore, Search, ShieldCheck, ShoppingBag, Sparkles, Store } from 'lucide-react';
-import { Footer, Header } from './components';
+import { Footer, Header, MobileDock } from './components';
 import { SectionTransitions, ThreeUiParticleNetwork } from './experience';
 
 const faq = [
@@ -38,9 +38,10 @@ export default function Home() {
     <main className="overflow-hidden bg-[#fffdf8] text-zinc-950">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
+      <MobileDock />
       <SectionTransitions />
 
-      <section className="mx-auto grid min-h-[610px] max-w-[1180px] items-center gap-14 px-4 py-16 sm:px-6 lg:grid-cols-[.88fr_1.12fr] lg:py-20">
+      <section className="hero-home mx-auto grid min-h-[610px] max-w-[1180px] items-center gap-14 px-4 py-16 sm:px-10 lg:grid-cols-[.88fr_1.12fr] lg:px-14 lg:py-20">
         <div>
           <p className="mb-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-[.16em] text-violet-700"><Sparkles size={14}/> Cari barang nggak pake ribet</p>
           <h1 className="font-[var(--font-display)] text-[58px] font-black leading-[.88] tracking-[-.075em] sm:text-7xl lg:text-[88px]">Ketik maumu.<br/><span className="text-violet-600">NEMU carikan.</span></h1>
@@ -49,7 +50,7 @@ export default function Home() {
           <div className="mt-7 flex flex-wrap gap-4 text-[9px] font-bold text-zinc-600">{['Harga langsung kelihatan','Seller ada tandanya','Pilihan nggak bikin pusing'].map(item=><span className="flex items-center gap-1.5" key={item}><Check size={17} className="rounded-full bg-lime-300 p-1 text-zinc-900"/>{item}</span>)}</div>
         </div>
 
-        <div className="relative isolate overflow-hidden rounded-[32px] border border-white/15 bg-violet-950 p-4 text-white shadow-[15px_15px_0_#d9ff43] sm:p-6">
+        <div className="product-showcase relative isolate overflow-hidden rounded-[32px] border border-white/15 bg-violet-950 p-4 text-white shadow-[15px_15px_0_#d9ff43] sm:p-6">
           <ThreeUiParticleNetwork className="absolute inset-0 -z-10 size-full opacity-75" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-violet-950/45 via-transparent to-zinc-950/70" />
           <div className="flex items-center gap-3 rounded-2xl bg-white p-3 text-zinc-950 shadow-lg shadow-lime-900/10 sm:p-4"><Sparkles className="shrink-0 text-violet-600" size={19}/><p className="min-w-0 flex-1 truncate text-[11px] font-semibold">“Cari HP bagus di bawah Rp1 juta”</p><span className="grid size-9 shrink-0 place-items-center rounded-xl bg-violet-600 text-white"><ArrowRight size={16}/></span></div>
