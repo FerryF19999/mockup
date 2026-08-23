@@ -52,26 +52,17 @@ export default function Home() {
       <SectionTransitions />
 
       <section className="market-hero mx-auto max-w-[1240px] px-4 py-5 sm:px-6">
-        <div className="grid min-h-[520px] overflow-hidden rounded-[30px] bg-[#f0edff] lg:grid-cols-[1.08fr_.92fr]">
-          <div className="flex flex-col justify-center px-6 py-12 sm:px-12 lg:px-16">
-            <p className="mb-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-[.14em] text-[#5b3fd5]"><Sparkles size={14}/> Belanja tanpa muter-muter</p>
-            <h1 className="max-w-2xl font-[var(--font-display)] text-[52px] font-black leading-[.92] tracking-[-.07em] text-[#292333] sm:text-7xl lg:text-[80px]">Nyari barang?<br/><span className="text-[#5b3fd5]">Bilang aja.</span></h1>
-            <p className="mt-6 max-w-xl text-base font-medium leading-7 text-[#625b6d]">Ketik barangnya, budgetnya, atau sekalian ceritain maumu. NEMU bantu nyaring pilihan yang paling masuk.</p>
-            <form className="mt-7 flex max-w-xl items-center rounded-full border-2 border-[#5b3fd5] bg-white p-1.5 shadow-[0_12px_30px_rgba(91,63,213,.13)]" action="/shop" role="search">
-              <Search className="ml-3 shrink-0 text-[#5b3fd5]" size={19}/>
-              <input className="min-w-0 flex-1 bg-transparent px-3 py-3 text-xs font-semibold outline-none placeholder:text-[#81798d]" name="q" placeholder="Contoh: kado buat ibu, 200 ribuan" aria-label="Ceritakan barang yang kamu cari"/>
-              <button className="grid size-11 shrink-0 place-items-center rounded-full bg-[#5b3fd5] text-white transition hover:bg-[#4d32c4]" type="submit" aria-label="Cari barang"><ArrowRight size={18}/></button>
-            </form>
-            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[9px] font-extrabold text-[#625b6d]">{['Harga kelihatan','Seller jelas','Baru + preloved'].map(item=><span className="flex items-center gap-1.5" key={item}><Check size={16} className="rounded-full bg-[#dfff5b] p-1 text-[#292333]"/>{item}</span>)}</div>
+        <div className="grid min-h-[420px] overflow-hidden rounded-[26px] border border-[#e8e4f0] bg-white lg:grid-cols-[1.04fr_.96fr]">
+          <div className="flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-14">
+            <p className="mb-3 flex items-center gap-2 text-[9px] font-black uppercase tracking-[.12em] text-[#5b3fd5]"><Sparkles size={13}/> Cari barang lebih gampang</p>
+            <h1 className="max-w-xl font-[var(--font-display)] text-[46px] font-black leading-[.98] tracking-[-.055em] text-[#292333] sm:text-6xl lg:text-[64px]">Nyari barang?<br/><span className="text-[#5b3fd5]">Bilang aja.</span></h1>
+            <p className="mt-5 max-w-lg text-sm font-medium leading-7 text-[#625b6d]">Tulis nama barangnya atau ceritain maumu. NEMU bantu pilihkan yang sesuai budget dan kebutuhanmu.</p>
+            <form className="mt-6 flex max-w-xl items-center rounded-[16px] border border-[#bbb0ce] bg-[#faf9fb] p-1.5 transition focus-within:border-[#5b3fd5] focus-within:bg-white focus-within:ring-4 focus-within:ring-violet-100" action="/shop" role="search"><Search className="ml-3 shrink-0 text-[#5b3fd5]" size={18}/><input className="min-w-0 flex-1 bg-transparent px-3 py-3 text-xs font-medium outline-none placeholder:text-[#81798d]" name="q" placeholder="Contoh: kado buat ibu, 200 ribuan" aria-label="Ceritakan barang yang kamu cari"/><button className="inline-flex h-10 shrink-0 items-center gap-2 rounded-xl bg-[#5b3fd5] px-4 text-[9px] font-black text-white" type="submit">Cari <ArrowRight size={14}/></button></form>
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[8px] font-bold text-[#625b6d]">{['Harga jelas','Seller bisa dicek','Baru + preloved'].map(item=><span className="flex items-center gap-1.5" key={item}><Check size={15} className="rounded-full bg-[#dfff5b] p-1 text-[#292333]"/>{item}</span>)}</div>
           </div>
-          <div className="relative isolate min-h-[410px] overflow-hidden bg-[#5b3fd5] p-5 sm:p-8 lg:min-h-full">
-            <ThreeUiParticleNetwork className="absolute inset-0 -z-10 size-full opacity-45"/>
-            <div className="absolute -right-14 -top-14 -z-10 size-64 rounded-full bg-[#dfff5b]/20 blur-2xl"/>
-            <div className="mx-auto flex h-full max-w-lg flex-col justify-center">
-              <div className="mb-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-[.13em] text-[#dfff5b]"><Sparkles size={14}/> Pilihan buat kamu</div>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">{miniProducts.map(([name,price,img],index)=><article className={`overflow-hidden rounded-2xl bg-white shadow-[0_16px_35px_rgba(28,17,75,.2)] ${index===2?'hidden sm:block lg:hidden xl:block':''}`} key={name}><Image className="aspect-square w-full object-cover" src={img} alt={name} width={280} height={280} sizes="(max-width: 640px) 42vw, 190px" priority={index===0}/><div className="p-3 text-[#292333]"><p className="text-[8px] font-black text-[#5b3fd5]">Cocok 96%</p><h3 className="mt-1 truncate text-[10px] font-extrabold">{name}</h3><strong className="mt-1 block text-sm">{price}</strong></div></article>)}</div>
-              <div className="mt-4 flex items-center justify-between rounded-2xl bg-white/12 px-4 py-3 text-white backdrop-blur"><span className="text-[9px] font-bold">Nggak perlu buka banyak tab.</span><Link className="flex items-center gap-1 text-[9px] font-black text-[#dfff5b]" href="/shop">Lihat semua <ChevronRight size={13}/></Link></div>
-            </div>
+          <div className="relative isolate flex min-h-[350px] items-center overflow-hidden bg-[#f1eeff] p-6 sm:p-8 lg:min-h-full">
+            <div className="absolute -right-20 -top-20 -z-10 size-72 rounded-full bg-[#5b3fd5] opacity-10"/>
+            <div className="w-full"><div className="mb-4 flex items-center justify-between"><b className="text-[10px] text-[#292333]">Pilihan yang lagi dicari</b><Link className="flex items-center gap-1 text-[9px] font-black text-[#5b3fd5]" href="/shop">Lihat semua <ChevronRight size={13}/></Link></div><div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">{miniProducts.map(([name,price,img],index)=><article className={`overflow-hidden rounded-2xl border border-white bg-white shadow-[0_10px_28px_rgba(54,41,92,.10)] ${index===2?'hidden sm:block lg:hidden xl:block':''}`} key={name}><Image className="aspect-[1.08] w-full object-cover" src={img} alt={name} width={280} height={260} sizes="(max-width: 640px) 42vw, 190px" priority={index===0}/><div className="p-3 text-[#292333]"><h3 className="truncate text-[9px] font-extrabold">{name}</h3><strong className="mt-1 block text-xs text-[#5b3fd5]">{price}</strong></div></article>)}</div><div className="mt-3 rounded-xl border border-[#ddd6ef] bg-white/70 px-4 py-3 text-[8px] font-bold text-[#625b6d]">Produk yang cocok muncul lebih dulu. Nggak perlu buka banyak tab.</div></div>
           </div>
         </div>
       </section>

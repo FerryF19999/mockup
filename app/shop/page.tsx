@@ -3,12 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight, BadgeCheck, ChevronRight, Dumbbell, Headphones, House,
-  MapPin, MessageCircleMore, PackageCheck, Palette, Recycle, RotateCcw,
+  MapPin, PackageCheck, Palette, Recycle, RotateCcw,
   ShieldCheck, Shirt, ShoppingBag, Smartphone, Sparkles, Star, Store,
   Truck, Zap,
 } from 'lucide-react';
 import { Footer, Header, MobileDock } from '../components';
-import { SectionTransitions, ThreeUiParticleNetwork } from '../experience';
+import { SectionTransitions } from '../experience';
 import { CartButton, CategoryFilter, FavoriteButton, ShopSearch } from './shop-client';
 
 export const metadata: Metadata = {
@@ -69,25 +69,18 @@ export default function ShopPage() {
         <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 text-[9px] font-bold text-[#625b6d]"><span className="flex items-center gap-2"><MapPin size={14} className="text-[#5b3fd5]"/> Dikirim ke <b className="text-[#292333]">Indonesia</b></span><span className="hidden sm:block">Ada masalah? <a className="font-black text-[#5b3fd5]" href="https://shop.nemu-ai.com/help">Kami bantu</a></span></div>
       </div>
 
-      <section className="mx-auto grid max-w-[1240px] gap-3 px-4 py-5 sm:px-6 lg:grid-cols-[1.55fr_.65fr]">
-        <article className="relative isolate flex min-h-[410px] overflow-hidden rounded-[28px] bg-[#5b3fd5] p-7 text-white sm:p-10 lg:p-12">
-          <ThreeUiParticleNetwork className="absolute inset-0 -z-10 size-full opacity-35"/>
-          <div className="absolute -bottom-24 -right-16 -z-10 size-96 rounded-full bg-[#dfff5b]/20 blur-3xl"/>
-          <div className="my-auto max-w-2xl"><span className="inline-flex items-center gap-2 rounded-full bg-[#dfff5b] px-3 py-1.5 text-[8px] font-black uppercase tracking-[.12em] text-[#292333]"><Sparkles size={12}/> Cari pakai kata-katamu</span><h1 className="mt-5 font-[var(--font-display)] text-5xl font-black leading-[.9] tracking-[-.065em] sm:text-7xl">Mau barang apa?<br/><span className="text-[#dfff5b]">Ketik aja.</span></h1><p className="mt-5 max-w-lg text-sm font-medium leading-7 text-violet-100">Tahu nama barangnya boleh. Cuma tahu budget dan warnanya juga boleh. NEMU bantu nyaring pilihannya.</p><Link className="mt-7 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3.5 text-[10px] font-black text-[#5b3fd5]" href="#tanya-nemu">Cariin sekarang <ArrowRight size={15}/></Link></div>
-          <div className="absolute bottom-7 right-7 hidden w-64 rotate-2 rounded-2xl bg-white p-5 text-[#292333] shadow-2xl xl:block"><Sparkles size={20} className="text-[#5b3fd5]"/><p className="mt-3 text-sm font-bold leading-6">“Kado buat ibu, 200 ribuan.”</p><div className="mt-4 flex items-center justify-between border-t border-[#eeeaf2] pt-3"><span className="text-[8px] font-black text-[#5b3fd5]">Pilihan paling cocok duluan</span><ChevronRight size={14}/></div></div>
+      <section className="mx-auto grid max-w-[1240px] gap-3 px-4 py-5 sm:px-6 lg:grid-cols-[1fr_310px]" id="tanya-nemu">
+        <article className="rounded-[24px] border border-[#e3dfea] bg-white p-6 sm:p-8 lg:p-9">
+          <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.12em] text-[#5b3fd5]"><Sparkles size={13}/> Cari seperti biasa, atau ceritain maumu</div>
+          <h1 className="mt-3 max-w-3xl font-[var(--font-display)] text-4xl font-black leading-[1.02] tracking-[-.05em] sm:text-5xl">Lagi nyari apa hari ini?</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#6d6577]">Ketik nama barang, budget, warna, atau kebutuhanmu. Yang paling sesuai kami taruh di depan.</p>
+          <div className="mt-5"><ShopSearch/></div>
         </article>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-          <article className="flex min-h-[198px] flex-col justify-between rounded-[28px] bg-[#dfff5b] p-6"><div className="flex items-center justify-between"><span className="rounded-full bg-[#292333] px-3 py-1.5 text-[8px] font-black text-white">BARU DI NEMU</span><Truck size={22}/></div><div><h2 className="text-3xl font-black leading-[.96] tracking-[-.05em]">Belanja pertama,<br/>ongkir lebih ringan.</h2><p className="mt-2 text-[9px] font-bold text-[#4e6314]">Bantuan ongkir sampai Rp30 ribu</p></div></article>
-          <article className="flex min-h-[198px] flex-col justify-between rounded-[28px] bg-[#ffaf65] p-6"><div className="flex items-center justify-between"><span className="rounded-full bg-white/90 px-3 py-1.5 text-[8px] font-black text-[#8a3f00]">PRELOVED</span><Recycle size={22}/></div><div><h2 className="text-3xl font-black leading-[.96] tracking-[-.05em]">Masih bagus.<br/>Harganya santai.</h2><Link className="mt-2 flex items-center gap-1 text-[9px] font-black" href="#produk">Lihat barangnya <ChevronRight size={13}/></Link></div></article>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-[1240px] px-4 sm:px-6" id="tanya-nemu">
-        <div className="grid gap-5 rounded-[26px] border border-[#ded7f0] bg-[#f0edff] p-5 lg:grid-cols-[250px_1fr] lg:items-center lg:p-6"><div className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-2xl bg-[#5b3fd5] text-white"><MessageCircleMore size={20}/></span><div><b className="block text-sm">Ngetiknya santai aja</b><p className="mt-1 text-[8px] text-[#625b6d]">Budget, warna, ukuran—bilang semua.</p></div></div><ShopSearch/></div>
+        <aside className="flex flex-col justify-between rounded-[24px] bg-[#292333] p-6 text-white"><div className="flex items-center justify-between"><span className="rounded-full bg-[#dfff5b] px-3 py-1.5 text-[8px] font-black text-[#292333]">PESANAN PERTAMA</span><Truck size={20} className="text-[#dfff5b]"/></div><div className="mt-12"><h2 className="text-2xl font-black leading-tight tracking-[-.04em]">Ongkirnya kami bantu.</h2><p className="mt-2 text-[9px] leading-5 text-[#d5cfdd]">Potongan ongkir sampai Rp30 ribu untuk belanja pertamamu.</p></div><Link className="mt-5 inline-flex items-center gap-1 text-[9px] font-black text-[#dfff5b]" href="#produk">Mulai lihat barang <ChevronRight size={13}/></Link></aside>
       </section>
 
       <section className="mx-auto mt-4 max-w-[1240px] px-4 sm:px-6" id="kategori">
-        <div className="rounded-[26px] border border-[#e8e4f0] bg-white p-5 sm:p-7"><div className="flex items-end justify-between"><div><p className="text-[8px] font-black uppercase tracking-[.14em] text-[#5b3fd5]">Pilih cepat</p><h2 className="mt-1 text-2xl font-black tracking-[-.04em]">Mau lihat yang mana?</h2></div><a className="hidden items-center gap-1 text-[9px] font-black text-[#5b3fd5] sm:flex" href="#produk">Semua produk <ChevronRight size={13}/></a></div><div className="mt-7 flex gap-4 overflow-x-auto pb-2 [scrollbar-width:none] lg:grid lg:grid-cols-9">{categories.map(({icon:Icon,name,tone})=><a className="flex min-w-20 flex-col items-center gap-2.5 text-center" href="#produk" key={name}><span className={`grid size-16 place-items-center rounded-full transition hover:-translate-y-1 ${tone}`}><Icon size={25}/></span><b className="text-[8px] text-[#625b6d]">{name}</b></a>)}</div></div>
+        <div className="rounded-[22px] border border-[#e8e4f0] bg-white p-5 sm:p-6"><div className="flex items-end justify-between"><div><p className="text-[8px] font-black uppercase tracking-[.12em] text-[#5b3fd5]">Kategori</p><h2 className="mt-1 text-xl font-black tracking-[-.035em]">Mau lihat yang mana?</h2></div><a className="hidden items-center gap-1 text-[9px] font-black text-[#5b3fd5] sm:flex" href="#produk">Semua produk <ChevronRight size={13}/></a></div><div className="mt-5 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] lg:grid lg:grid-cols-9">{categories.map(({icon:Icon,name,tone})=><a className="flex min-w-20 flex-col items-center gap-2 text-center" href="#produk" key={name}><span className={`grid size-12 place-items-center rounded-xl transition hover:-translate-y-0.5 ${tone}`}><Icon size={20}/></span><b className="text-[8px] text-[#625b6d]">{name}</b></a>)}</div></div>
       </section>
 
       <section className="mx-auto mt-4 max-w-[1240px] px-4 sm:px-6" aria-labelledby="promo-heading">
