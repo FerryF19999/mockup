@@ -22,8 +22,25 @@ body {
   font-family: var(--font-body), sans-serif;
   text-rendering: optimizeLegibility;
 }
-.text-zinc-400 { color: #71717a !important; }
-.text-zinc-500 { color: #52525b !important; }
+.text-white { color: #ffffff !important; }
+.text-zinc-300 { color: #d4d4d8 !important; }
+.text-zinc-400 { color: #a1a1aa !important; }
+.text-zinc-500 { color: #71717a !important; }
+.text-zinc-600 { color: #52525b !important; }
+.text-zinc-700 { color: #3f3f46 !important; }
+.text-zinc-800 { color: #27272a !important; }
+.text-zinc-900 { color: #18181b !important; }
+.text-zinc-950 { color: #09090b !important; }
+.text-violet-100 { color: #ede9fe !important; }
+.text-violet-200 { color: #ddd6fe !important; }
+.text-violet-300 { color: #c4b5fd !important; }
+.text-violet-400 { color: #a78bfa !important; }
+.text-violet-600 { color: #7c3aed !important; }
+.text-violet-700 { color: #6d28d9 !important; }
+.text-violet-800 { color: #5b21b6 !important; }
+.text-violet-900 { color: #4c1d95 !important; }
+.text-violet-950 { color: #2e1065 !important; }
+.text-lime-300 { color: #d9ff43 !important; }
 [class~="text-[7px]"] { font-size: 9px !important; line-height: 1.45 !important; }
 [class~="text-[8px]"] { font-size: 10px !important; line-height: 1.45 !important; }
 [class~="text-[9px]"] { font-size: 11px !important; line-height: 1.5 !important; }
@@ -84,6 +101,8 @@ img { max-width: 100%; }
   transition: transform .2s ease, box-shadow .2s ease, background .2s ease !important;
 }
 .nemu-astryx-button:hover { background: #5b3ff3 !important; transform: translateY(-1px); box-shadow: 0 6px 0 #402db6 !important; }
+.nemu-astryx-button,
+.nemu-astryx-button * { color: #ffffff !important; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
