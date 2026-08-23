@@ -5,8 +5,9 @@ import {
   ArrowRight, BadgeCheck, ChevronRight,
   MapPin, PackageCheck, RotateCcw,
   ShieldCheck, Sparkles, Star, Store,
-  Truck, Zap,
+  Zap,
 } from 'lucide-react';
+import { BannerCarousel } from '../banner-carousel';
 import { Footer, Header, MobileDock } from '../components';
 import { SectionTransitions } from '../experience';
 import { CartButton, CategoryFilter, FavoriteButton, ShopSearch } from './shop-client';
@@ -66,18 +67,21 @@ export default function ShopPage() {
         <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 text-[9px] font-bold text-[#625b6d]"><span className="flex items-center gap-2"><MapPin size={14} className="text-[#5b3fd5]"/> Dikirim ke <b className="text-[#292333]">Indonesia</b></span><span className="hidden sm:block">Ada masalah? <a className="font-black text-[#5b3fd5]" href="https://shop.nemu-ai.com/help">Kami bantu</a></span></div>
       </div>
 
-      <section className="mx-auto grid max-w-[1240px] gap-3 px-4 py-5 sm:px-6 lg:grid-cols-[1fr_310px]" id="tanya-nemu">
-        <article className="rounded-[24px] border border-[#e3dfea] bg-white p-6 sm:p-8 lg:p-9">
+      <div className="mx-auto max-w-[1240px] px-4 pt-5 sm:px-6">
+        <BannerCarousel />
+      </div>
+
+      <section className="mx-auto max-w-[1240px] px-4 py-4 sm:px-6" id="tanya-nemu">
+        <article className="rounded-[24px] border border-[#e3dfea] bg-white p-6 sm:p-8">
           <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.12em] text-[#5b3fd5]"><Sparkles size={13}/> Cari seperti biasa, atau ceritain maumu</div>
           <h1 className="mt-3 max-w-3xl font-[var(--font-display)] text-4xl font-black leading-[1.02] tracking-[-.05em] sm:text-5xl">Lagi nyari apa hari ini?</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-[#6d6577]">Ketik nama barang, budget, warna, atau kebutuhanmu. Yang paling sesuai kami taruh di depan.</p>
           <div className="mt-5"><ShopSearch/></div>
         </article>
-        <aside className="flex flex-col justify-between rounded-[24px] bg-[#292333] p-6 text-white"><div className="flex items-center justify-between"><span className="rounded-full bg-[#dfff5b] px-3 py-1.5 text-[8px] font-black text-[#292333]">PESANAN PERTAMA</span><Truck size={20} className="text-[#dfff5b]"/></div><div className="mt-12"><h2 className="text-2xl font-black leading-tight tracking-[-.04em]">Ongkirnya kami bantu.</h2><p className="mt-2 text-[9px] leading-5 text-[#d5cfdd]">Potongan ongkir sampai Rp30 ribu untuk belanja pertamamu.</p></div><Link className="mt-5 inline-flex items-center gap-1 text-[9px] font-black text-[#dfff5b]" href="#produk">Mulai lihat barang <ChevronRight size={13}/></Link></aside>
       </section>
 
       <section className="mx-auto mt-4 max-w-[1240px] px-4 sm:px-6" id="kategori">
-        <div className="rounded-[22px] border border-[#e8e4f0] bg-white p-5 sm:p-6"><div className="flex items-end justify-between"><div><p className="text-[8px] font-black uppercase tracking-[.12em] text-[#7446ff]">Kategori</p><h2 className="mt-1 text-xl font-black tracking-[-.035em]">Mau lihat yang mana?</h2></div><a className="hidden items-center gap-1 text-[9px] font-black text-[#7446ff] sm:flex" href="#produk">Semua produk <ChevronRight size={13}/></a></div><div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">{categories.map(({name,position})=><a className="group overflow-hidden rounded-2xl border border-[#e9e6ef] bg-white text-left transition hover:-translate-y-0.5 hover:border-[#cfc5ee] hover:shadow-md" href="#produk" key={name}><span className="block aspect-[1.3] w-full bg-cover bg-no-repeat" role="img" aria-label={`Kategori ${name}`} style={{backgroundImage:"url('/category-sprite-v1.png')",backgroundSize:'300% 200%',backgroundPosition:position}}/><span className="flex items-center justify-between px-3 py-2.5"><b className="text-[9px] text-[#292333]">{name}</b><ChevronRight size={13} className="text-[#91899a] group-hover:text-[#7446ff]"/></span></a>)}</div></div>
+        <div className="rounded-[22px] border border-[#e8e4f0] bg-white p-5 sm:p-6"><div className="flex items-end justify-between"><div><p className="text-[8px] font-black uppercase tracking-[.12em] text-[#7446ff]">Galeri kategori</p><h2 className="mt-1 text-xl font-black tracking-[-.035em]">Mau lihat yang mana?</h2></div><a className="hidden items-center gap-1 text-[9px] font-black text-[#7446ff] sm:flex" href="#produk">Semua produk <ChevronRight size={13}/></a></div><div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4 md:grid-rows-[150px_150px]">{categories.filter(({name})=>name!=='Elektronik').map(({name,position})=>{const featured=name==='Fashion';return <a className={`group relative isolate min-h-36 overflow-hidden rounded-[18px] bg-[#ece8f4] transition hover:-translate-y-0.5 hover:shadow-lg ${featured?'col-span-2 md:row-span-2':''}`} href="#produk" key={name}><span className="absolute inset-0 bg-cover bg-center bg-no-repeat transition duration-500 group-hover:scale-[1.035]" role="img" aria-label={`Kategori ${name}`} style={{backgroundImage:"url('/category-sprite-v1.png')",backgroundSize:'300% 200%',backgroundPosition:position}}/><span className="absolute inset-0 bg-gradient-to-t from-[#17151d]/75 via-transparent to-transparent"/><span className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4"><b className={`${featured?'text-xl':'text-sm'} text-white`}>{name}</b><span className="grid size-7 place-items-center rounded-full bg-white text-[#292333]"><ChevronRight size={13}/></span></span></a>})}</div></div>
       </section>
 
       <section className="mx-auto mt-4 max-w-[1240px] px-4 sm:px-6" aria-labelledby="promo-heading">
