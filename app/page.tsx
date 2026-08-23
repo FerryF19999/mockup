@@ -1,15 +1,37 @@
-import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, BadgeCheck, Check, ChevronRight, CirclePlus, MessageCircleMore, Search, ShieldCheck, ShoppingBag, Sparkles, Store } from 'lucide-react';
+import Link from 'next/link';
+import {
+  ArrowRight, BadgeCheck, Camera, Check, ChevronRight, CirclePlus,
+  Headphones, HeartHandshake, House, MessageCircleMore, PackageCheck,
+  Recycle, Search, ShieldCheck, Shirt, Smartphone, Sparkles, Store,
+} from 'lucide-react';
 import { Footer, Header, MobileDock } from './components';
 import { SectionTransitions, ThreeUiParticleNetwork } from './experience';
 
 const faq = [
-  ['NEMU itu apa, sih?', 'NEMU itu tempat belanja online. Bedanya, kamu cukup bilang lagi cari apa. NEMU bantu pilihin barang yang paling cocok.'],
-  ['Cara cari barangnya gimana?', 'Ketik aja nama barang atau ceritain maumu. Contoh: “sepatu putih buat kuliah, di bawah 200 ribu”. Nanti pilihannya langsung diringkas.'],
-  ['Ada barang baru dan preloved?', 'Ada dua-duanya. Kondisi barang ditulis jelas, jadi kamu nggak bakal ketuker.'],
-  ['Aku jualan. Bisa buka toko?', 'Bisa banget. Daftar, masukin foto barang, atur harga, lalu mulai jualan.'],
-  ['NEMU bantu seller ngapain?', 'NEMU bantu bikin nama produk, deskripsi, dan kategori. Kamu tinggal baca ulang, benerin kalau perlu, lalu tayangin.'],
+  ['NEMU itu tempat belanja apa?', 'Marketplace buat cari barang baru, preloved, dan produk seller lokal. Kamu bisa cari seperti biasa atau ceritain barang yang kamu mau.'],
+  ['Kalau nggak tahu nama barangnya gimana?', 'Nggak masalah. Tulis fungsi, warna, ukuran, atau budgetmu. Contohnya: “tas kerja muat laptop, warna hitam, 300 ribuan”.'],
+  ['Seller di NEMU bisa dipercaya?', 'Profil toko, lokasi, rating, dan tanda verifikasi ditampilkan biar kamu bisa menilai sebelum membeli.'],
+  ['Aku punya barang. Bisa ikut jualan?', 'Bisa. Unggah foto, kasih harga, lalu NEMU bantu merapikan nama, deskripsi, dan kategorinya sebelum tayang.'],
+];
+
+const products = [
+  { name: 'Vivo V11 Pro 6/64', price: 'Rp950.000', note: 'Preloved · Klaten', image: 'https://s3.ap-southeast-3.amazonaws.com/s3-production-nemu-ai/products/7008540f-9a9c-4917-9368-55b0e5335908.png', badge: 'Hemat 10%' },
+  { name: 'GM Flat Sandal', price: 'Rp70.000', note: 'Baru · Jakarta', image: 'https://s3.ap-southeast-3.amazonaws.com/s3-production-nemu-ai/products/b65c53f0-b789-4dd0-84a0-ba883188e12a.jpg', badge: 'Produk lokal' },
+  { name: 'Kopi Gayo Arabika', price: 'Rp95.000', note: '250 gr · Aceh', image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=700&auto=format&fit=crop&q=82', badge: 'Banyak dicari' },
+  { name: 'Arunika Work Tote', price: 'Rp749.000', note: 'Kulit asli · Bandung', image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=700&auto=format&fit=crop&q=82', badge: 'Seller pilihan' },
+  { name: 'Mug keramik handmade', price: 'Rp180.000', note: 'Buatan tangan · Bandung', image: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=700&auto=format&fit=crop&q=82', badge: 'Produk lokal' },
+];
+
+const miniProducts = products.slice(0, 3).map(({ name, price, image }) => [name, price, image]);
+
+const categories = [
+  { icon: Shirt, name: 'Fashion', tone: 'bg-[#ffecef] text-[#d74763]' },
+  { icon: Smartphone, name: 'HP & gadget', tone: 'bg-[#e9f5ff] text-[#287bb4]' },
+  { icon: Sparkles, name: 'Beauty', tone: 'bg-[#fff0fb] text-[#b83c91]' },
+  { icon: House, name: 'Rumah', tone: 'bg-[#fff4dc] text-[#a86700]' },
+  { icon: Headphones, name: 'Elektronik', tone: 'bg-[#f0edff] text-[#5b3fd5]' },
+  { icon: Recycle, name: 'Preloved', tone: 'bg-[#eff9d2] text-[#5d7615]' },
 ];
 
 const jsonLd = {
@@ -21,77 +43,91 @@ const jsonLd = {
   ],
 };
 
-const miniProducts = [
-  ['Vivo V11 Pro', 'Rp950.000', 'https://s3.ap-southeast-3.amazonaws.com/s3-production-nemu-ai/products/7008540f-9a9c-4917-9368-55b0e5335908.png'],
-  ['GM Flat Sandal', 'Rp70.000', 'https://s3.ap-southeast-3.amazonaws.com/s3-production-nemu-ai/products/b65c53f0-b789-4dd0-84a0-ba883188e12a.jpg'],
-  ['Kopi Gayo', 'Rp95.000', 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&auto=format&fit=crop&q=80'],
-];
-
-const steps = [
-  { icon: MessageCircleMore, number:'01', title:'Bilang aja maunya apa', copy:'Mau barang apa, budget berapa, warna apa. Tulis sesukamu.' },
-  { icon: Search, number:'02', title:'NEMU pilihin yang pas', copy:'Yang kemahalan atau nggak cocok langsung disingkirin.' },
-  { icon: ShieldCheck, number:'03', title:'Pilih yang paling sreg', copy:'Cek harga dan sellernya, lalu lanjut beli. Sesimpel itu.' },
-];
-
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-[#fffdf8] text-zinc-950">
+    <main className="overflow-hidden bg-[#faf9f6] text-[#292333]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <MobileDock />
       <SectionTransitions />
 
-      <section className="hero-home mx-auto grid min-h-[610px] max-w-[1180px] items-center gap-14 px-4 py-16 sm:px-10 lg:grid-cols-[.88fr_1.12fr] lg:px-14 lg:py-20">
-        <div>
-          <p className="mb-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-[.16em] text-violet-700"><Sparkles size={14}/> Cari barang nggak pake ribet</p>
-          <h1 className="font-[var(--font-display)] text-[58px] font-black leading-[.88] tracking-[-.075em] sm:text-7xl lg:text-[88px]">Ketik maumu.<br/><span className="text-violet-600">NEMU carikan.</span></h1>
-          <p className="mt-7 max-w-lg text-base leading-7 text-zinc-600">Tinggal bilang kamu lagi cari apa dan punya budget berapa. NEMU pilihin yang paling masuk. Kamu tinggal pilih.</p>
-          <Link className="mt-7 inline-flex items-center gap-6 rounded-xl bg-violet-600 px-5 py-4 text-[11px] font-black text-white shadow-[0_7px_0_#3d27b7] transition hover:-translate-y-0.5 hover:bg-violet-700" href="/shop">Cariin barang saya <ArrowRight size={17}/></Link>
-          <div className="mt-7 flex flex-wrap gap-4 text-[9px] font-bold text-zinc-600">{['Harga langsung kelihatan','Seller ada tandanya','Pilihan nggak bikin pusing'].map(item=><span className="flex items-center gap-1.5" key={item}><Check size={17} className="rounded-full bg-lime-300 p-1 text-zinc-900"/>{item}</span>)}</div>
-        </div>
-
-        <div className="product-showcase relative isolate overflow-hidden rounded-[32px] border border-white/15 bg-violet-950 p-4 text-white shadow-[15px_15px_0_#d9ff43] sm:p-6">
-          <ThreeUiParticleNetwork className="absolute inset-0 -z-10 size-full opacity-75" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-violet-950/45 via-transparent to-zinc-950/70" />
-          <div className="flex items-center gap-3 rounded-2xl bg-white p-3 text-zinc-950 shadow-lg shadow-lime-900/10 sm:p-4"><Sparkles className="shrink-0 text-violet-600" size={19}/><p className="min-w-0 flex-1 truncate text-[11px] font-semibold">“Cari HP bagus di bawah Rp1 juta”</p><span className="grid size-9 shrink-0 place-items-center rounded-xl bg-violet-600 text-white"><ArrowRight size={16}/></span></div>
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">{miniProducts.map(([name,price,img],index)=><article className={`overflow-hidden rounded-2xl bg-white text-zinc-950 shadow-sm ${index===2?'hidden sm:block':''}`} key={name}><Image className="aspect-square w-full object-cover" src={img} alt={name} width={260} height={260} sizes="(max-width: 640px) 42vw, 180px" priority={index===0}/><div className="p-3"><p className="text-[8px] font-black uppercase tracking-wider text-violet-600">Pas buat kamu</p><h3 className="mt-1 truncate text-[11px] font-extrabold">{name}</h3><strong className="mt-1 block text-[11px]">{price}</strong></div></article>)}</div>
-          <p className="mt-4 flex items-center gap-2 text-[9px] font-extrabold text-lime-300"><Sparkles size={13}/> Dari banyak pilihan, yang paling cocok nongol duluan.</p>
-        </div>
-      </section>
-
-      <section className="bg-zinc-950 px-4 py-7 text-white sm:px-6"><div className="mx-auto grid max-w-[1180px] grid-cols-3 items-center gap-4 lg:grid-cols-[130px_130px_130px_1fr]">{[['2.400+','produk'],['150+','seller lokal'],['4,9/5','rating pembeli']].map(([value,label])=><div className="text-center lg:text-left" key={label}><b className="block text-lg font-black sm:text-xl">{value}</b><span className="text-[8px] font-bold uppercase tracking-wider text-zinc-400">{label}</span></div>)}<p className="col-span-3 mt-3 text-center text-[10px] font-extrabold text-lime-300 lg:col-span-1 lg:mt-0 lg:text-right">Nggak perlu buka banyak tab. Yang cocok dikumpulin di sini.</p></div></section>
-
-      <section className="mx-auto max-w-[1180px] px-4 py-24 sm:px-6 lg:py-28">
-        <div className="max-w-2xl"><p className="mb-3 text-[10px] font-black uppercase tracking-[.16em] text-violet-700">Nggak harus tahu nama barangnya</p><h2 className="font-[var(--font-display)] text-5xl font-black leading-[.95] tracking-[-.06em] sm:text-6xl">Bilang aja maunya apa.<br/>Biar NEMU yang nyari.</h2></div>
-        <div className="mt-12 grid gap-4 md:grid-cols-3">{steps.map(({icon:Icon,number,title,copy})=><article className="group rounded-3xl border border-zinc-200 bg-white p-7 transition hover:-translate-y-1 hover:border-violet-200 hover:shadow-xl hover:shadow-violet-950/5" key={number}><div className="flex items-start justify-between"><span className="grid size-11 place-items-center rounded-2xl bg-violet-100 text-violet-700 transition group-hover:bg-violet-600 group-hover:text-white"><Icon size={20}/></span><span className="text-[10px] font-black text-zinc-300">{number}</span></div><h3 className="mt-16 text-xl font-black tracking-[-.04em]">{title}</h3><p className="mt-2 text-xs leading-6 text-zinc-500">{copy}</p></article>)}</div>
-      </section>
-
-      <section className="bg-violet-950 px-4 py-24 text-white sm:px-6"><div className="mx-auto grid max-w-[1180px] items-center gap-14 lg:grid-cols-2 lg:gap-24"><div><p className="mb-3 flex items-center gap-2 text-[10px] font-black uppercase tracking-[.16em] text-lime-300"><BadgeCheck size={14}/> Tetap berasa kayak marketplace</p><h2 className="font-[var(--font-display)] text-5xl font-black leading-[.95] tracking-[-.06em] sm:text-6xl">Tampilannya udah kenal.<br/>Nyarinya lebih gampang.</h2><p className="mt-6 max-w-lg text-sm leading-7 text-violet-200">Kategori, promo, dan toko resmi tetap ada. Bedanya, sekarang kamu bisa bilang maunya apa tanpa mikirin kata kunci.</p><Link className="mt-7 inline-flex items-center gap-5 rounded-xl bg-lime-300 px-5 py-4 text-[10px] font-black text-zinc-950 transition hover:bg-lime-200" href="/shop">Lihat barangnya <ArrowRight size={17}/></Link></div><div className="divide-y divide-white/10 border-y border-white/10">{[[Search,'Mau cari biasa? Bisa.','Ketik nama produk atau merek seperti biasanya.'],[Sparkles,'Nggak tahu namanya? Ceritain aja.','Sebut fungsi, budget, warna, atau kebutuhanmu.'],[BadgeCheck,'Harga dan kondisi jelas.','Biar kamu nggak nebak-nebak sebelum beli.'],[Store,'Seller ada tandanya.','Tanda toko bikin kamu lebih gampang milih.']].map(([Icon,title,copy])=>{const I=Icon as typeof Search;return <div className="grid grid-cols-[42px_1fr_auto] items-center gap-4 py-5" key={title as string}><span className="grid size-10 place-items-center rounded-xl bg-white/10 text-lime-300"><I size={18}/></span><div><b className="block text-sm">{title as string}</b><p className="mt-1 text-[9px] text-violet-200">{copy as string}</p></div><ChevronRight size={17} className="text-violet-300"/></div>})}</div></div></section>
-
-      <section className="mx-auto grid min-h-[590px] max-w-[1180px] items-center gap-16 px-4 py-24 sm:px-6 lg:grid-cols-[1fr_.8fr]">
-        <div><p className="mb-3 flex items-center gap-2 text-[10px] font-black uppercase tracking-[.16em] text-violet-700"><Store size={14}/> Buat kamu yang jualan</p><h2 className="font-[var(--font-display)] text-5xl font-black leading-[.95] tracking-[-.06em] sm:text-6xl">Masukin foto.<br/>Jualan langsung jalan.</h2><p className="mt-6 max-w-lg text-sm leading-7 text-zinc-600">NEMU bantu bikin nama produk, deskripsi, dan kategori. Kamu tinggal cek, kasih harga, lalu tayangin.</p><a className="mt-7 inline-flex items-center gap-5 rounded-xl bg-violet-600 px-5 py-4 text-[10px] font-black text-white" href="https://seller.nemu-ai.com/register">Mulai jualan <ArrowRight size={17}/></a></div>
-        <div className="rotate-1 rounded-[30px] border-[8px] border-zinc-950 bg-white p-6 shadow-[18px_18px_0_#d9ff43]"><div className="flex items-center justify-between border-b border-zinc-100 pb-5"><div className="flex items-center gap-3"><span className="grid size-10 place-items-center rounded-xl bg-violet-100 text-violet-700"><Store size={18}/></span><div><b className="block text-xs">Toko Kriya</b><small className="text-[8px] text-zinc-400">Dashboard seller</small></div></div><span className="rounded-lg bg-green-50 px-2.5 py-1 text-[8px] font-black text-green-700">LIVE</span></div><div className="relative py-6"><small className="text-[9px] text-zinc-400">Omzet bulan ini</small><strong className="mt-1 block text-3xl font-black tracking-tight">Rp18,4 jt</strong><em className="absolute right-0 top-7 rounded-full bg-green-50 px-2 py-1 text-[9px] font-black not-italic text-green-700">+24%</em></div><div className="flex h-28 items-end gap-2">{[40,55,38,72,58,86,70,98].map((h,i)=><i className={`flex-1 rounded-t ${i%2?'bg-violet-600':'bg-lime-300'}`} key={i} style={{height:h}} />)}</div><div className="mt-5 flex gap-3 rounded-2xl bg-violet-50 p-4"><span className="grid size-9 shrink-0 place-items-center rounded-xl bg-violet-600 text-white"><Sparkles size={16}/></span><div><b className="text-[9px] text-violet-700">Saran dari NEMU</b><p className="mt-1 text-[9px] leading-4 text-zinc-600">Foto pertama yang lebih terang berpotensi mendapat lebih banyak klik.</p></div></div></div>
-      </section>
-
-      <section className="section-glow bg-white px-4 py-24 sm:px-6" aria-labelledby="untuk-siapa">
-        <div className="mx-auto max-w-[1180px]">
-          <p className="text-[10px] font-black uppercase tracking-[.16em] text-violet-700">Satu tempat, dua kebutuhan</p>
-          <h2 id="untuk-siapa" className="mt-3 max-w-3xl font-[var(--font-display)] text-5xl font-black leading-[.95] tracking-[-.06em] sm:text-6xl">Yang beli nggak bingung.<br/>Yang jual nggak ribet.</h2>
-          <div className="mt-12 grid gap-5 lg:grid-cols-2">
-            <article className="group rounded-[32px] border border-violet-100 bg-violet-50 p-8 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-950/10 sm:p-10"><span className="grid size-12 place-items-center rounded-2xl bg-violet-600 text-white"><ShoppingBag size={21}/></span><p className="mt-10 text-[9px] font-black uppercase tracking-[.14em] text-violet-700">Buat yang lagi nyari</p><h3 className="mt-2 text-3xl font-black tracking-[-.05em]">Bilang maunya. Tinggal pilih.</h3><p className="mt-4 max-w-lg text-sm leading-7 text-zinc-600">Mau yang murah, warna tertentu, atau dekat rumah? Tulis aja. Harga dan kondisi barang langsung kelihatan.</p><Link className="mt-6 inline-flex items-center gap-2 text-[10px] font-black text-violet-700" href="/shop">Cari barang sekarang <ArrowRight size={15}/></Link></article>
-            <article className="group rounded-[32px] bg-zinc-950 p-8 text-white transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-zinc-950/20 sm:p-10"><span className="grid size-12 place-items-center rounded-2xl bg-lime-300 text-zinc-950"><Store size={21}/></span><p className="mt-10 text-[9px] font-black uppercase tracking-[.14em] text-lime-300">Buat yang mau jualan</p><h3 className="mt-2 text-3xl font-black tracking-[-.05em]">Foto barang. Kasih harga. Beres.</h3><p className="mt-4 max-w-lg text-sm leading-7 text-zinc-300">NEMU bantu ngerapiin nama dan deskripsinya. Kamu tetap pegang harga dan isi tokonya.</p><a className="mt-6 inline-flex items-center gap-2 text-[10px] font-black text-lime-300" href="https://seller.nemu-ai.com/register">Buka toko gratis <ArrowRight size={15}/></a></article>
+      <section className="market-hero mx-auto max-w-[1240px] px-4 py-5 sm:px-6">
+        <div className="grid min-h-[520px] overflow-hidden rounded-[30px] bg-[#f0edff] lg:grid-cols-[1.08fr_.92fr]">
+          <div className="flex flex-col justify-center px-6 py-12 sm:px-12 lg:px-16">
+            <p className="mb-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-[.14em] text-[#5b3fd5]"><Sparkles size={14}/> Belanja tanpa muter-muter</p>
+            <h1 className="max-w-2xl font-[var(--font-display)] text-[52px] font-black leading-[.92] tracking-[-.07em] text-[#292333] sm:text-7xl lg:text-[80px]">Nyari barang?<br/><span className="text-[#5b3fd5]">Bilang aja.</span></h1>
+            <p className="mt-6 max-w-xl text-base font-medium leading-7 text-[#625b6d]">Ketik barangnya, budgetnya, atau sekalian ceritain maumu. NEMU bantu nyaring pilihan yang paling masuk.</p>
+            <form className="mt-7 flex max-w-xl items-center rounded-full border-2 border-[#5b3fd5] bg-white p-1.5 shadow-[0_12px_30px_rgba(91,63,213,.13)]" action="/shop" role="search">
+              <Search className="ml-3 shrink-0 text-[#5b3fd5]" size={19}/>
+              <input className="min-w-0 flex-1 bg-transparent px-3 py-3 text-xs font-semibold outline-none placeholder:text-[#81798d]" name="q" placeholder="Contoh: kado buat ibu, 200 ribuan" aria-label="Ceritakan barang yang kamu cari"/>
+              <button className="grid size-11 shrink-0 place-items-center rounded-full bg-[#5b3fd5] text-white transition hover:bg-[#4d32c4]" type="submit" aria-label="Cari barang"><ArrowRight size={18}/></button>
+            </form>
+            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[9px] font-extrabold text-[#625b6d]">{['Harga kelihatan','Seller jelas','Baru + preloved'].map(item=><span className="flex items-center gap-1.5" key={item}><Check size={16} className="rounded-full bg-[#dfff5b] p-1 text-[#292333]"/>{item}</span>)}</div>
+          </div>
+          <div className="relative isolate min-h-[410px] overflow-hidden bg-[#5b3fd5] p-5 sm:p-8 lg:min-h-full">
+            <ThreeUiParticleNetwork className="absolute inset-0 -z-10 size-full opacity-45"/>
+            <div className="absolute -right-14 -top-14 -z-10 size-64 rounded-full bg-[#dfff5b]/20 blur-2xl"/>
+            <div className="mx-auto flex h-full max-w-lg flex-col justify-center">
+              <div className="mb-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-[.13em] text-[#dfff5b]"><Sparkles size={14}/> Pilihan buat kamu</div>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">{miniProducts.map(([name,price,img],index)=><article className={`overflow-hidden rounded-2xl bg-white shadow-[0_16px_35px_rgba(28,17,75,.2)] ${index===2?'hidden sm:block lg:hidden xl:block':''}`} key={name}><Image className="aspect-square w-full object-cover" src={img} alt={name} width={280} height={280} sizes="(max-width: 640px) 42vw, 190px" priority={index===0}/><div className="p-3 text-[#292333]"><p className="text-[8px] font-black text-[#5b3fd5]">Cocok 96%</p><h3 className="mt-1 truncate text-[10px] font-extrabold">{name}</h3><strong className="mt-1 block text-sm">{price}</strong></div></article>)}</div>
+              <div className="mt-4 flex items-center justify-between rounded-2xl bg-white/12 px-4 py-3 text-white backdrop-blur"><span className="text-[9px] font-bold">Nggak perlu buka banyak tab.</span><Link className="flex items-center gap-1 text-[9px] font-black text-[#dfff5b]" href="/shop">Lihat semua <ChevronRight size={13}/></Link></div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-24 sm:px-6" aria-labelledby="faq-heading">
-        <div className="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[.7fr_1fr]">
-          <div><p className="text-[10px] font-black uppercase tracking-[.16em] text-violet-700">Yang sering ditanyain</p><h2 id="faq-heading" className="mt-3 font-[var(--font-display)] text-5xl font-black leading-[.95] tracking-[-.06em]">Masih bingung?<br/>Sini, kami jawab.</h2><p className="mt-5 max-w-sm text-sm leading-7 text-zinc-600">Jawaban pendek buat kamu yang baru pertama mampir.</p></div>
-          <div className="divide-y divide-zinc-200 border-y border-zinc-200">{faq.map(([question,answer],index)=><details className="faq-item group" open={index===0} key={question}><summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-6 text-base font-black"><span>{question}</span><CirclePlus className="shrink-0 text-violet-600" size={20}/></summary><p className="max-w-2xl pb-6 pr-10 text-sm leading-7 text-zinc-600">{answer}</p></details>)}</div>
+      <section className="border-y border-[#e8e4f0] bg-white px-4 py-5 sm:px-6" aria-label="Keunggulan NEMU">
+        <div className="mx-auto grid max-w-[1240px] grid-cols-2 gap-5 lg:grid-cols-4">
+          {[[Search,'Cari pakai bahasa sehari-hari'],[PackageCheck,'Barang baru dan preloved'],[BadgeCheck,'Info seller gampang dicek'],[Store,'Seller lokal bisa ikut jualan']].map(([Icon,label])=>{const I=Icon as typeof Search;return <div className="flex items-center gap-3" key={label as string}><span className="grid size-9 shrink-0 place-items-center rounded-full bg-[#f0edff] text-[#5b3fd5]"><I size={17}/></span><b className="text-[10px] leading-4 text-[#4d4656]">{label as string}</b></div>})}
         </div>
       </section>
 
-      <section className="bg-lime-300 px-4 py-24 text-center sm:px-6"><p className="text-[10px] font-black uppercase tracking-[.16em]">Barangnya sudah kebayang?</p><h2 className="mt-3 font-[var(--font-display)] text-5xl font-black tracking-[-.06em] sm:text-7xl">Ketik sekarang. <span className="text-violet-700">NEMU carikan.</span></h2><Link className="mt-8 inline-flex items-center gap-3 rounded-xl bg-violet-600 px-5 py-4 text-[10px] font-black text-white" href="/shop">Cari produk saya <ArrowRight size={17}/></Link></section>
+      <section className="mx-auto max-w-[1240px] px-4 py-16 sm:px-6 lg:py-20" id="kategori">
+        <div className="flex items-end justify-between gap-5"><div><p className="text-[10px] font-black uppercase tracking-[.14em] text-[#5b3fd5]">Mulai dari sini</p><h2 className="mt-2 text-3xl font-black tracking-[-.045em] sm:text-4xl">Mau lihat yang mana?</h2></div><Link className="hidden items-center gap-1 text-[10px] font-black text-[#5b3fd5] sm:flex" href="/shop">Semua kategori <ChevronRight size={15}/></Link></div>
+        <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-6">{categories.map(({icon:Icon,name,tone})=><Link className="group flex flex-col items-center gap-3 rounded-2xl border border-[#ece8f2] bg-white px-3 py-5 text-center transition hover:-translate-y-1 hover:border-violet-200 hover:shadow-lg" href="/shop" key={name}><span className={`grid size-14 place-items-center rounded-full ${tone}`}><Icon size={24}/></span><b className="text-[9px] text-[#4d4656]">{name}</b></Link>)}</div>
+      </section>
+
+      <section className="bg-white px-4 py-16 sm:px-6 lg:py-20" aria-labelledby="lagi-rame">
+        <div className="mx-auto max-w-[1240px]">
+          <div className="flex items-end justify-between gap-5"><div><span className="inline-flex rounded-full bg-[#fff0da] px-3 py-1.5 text-[8px] font-black text-[#a95a00]">LAGI RAME</span><h2 id="lagi-rame" className="mt-3 text-3xl font-black tracking-[-.045em] sm:text-4xl">Banyak yang lagi ngincer ini</h2><p className="mt-2 text-sm text-[#6d6577]">Dari gadget sampai barang buatan seller lokal.</p></div><Link className="hidden items-center gap-1 text-[10px] font-black text-[#5b3fd5] sm:flex" href="/shop">Lihat lebih banyak <ChevronRight size={15}/></Link></div>
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">{products.map((product,index)=><article className={`group min-w-0 ${index>3?'hidden lg:block':''}`} key={product.name}><Link href="/shop"><div className="relative aspect-square overflow-hidden rounded-2xl bg-[#f4f2f6]"><Image className="object-cover transition duration-300 group-hover:scale-105" src={product.image} alt={product.name} fill sizes="(max-width: 640px) 46vw, (max-width: 1024px) 31vw, 224px"/><span className="absolute left-2 top-2 rounded-full bg-white/95 px-2.5 py-1 text-[7px] font-black text-[#5b3fd5] shadow-sm">{product.badge}</span></div><h3 className="mt-3 line-clamp-2 text-[11px] font-extrabold leading-5">{product.name}</h3><strong className="mt-1 block text-sm text-[#5b3fd5]">{product.price}</strong><p className="mt-1 text-[8px] text-[#7a7284]">{product.note}</p></Link></article>)}</div>
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-[1240px] gap-5 px-4 py-16 sm:px-6 lg:grid-cols-[1.08fr_.92fr] lg:py-24">
+        <div className="rounded-[30px] bg-[#292333] p-7 text-white sm:p-10 lg:p-12">
+          <span className="grid size-12 place-items-center rounded-2xl bg-[#dfff5b] text-[#292333]"><MessageCircleMore size={22}/></span>
+          <p className="mt-10 text-[10px] font-black uppercase tracking-[.14em] text-[#dfff5b]">Nggak tahu nama barangnya?</p>
+          <h2 className="mt-3 max-w-xl font-[var(--font-display)] text-4xl font-black leading-[.98] tracking-[-.055em] sm:text-6xl">Ceritain aja.<br/>NEMU ngerti.</h2>
+          <p className="mt-5 max-w-lg text-sm leading-7 text-[#d5cfdd]">Mau sepatu buat kuliah, kado ulang tahun, atau HP sesuai budget? Tulis seperti lagi chat. Hasilnya dibikin lebih ringkas.</p>
+          <Link className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#5b3fd5] px-5 py-3.5 text-[10px] font-black text-white" href="/shop#tanya-nemu">Coba cari sekarang <ArrowRight size={15}/></Link>
+        </div>
+        <div className="rounded-[30px] border border-[#e7e2ed] bg-[#f0edff] p-6 sm:p-8 lg:p-10">
+          <p className="text-[9px] font-black text-[#5b3fd5]">CONTOH PENCARIAN</p>
+          <div className="mt-5 rounded-2xl bg-white p-5 shadow-sm"><p className="text-sm font-bold leading-6">“Cari tas kerja hitam yang muat laptop, budget 300 ribuan.”</p></div>
+          <div className="mt-4 space-y-3">{['Budget di bawah Rp300 ribu','Warna hitam','Muat laptop','Cocok buat kerja'].map((item,index)=><div className="flex items-center gap-3 rounded-2xl bg-white/80 p-3" key={item}><span className="grid size-7 place-items-center rounded-full bg-[#dfff5b] text-[8px] font-black">{index+1}</span><b className="text-[10px] text-[#4d4656]">{item}</b></div>)}</div>
+        </div>
+      </section>
+
+      <section className="bg-[#5b3fd5] px-4 py-16 text-white sm:px-6 lg:py-24">
+        <div className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-[.85fr_1.15fr]">
+          <div><p className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[.14em] text-[#dfff5b]"><Store size={15}/> Punya barang buat dijual?</p><h2 className="mt-3 font-[var(--font-display)] text-5xl font-black leading-[.95] tracking-[-.06em] sm:text-6xl">Foto barang.<br/>Kasih harga.<br/>Gas jualan.</h2><p className="mt-6 max-w-lg text-sm leading-7 text-violet-100">NEMU bantu merapikan nama, deskripsi, dan kategori. Kamu tetap pegang harga dan isi tokomu.</p><a className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#dfff5b] px-5 py-3.5 text-[10px] font-black text-[#292333]" href="https://seller.nemu-ai.com/register">Buka toko gratis <ArrowRight size={15}/></a></div>
+          <div className="grid gap-3 sm:grid-cols-2">{[[Camera,'Unggah foto','Foto dari HP juga boleh.'],[Sparkles,'Dibantu dirapikan','Nama dan deskripsi jadi lebih enak dibaca.'],[Store,'Atur tokomu','Harga dan stok tetap kamu yang pegang.'],[HeartHandshake,'Ketemu pembeli','Produk lebih gampang dicari sesuai kebutuhan.']].map(([Icon,title,copy])=>{const I=Icon as typeof Camera;return <article className="rounded-3xl bg-white p-6 text-[#292333]" key={title as string}><span className="grid size-10 place-items-center rounded-2xl bg-[#f0edff] text-[#5b3fd5]"><I size={19}/></span><h3 className="mt-8 text-lg font-black">{title as string}</h3><p className="mt-2 text-[10px] leading-5 text-[#716979]">{copy as string}</p></article>})}</div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[1240px] px-4 py-16 sm:px-6 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
+          <div><p className="text-[10px] font-black uppercase tracking-[.14em] text-[#5b3fd5]">Biar belanjanya tenang</p><h2 className="mt-3 text-4xl font-black tracking-[-.05em] sm:text-5xl">Sebelum beli,<br/>cek dulu semuanya.</h2><p className="mt-5 max-w-md text-sm leading-7 text-[#6d6577]">Harga, kondisi, lokasi, dan info seller dibuat gampang dibaca. Jadi keputusan tetap di tanganmu.</p></div>
+          <div className="grid gap-3 sm:grid-cols-3">{[[ShieldCheck,'Bayar lebih aman','Pembayaran diteruskan setelah pesanan berjalan sesuai proses.'],[BadgeCheck,'Seller kelihatan jelas','Cek profil, rating, lokasi, dan tanda verifikasi.'],[PackageCheck,'Kondisi nggak samar','Barang baru atau preloved ditulis dari awal.']].map(([Icon,title,copy])=>{const I=Icon as typeof ShieldCheck;return <article className="rounded-3xl border border-[#e8e4f0] bg-white p-6" key={title as string}><span className="grid size-10 place-items-center rounded-2xl bg-[#eff9d2] text-[#55720f]"><I size={19}/></span><h3 className="mt-8 text-lg font-black">{title as string}</h3><p className="mt-2 text-[10px] leading-5 text-[#716979]">{copy as string}</p></article>})}</div>
+        </div>
+      </section>
+
+      <section className="border-t border-[#e8e4f0] bg-white px-4 py-16 sm:px-6 lg:py-24" aria-labelledby="faq-heading">
+        <div className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[.75fr_1.25fr]"><div><p className="text-[10px] font-black uppercase tracking-[.14em] text-[#5b3fd5]">Yang sering ditanyain</p><h2 id="faq-heading" className="mt-3 text-4xl font-black tracking-[-.05em] sm:text-5xl">Masih kepikiran<br/>sesuatu?</h2></div><div className="divide-y divide-[#e8e4f0] border-y border-[#e8e4f0]">{faq.map(([question,answer],index)=><details className="faq-item group" open={index===0} key={question}><summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-6 text-sm font-black"><span>{question}</span><CirclePlus className="shrink-0 text-[#5b3fd5]" size={20}/></summary><p className="max-w-2xl pb-6 pr-10 text-sm leading-7 text-[#6d6577]">{answer}</p></details>)}</div></div>
+      </section>
+
+      <section className="bg-[#dfff5b] px-4 py-16 text-center sm:px-6 lg:py-20"><p className="text-[10px] font-black uppercase tracking-[.14em] text-[#4e6314]">Udah kebayang mau cari apa?</p><h2 className="mt-3 font-[var(--font-display)] text-5xl font-black tracking-[-.06em] text-[#292333] sm:text-7xl">Ketik aja. Biar NEMU yang nyari.</h2><Link className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#5b3fd5] px-6 py-4 text-[10px] font-black text-white" href="/shop">Mulai belanja <ArrowRight size={16}/></Link></section>
       <Footer />
     </main>
   );
