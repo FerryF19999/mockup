@@ -5,7 +5,6 @@ import {
   Search, ShieldCheck, Sparkles, Store,
 } from 'lucide-react';
 import { Footer, Header, MobileDock } from './components';
-import { ScrollDepth, SectionTransitions } from './experience';
 import { PaymentMethods } from './payment-methods';
 
 const faq = [
@@ -30,7 +29,6 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <MobileDock />
-      <SectionTransitions />
 
       <section className="market-hero mx-auto max-w-[1240px] px-4 py-5 sm:px-6">
         <div className="grid min-h-[500px] overflow-hidden rounded-[28px] border border-[#e8e4f0] bg-white lg:grid-cols-[1.06fr_.94fr]">
@@ -116,22 +114,22 @@ export default function Home() {
       <PaymentMethods />
 
       <section className="overflow-hidden bg-[#f3f0f7] px-4 py-16 sm:px-6 lg:py-24">
-        <ScrollDepth className="mx-auto max-w-[1240px]">
-          <div className="depth-stage relative min-h-[650px] overflow-hidden rounded-[38px] bg-[#24152f] text-white shadow-[0_28px_90px_rgba(42,22,58,.22)]">
+        <div className="mx-auto max-w-[1240px]">
+          <div className="relative min-h-[590px] overflow-hidden rounded-[38px] bg-[#24152f] text-white shadow-[0_28px_90px_rgba(42,22,58,.22)]">
             <span className="absolute inset-0 bg-cover bg-[62%_center] lg:bg-center" role="img" aria-label="Buyer melihat produk sambil berbicara dengan seller" style={{backgroundImage:"url('/trust-market-bandung-v1.jpg')"}}/>
             <span className="absolute inset-0 bg-gradient-to-r from-[#1d1127]/98 via-[#261631]/78 to-[#261631]/5"/>
-            <div className="relative z-10 flex min-h-[650px] max-w-[570px] flex-col justify-center p-7 sm:p-10 lg:p-14"><p className="text-[9px] font-black uppercase tracking-[.14em] text-[#EDE8FF]">Belanja tanpa nebak-nebak</p><h2 className="mt-3 text-4xl font-black leading-[.98] tracking-[-.055em] sm:text-5xl">Lihat barangnya.<br/>Kenal sellernya.</h2><p className="mt-5 max-w-md text-sm leading-7 text-[#eee8f2]">Harga, kondisi, lokasi, dan profil seller kelihatan dari awal. Jadi kamu bisa cek dulu sebelum mutusin.</p><div className="mt-8 grid gap-2 sm:grid-cols-3">{[[ShieldCheck,'Bayar lebih tenang'],[BadgeCheck,'Seller gampang dicek'],[PackageCheck,'Kondisi nggak samar']].map(([Icon,title])=>{const I=Icon as typeof ShieldCheck;return <div className="depth-layer-front rounded-[18px] border border-white/15 bg-white/12 p-3 backdrop-blur-md" key={title as string}><I className="text-[#EDE8FF]" size={17}/><b className="mt-3 block text-[9px] leading-4 text-white">{title as string}</b></div>})}</div></div>
+            <div className="relative z-10 flex min-h-[590px] max-w-[570px] flex-col justify-center p-7 sm:p-10 lg:p-14"><p className="text-[9px] font-black uppercase tracking-[.14em] text-[#EDE8FF]">Belanja tanpa nebak-nebak</p><h2 className="mt-3 text-4xl font-black leading-[.98] tracking-[-.055em] sm:text-5xl">Lihat barangnya.<br/>Kenal sellernya.</h2><p className="mt-5 max-w-md text-sm leading-7 text-[#eee8f2]">Harga, kondisi, lokasi, dan profil seller kelihatan dari awal. Jadi kamu bisa cek dulu sebelum mutusin.</p><div className="mt-8 grid gap-2 sm:grid-cols-3">{[[ShieldCheck,'Bayar lebih tenang'],[BadgeCheck,'Seller gampang dicek'],[PackageCheck,'Kondisi nggak samar']].map(([Icon,title])=>{const I=Icon as typeof ShieldCheck;return <div className="rounded-[18px] border border-white/15 bg-white/12 p-3 backdrop-blur-md" key={title as string}><I className="text-[#EDE8FF]" size={17}/><b className="mt-3 block text-[9px] leading-4 text-white">{title as string}</b></div>})}</div></div>
           </div>
-        </ScrollDepth>
+        </div>
       </section>
 
       <section className="overflow-hidden bg-white px-4 py-16 sm:px-6 lg:py-24" aria-labelledby="faq-heading">
-        <ScrollDepth className="mx-auto max-w-[1240px]">
-          <div className="depth-stage grid items-stretch gap-7 lg:grid-cols-[.72fr_1.28fr]">
+        <div className="mx-auto max-w-[1240px]">
+          <div className="grid items-stretch gap-7 lg:grid-cols-[.72fr_1.28fr]">
             <div className="relative min-h-[430px] overflow-hidden rounded-[32px] shadow-[0_28px_70px_rgba(54,41,92,.16)] lg:min-h-[560px]"><span className="absolute inset-0 bg-cover bg-center" role="img" aria-label="Tiga teman mencari produk bersama lewat ponsel" style={{backgroundImage:"url('/faq-jakarta-friends-v1.jpg')"}}/><span className="absolute inset-0 bg-gradient-to-t from-[#25162f]/92 via-transparent to-transparent"/><span className="absolute left-5 top-5 rounded-full border border-white/50 bg-white/90 px-4 py-2.5 text-[8px] font-black text-[#704BFD] shadow-lg backdrop-blur">Cari bareng juga boleh</span><div className="absolute inset-x-5 bottom-5 rounded-[22px] border border-white/15 bg-[#2a1935]/80 p-5 text-white backdrop-blur"><Sparkles className="text-[#EDE8FF]" size={18}/><b className="mt-3 block text-xl leading-tight">Nggak tahu nama barangnya?<br/>Ceritain aja.</b></div></div>
-            <div className="relative [perspective:1200px]"><div className="depth-layer-back absolute inset-0 translate-x-5 translate-y-5 rounded-[30px] bg-[#EDE8FF]"/><div className="depth-layer-mid absolute inset-0 translate-x-2.5 translate-y-2.5 rounded-[30px] bg-[#b8a9ff]"/><div className="depth-layer-front relative overflow-hidden rounded-[30px] border border-[#e1dbe8] bg-white p-6 shadow-[0_28px_80px_rgba(54,41,92,.16)] sm:p-8"><div className="flex items-center gap-2"><span className="grid size-8 place-items-center rounded-xl bg-[#F2EFFF] text-[#704BFD]"><MessageCircleMore size={15}/></span><p className="text-[9px] font-black uppercase tracking-[.14em] text-[#704BFD]">Yang sering ditanyain</p></div><h2 id="faq-heading" className="mt-3 text-3xl font-black tracking-[-.05em] sm:text-4xl">Biar nggak kepikiran terus.</h2><div className="mt-6 divide-y divide-[#e8e4f0]">{faq.map(([question,answer])=><details className="faq-item group" key={question}><summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-5 text-[11px] font-black"><span>{question}</span><CirclePlus className="shrink-0 text-[#704BFD]" size={19}/></summary><p className="pb-5 pr-8 text-[10px] leading-6 text-[#6B6B75]">{answer}</p></details>)}</div><div className="mt-6 flex flex-col items-start justify-between gap-4 rounded-[22px] bg-[#EDE8FF] p-5 sm:flex-row sm:items-center"><div><p className="text-[8px] font-black uppercase tracking-[.12em] text-[#5D3EEA]">Udah kebayang?</p><h3 className="mt-1 text-xl font-black tracking-[-.035em]">Bilang aja. Biar NEMU nyari.</h3></div><Link className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#704BFD] px-5 py-3 text-[9px] font-black text-white" href="/ai-mode">Mulai <ArrowRight size={14}/></Link></div></div></div>
+            <div className="relative overflow-hidden rounded-[30px] border border-[#e1dbe8] bg-white p-6 shadow-[0_24px_65px_rgba(54,41,92,.12)] sm:p-8"><div className="flex items-center gap-2"><span className="grid size-8 place-items-center rounded-xl bg-[#F2EFFF] text-[#704BFD]"><MessageCircleMore size={15}/></span><p className="text-[9px] font-black uppercase tracking-[.14em] text-[#704BFD]">Yang sering ditanyain</p></div><h2 id="faq-heading" className="mt-3 text-3xl font-black tracking-[-.05em] sm:text-4xl">Biar makin jelas.</h2><div className="mt-6 divide-y divide-[#e8e4f0]">{faq.map(([question,answer])=><details className="faq-item group" key={question}><summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-5 text-[11px] font-black"><span>{question}</span><CirclePlus className="shrink-0 text-[#704BFD]" size={19}/></summary><p className="pb-5 pr-8 text-[10px] leading-6 text-[#6B6B75]">{answer}</p></details>)}</div><div className="mt-6 flex flex-col items-start justify-between gap-4 rounded-[22px] bg-[#704BFD] p-5 text-white sm:flex-row sm:items-center"><div><p className="text-[8px] font-black uppercase tracking-[.12em] text-white/70">Mau mulai cari?</p><h3 className="mt-1 text-xl font-black tracking-[-.035em]">Ceritain aja ke NEMU.</h3></div><Link className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-[9px] font-black text-[#704BFD]" href="/ai-mode">Mulai <ArrowRight size={14}/></Link></div></div>
           </div>
-        </ScrollDepth>
+        </div>
       </section>
       <Footer />
     </main>

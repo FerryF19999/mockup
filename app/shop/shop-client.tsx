@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { ArrowRight, Bot, Camera, Check, Heart, Search, ShoppingBag, Sparkles } from 'lucide-react';
+import { ArrowRight, Bot, Camera, Check, Heart, Search, ShoppingCart, Sparkles } from 'lucide-react';
 
 const suggestions = ['Kado buat ibu, budget 200 ribu', 'Sepatu putih buat kuliah dan nggak gampang kotor', 'HP enak buat ojol di bawah 1 juta'];
 
@@ -67,7 +67,7 @@ export function FavoriteButton({ name }: { name:string }) {
 
 export function CartButton({ name }: { name:string }) {
   const [added,setAdded]=useState(false);
-  return <button className={`mt-3 flex h-9 w-full items-center justify-center gap-2 rounded-xl text-[9px] font-black transition ${added?'bg-[#F2EFFF] text-[#704BFD]':'bg-[#0B0B0E] text-white hover:bg-[#704BFD]'}`} type="button" onClick={()=>setAdded(!added)} aria-pressed={added} aria-label={`${added?'Hapus':'Masukkan'} ${name} ${added?'dari':'ke'} keranjang`}>{added?<><Check size={14}/> Udah masuk</>:<><ShoppingBag size={14}/> Masukin</>}</button>;
+  return <button className={`mt-3 flex h-9 w-full items-center justify-center gap-2 rounded-xl text-[9px] font-black transition ${added?'bg-[#F2EFFF] text-[#704BFD]':'bg-[#704BFD] text-white hover:bg-[#5638c8]'}`} type="button" onClick={()=>setAdded(!added)} aria-pressed={added} aria-label={`${added?'Batalkan checkout':'Checkout'} ${name}`}>{added?<><Check size={14}/> Siap checkout</>:<><ShoppingCart className="text-[#FFD34E]" size={16}/> Checkout</>}</button>;
 }
 
 export function CategoryFilter({ categories }: { categories:string[] }) {
