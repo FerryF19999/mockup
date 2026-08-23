@@ -4,7 +4,7 @@ import {
   ArrowRight, BadgeCheck, ChevronRight,
   Footprints,
   MapPin, PackageCheck, RotateCcw,
-  MountainSnow, Palette, ShieldCheck, Sparkles, Star, Store,
+  MountainSnow, Palette, Search, ShieldCheck, Star, Store,
   TentTree,
   Zap,
 } from 'lucide-react';
@@ -75,9 +75,9 @@ export default function ShopPage() {
 
       <section className="mx-auto max-w-[1240px] px-4 py-4 sm:px-6" id="tanya-nemu">
         <article className="rounded-[24px] border border-[#e3dfea] bg-white p-6 sm:p-8">
-          <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.12em] text-[#5b3fd5]"><Sparkles size={13}/> Cari seperti biasa, atau ceritain maumu</div>
-          <h1 className="mt-3 max-w-3xl font-[var(--font-display)] text-4xl font-black leading-[1.02] tracking-[-.05em] sm:text-5xl">Lagi nyari apa hari ini?</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#6d6577]">Ketik nama barang, budget, warna, atau kebutuhanmu. Yang paling sesuai kami taruh di depan.</p>
+          <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.12em] text-[#5b3fd5]"><Search size={13}/> Cari produk</div>
+          <h1 className="mt-3 max-w-3xl font-[var(--font-display)] text-4xl font-black leading-[1.02] tracking-[-.05em] sm:text-5xl">Barangnya apa?</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#6d6577]">Kalau sudah tahu nama barangnya, ketik di sini. Kalau masih bingung namanya, Mode AI punya halaman sendiri.</p>
           <div className="mt-5"><ShopSearch/></div>
         </article>
       </section>

@@ -15,5 +15,6 @@ NEMU AI adalah marketplace Indonesia dengan pencarian produk berbantuan AI.
 ## Halaman utama
 - https://nemu-ai-redesign.openclawid6.chatgpt.site/
 - https://nemu-ai-redesign.openclawid6.chatgpt.site/shop
+- https://nemu-ai-redesign.openclawid6.chatgpt.site/ai-mode — pencarian dengan bahasa sehari-hari untuk pengguna yang belum tahu nama barangnya
 
 Bahasa utama: Indonesia (id-ID).

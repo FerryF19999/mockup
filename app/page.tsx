@@ -104,7 +104,7 @@ export default function Home() {
             <h2 className="mt-3 max-w-xl font-[var(--font-display)] text-5xl font-black leading-[.94] tracking-[-.06em] sm:text-6xl">Ceritain aja.<br/>Biar NEMU nyari.</h2>
             <p className="mt-5 max-w-md text-sm font-medium leading-7 text-[#e7dfeb]">Sebut kebutuhan, budget, atau warnanya. Nggak perlu pakai kata-kata ribet.</p>
             <div className="mt-6 flex flex-wrap gap-2"><span className="rounded-full border border-white/20 bg-white/10 px-3 py-2 text-[8px] font-bold backdrop-blur">“Sepatu empuk buat kuliah”</span><span className="rounded-full border border-white/20 bg-white/10 px-3 py-2 text-[8px] font-bold backdrop-blur">“Kado ibu 200 ribuan”</span></div>
-            <Link className="mt-7 inline-flex w-fit items-center gap-3 rounded-full bg-[#6b4de6] px-6 py-4 text-[9px] font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-[#5c3ed2]" href="/shop#tanya-nemu">Tanya NEMU sekarang <ArrowRight size={15}/></Link>
+            <Link className="mt-7 inline-flex w-fit items-center gap-3 rounded-full bg-[#6b4de6] px-6 py-4 text-[9px] font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-[#5c3ed2]" href="/ai-mode">Buka Mode AI <ArrowRight size={15}/></Link>
           </div>
         </div>
       </section>

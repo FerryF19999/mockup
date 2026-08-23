@@ -6,7 +6,33 @@ import { ArrowRight, Bot, Camera, Check, Heart, Search, ShoppingBag, Sparkles } 
 const suggestions = ['Kado buat ibu, budget 200 ribu', 'Sepatu putih buat kuliah dan nggak gampang kotor', 'HP enak buat ojol di bawah 1 juta'];
 
 export function ShopSearch() {
-  const [mode, setMode] = useState<'ai' | 'produk'>('ai');
+  const [query, setQuery] = useState('');
+  const [message, setMessage] = useState('');
+
+  function submit(event: FormEvent) {
+    event.preventDefault();
+    const value = query.trim();
+    if (!value) {
+      setMessage('Tulis dulu nama barangnya, ya.');
+      return;
+    }
+    setMessage(`Sip, lagi nyari “${value}” buat kamu.`);
+  }
+
+  return (
+    <div className="min-w-0">
+      <form className="flex flex-col gap-2 rounded-2xl bg-white p-2 shadow-[0_12px_32px_rgba(54,41,92,.10)] sm:flex-row sm:items-center" onSubmit={submit} role="search" aria-label="Cari produk biasa">
+        <span className="hidden size-10 shrink-0 place-items-center rounded-xl bg-[#f0edff] text-[#5b3fd5] sm:grid"><Search size={18}/></span>
+        <input className="min-w-0 flex-1 rounded-xl bg-[#f7f6f8] px-4 py-3.5 text-sm font-semibold text-[#393047] outline-none placeholder:font-medium placeholder:text-[#81798d] focus:ring-2 focus:ring-violet-200" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Ketik nama barang, misalnya: sepatu putih" aria-label="Nama produk yang dicari"/>
+        <button className="inline-flex h-11 items-center justify-center gap-3 rounded-xl bg-[#6547db] px-5 text-[9px] font-black text-white transition hover:bg-[#5638c8]" type="submit">Cari <ArrowRight size={15}/></button>
+      </form>
+      <a className="mt-3 inline-flex items-center gap-2 text-[9px] font-black text-[#5b3fd5]" href="/ai-mode"><Sparkles size={13}/> Nggak tahu nama barangnya? Tanya Mode AI <ArrowRight size={12}/></a>
+      <p className="mt-2 min-h-4 text-[9px] font-bold text-[#5b3fd5]" role="status" aria-live="polite">{message}</p>
+    </div>
+  );
+}
+
+export function AiShoppingAssistant() {
   const [query, setQuery] = useState('');
   const [message, setMessage] = useState('');
   const [result, setResult] = useState('');
@@ -15,57 +41,23 @@ export function ShopSearch() {
     event.preventDefault();
     const value = query.trim();
     if (!value) {
-      setMessage(mode === 'ai' ? 'Ceritain dulu yang kamu butuhin, ya.' : 'Tulis dulu nama barangnya, ya.');
+      setMessage('Ceritain dulu yang kamu butuhin, ya.');
       setResult('');
       return;
     }
     setMessage('');
-    if (mode === 'ai') setResult(value);
-    else {
-      setResult('');
-      setMessage(`Sip, lagi nyari “${value}” buat kamu.`);
-    }
+    setResult(value);
   }
 
-  function changeMode(next: 'ai' | 'produk') {
-    setMode(next);
-    setMessage('');
-    setResult('');
-  }
-
-  return (
-    <div className="min-w-0">
-      <div className="mb-3 flex w-fit items-center gap-1 rounded-full border border-[#ded8e8] bg-[#f4f2f7] p-1" role="tablist" aria-label="Cara mencari barang">
-        <button className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-[9px] font-black transition ${mode === 'ai' ? 'bg-[#6547db] text-white shadow-md' : 'text-[#6d6378] hover:bg-white'}`} type="button" role="tab" aria-selected={mode === 'ai'} onClick={() => changeMode('ai')}><Sparkles size={13}/> Mode AI</button>
-        <button className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-[9px] font-black transition ${mode === 'produk' ? 'bg-white text-[#51465e] shadow-sm' : 'text-[#6d6378] hover:bg-white'}`} type="button" role="tab" aria-selected={mode === 'produk'} onClick={() => changeMode('produk')}><Search size={13}/> Cari produk</button>
-      </div>
-
-      {mode === 'ai' ? (
-        <div role="tabpanel">
-          <form className="rounded-[22px] border border-[#cfc4f2] bg-gradient-to-br from-white via-[#fbfaff] to-[#f0ebff] p-3 shadow-[0_14px_38px_rgba(74,52,135,.12)]" onSubmit={submit} role="search">
-            <div className="flex gap-3 px-1 pt-1">
-              <span className="mt-1 grid size-9 shrink-0 place-items-center rounded-xl bg-[#6547db] text-white shadow-md"><Bot size={17}/></span>
-              <textarea className="min-h-24 min-w-0 flex-1 resize-none bg-transparent py-1 text-sm font-semibold leading-6 text-[#393047] outline-none placeholder:font-medium placeholder:text-[#84798e]" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Contoh: Aku butuh sepatu putih buat kuliah. Budget 300 ribuan, empuk, dan nggak gampang kotor." aria-label="Ceritakan barang yang kamu butuhkan"/>
-            </div>
-            <div className="mt-2 flex flex-wrap items-center justify-between gap-2 border-t border-[#ddd5f0] pt-3">
-              <button className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-[8px] font-black text-[#655a72] shadow-sm transition hover:text-[#5b3fd5]" type="button" onClick={()=>setMessage('Fitur kirim foto segera hadir. Untuk sekarang, ceritain cirinya dulu ya.')}><Camera size={13}/> Pakai foto</button>
-              <button className="inline-flex items-center justify-center gap-2 rounded-full bg-[#6547db] px-5 py-3 text-[9px] font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#5638c8]" type="submit">Bantu cariin <ArrowRight size={14}/></button>
-            </div>
-          </form>
-          <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">{suggestions.map(item=><button className="shrink-0 rounded-full border border-[#dcd5ee] bg-white/80 px-3 py-2 text-[8px] font-bold text-[#5b3fd5] transition hover:border-[#b9a8eb] hover:bg-white" type="button" key={item} onClick={()=>{setQuery(item);setMessage('');setResult('')}}>{item}</button>)}</div>
-        </div>
-      ) : (
-        <form className="flex flex-col gap-2 rounded-2xl bg-white p-2 shadow-[0_12px_32px_rgba(54,41,92,.10)] sm:flex-row sm:items-center" onSubmit={submit} role="search" aria-label="Cari produk biasa">
-          <span className="hidden size-10 shrink-0 place-items-center rounded-xl bg-[#f0edff] text-[#5b3fd5] sm:grid"><Search size={18}/></span>
-          <input className="min-w-0 flex-1 rounded-xl bg-[#f7f6f8] px-4 py-3.5 text-sm font-semibold text-[#393047] outline-none placeholder:font-medium placeholder:text-[#81798d] focus:ring-2 focus:ring-violet-200" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Ketik nama barang, misalnya: sepatu putih" aria-label="Nama produk yang dicari"/>
-          <button className="inline-flex h-11 items-center justify-center gap-3 rounded-xl bg-[#6547db] px-5 text-[9px] font-black text-white transition hover:bg-[#5638c8]" type="submit">Cari <ArrowRight size={15}/></button>
-        </form>
-      )}
-
-      {result && <div className="mt-4 rounded-[20px] border border-[#ded7ed] bg-white p-4 shadow-sm" role="status" aria-live="polite"><div className="flex items-start gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-xl bg-[#e9f8d2] text-[#53701b]"><Check size={16}/></span><div className="min-w-0 flex-1"><b className="text-[11px] text-[#393047]">Oke, NEMU nangkep.</b><p className="mt-1 line-clamp-2 text-[9px] leading-5 text-[#6d6378]">Kamu lagi cari: “{result}”</p><div className="mt-3 flex flex-wrap gap-2"><span className="rounded-full bg-[#f1edff] px-3 py-1.5 text-[8px] font-bold text-[#5b3fd5]">Cocok dulu</span><span className="rounded-full bg-[#fff2dd] px-3 py-1.5 text-[8px] font-bold text-[#9a5b12]">Harga masuk akal</span><span className="rounded-full bg-[#e8f7f0] px-3 py-1.5 text-[8px] font-bold text-[#287056]">Seller jelas</span></div><button className="mt-4 inline-flex items-center gap-2 text-[9px] font-black text-[#5b3fd5]" type="button" onClick={()=>document.getElementById('produk')?.scrollIntoView({behavior:'smooth',block:'start'})}>Lihat yang paling cocok <ArrowRight size={13}/></button></div></div></div>}
-      <p className="mt-2 min-h-4 text-[9px] font-bold text-[#5b3fd5]" role="status" aria-live="polite">{message}</p>
-    </div>
-  );
+  return <div className="min-w-0">
+    <form className="rounded-[24px] border border-[#cfc4f2] bg-gradient-to-br from-white via-[#fbfaff] to-[#f0ebff] p-3 shadow-[0_18px_55px_rgba(74,52,135,.14)]" onSubmit={submit} role="search" aria-label="Mode AI NEMU">
+      <div className="flex gap-3 px-2 pt-2"><span className="mt-1 grid size-10 shrink-0 place-items-center rounded-[14px] bg-[#6547db] text-white shadow-md"><Bot size={19}/></span><textarea className="min-h-36 min-w-0 flex-1 resize-none bg-transparent py-2 text-sm font-semibold leading-6 text-[#393047] outline-none placeholder:font-medium placeholder:text-[#84798e]" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Contoh: Aku butuh sepatu putih buat kuliah. Budget 300 ribuan, empuk, dan nggak gampang kotor." aria-label="Ceritakan barang yang kamu butuhkan"/></div>
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-2 border-t border-[#ddd5f0] pt-3"><button className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-[8px] font-black text-[#655a72] shadow-sm transition hover:text-[#5b3fd5]" type="button" onClick={()=>setMessage('Fitur kirim foto segera hadir. Untuk sekarang, ceritain cirinya dulu ya.')}><Camera size={13}/> Pakai foto</button><button className="inline-flex items-center justify-center gap-2 rounded-full bg-[#6547db] px-6 py-3.5 text-[9px] font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#5638c8]" type="submit">Bantu cariin <ArrowRight size={14}/></button></div>
+    </form>
+    <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">{suggestions.map(item=><button className="shrink-0 rounded-full border border-[#dcd5ee] bg-white/80 px-3 py-2 text-[8px] font-bold text-[#5b3fd5] transition hover:border-[#b9a8eb] hover:bg-white" type="button" key={item} onClick={()=>{setQuery(item);setMessage('');setResult('')}}>{item}</button>)}</div>
+    {result && <div className="mt-4 rounded-[22px] border border-[#ded7ed] bg-white p-5 shadow-sm" role="status" aria-live="polite"><div className="flex items-start gap-3"><span className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#e9f8d2] text-[#53701b]"><Check size={17}/></span><div className="min-w-0 flex-1"><b className="text-[11px] text-[#393047]">Oke, NEMU nangkep.</b><p className="mt-1 text-[9px] leading-5 text-[#6d6378]">Kamu lagi cari: “{result}”</p><div className="mt-3 flex flex-wrap gap-2"><span className="rounded-full bg-[#f1edff] px-3 py-1.5 text-[8px] font-bold text-[#5b3fd5]">Cocok dulu</span><span className="rounded-full bg-[#fff2dd] px-3 py-1.5 text-[8px] font-bold text-[#9a5b12]">Harga masuk akal</span><span className="rounded-full bg-[#e8f7f0] px-3 py-1.5 text-[8px] font-bold text-[#287056]">Seller jelas</span></div><a className="mt-4 inline-flex items-center gap-2 text-[9px] font-black text-[#5b3fd5]" href="/shop#produk">Lihat yang paling cocok <ArrowRight size={13}/></a></div></div></div>}
+    <p className="mt-2 min-h-4 text-[9px] font-bold text-[#5b3fd5]" role="status" aria-live="polite">{message}</p>
+  </div>;
 }
 
 export function FavoriteButton({ name }: { name:string }) {
