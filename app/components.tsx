@@ -2,15 +2,15 @@ import Link from 'next/link';
 import { ArrowUpRight, Camera, ChevronDown, Heart, HelpCircle, Home, Mail, Menu, Music2, Search, ShoppingBag, Sparkles, Store, UserRound } from 'lucide-react';
 
 export function Logo({ light = false }: { light?: boolean }) {
-  return <Link className="inline-flex items-center gap-2.5" href="/" aria-label="NEMU AI beranda"><span className={`grid size-9 place-items-center rounded-xl text-lg font-black ${light ? 'bg-white text-[#5b3fd5]' : 'bg-[#5b3fd5] text-[#dfff5b]'}`}>n</span><b className={`text-lg font-black tracking-[-0.045em] ${light ? 'text-white' : 'text-[#292333]'}`}>nemu.ai</b></Link>;
+  return <Link className="inline-flex items-center gap-2" href="/" aria-label="NEMU AI beranda"><Sparkles className={light?'text-white':'text-[#7446ff]'} size={25} strokeWidth={1.8}/><b className={`text-[21px] font-extrabold tracking-[-0.05em] ${light ? 'text-white' : 'text-[#1d1c24]'}`}>nemu.ai</b></Link>;
 }
 
 export function Header() {
   return (
     <div className="sticky top-0 z-50 border-b border-[#e8e4f0] bg-white/95 backdrop-blur-xl">
-      <div className="bg-[#5b3fd5] text-white">
+      <div className="bg-[#1d1c24] text-white">
         <div className="mx-auto flex h-8 max-w-[1240px] items-center justify-center px-4 text-[9px] font-bold sm:justify-between sm:px-6">
-          <span className="flex items-center gap-2"><Sparkles size={13} className="text-[#dfff5b]" /> Baru pertama belanja? Ongkirnya kami bantu.</span>
+          <span className="flex items-center gap-2"><Sparkles size={13} className="text-[#a88bff]" /> Baru pertama belanja? Ongkirnya kami bantu.</span>
           <div className="hidden items-center gap-5 text-violet-100 sm:flex"><a className="flex items-center gap-1.5 transition hover:text-white" href="https://seller.nemu-ai.com/register"><Store size={12} /> Mau jualan?</a><a className="flex items-center gap-1.5 transition hover:text-white" href="https://shop.nemu-ai.com/help"><HelpCircle size={12} /> Butuh bantuan?</a><span className="flex items-center gap-1">Indonesia <ChevronDown size={11} /></span></div>
         </div>
       </div>

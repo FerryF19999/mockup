@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight, BadgeCheck, Camera, Check, ChevronRight, CirclePlus,
-  Headphones, HeartHandshake, House, MessageCircleMore, PackageCheck,
-  Recycle, Search, ShieldCheck, Shirt, Smartphone, Sparkles, Store,
+  HeartHandshake, MessageCircleMore, PackageCheck,
+  Search, ShieldCheck, Sparkles, Store,
 } from 'lucide-react';
 import { Footer, Header, MobileDock } from './components';
 import { SectionTransitions, ThreeUiParticleNetwork } from './experience';
@@ -26,12 +26,12 @@ const products = [
 const miniProducts = products.slice(0, 3).map(({ name, price, image }) => [name, price, image]);
 
 const categories = [
-  { icon: Shirt, name: 'Fashion', tone: 'bg-[#ffecef] text-[#d74763]' },
-  { icon: Smartphone, name: 'HP & gadget', tone: 'bg-[#e9f5ff] text-[#287bb4]' },
-  { icon: Sparkles, name: 'Beauty', tone: 'bg-[#fff0fb] text-[#b83c91]' },
-  { icon: House, name: 'Rumah', tone: 'bg-[#fff4dc] text-[#a86700]' },
-  { icon: Headphones, name: 'Elektronik', tone: 'bg-[#f0edff] text-[#5b3fd5]' },
-  { icon: Recycle, name: 'Preloved', tone: 'bg-[#eff9d2] text-[#5d7615]' },
+  { name: 'Fashion', position: '0% 0%' },
+  { name: 'HP & gadget', position: '50% 0%' },
+  { name: 'Beauty', position: '100% 0%' },
+  { name: 'Rumah', position: '0% 100%' },
+  { name: 'Elektronik', position: '50% 100%' },
+  { name: 'Preloved', position: '100% 100%' },
 ];
 
 const jsonLd = {
@@ -75,7 +75,7 @@ export default function Home() {
 
       <section className="mx-auto max-w-[1240px] px-4 py-16 sm:px-6 lg:py-20" id="kategori">
         <div className="flex items-end justify-between gap-5"><div><p className="text-[10px] font-black uppercase tracking-[.14em] text-[#5b3fd5]">Mulai dari sini</p><h2 className="mt-2 text-3xl font-black tracking-[-.045em] sm:text-4xl">Mau lihat yang mana?</h2></div><Link className="hidden items-center gap-1 text-[10px] font-black text-[#5b3fd5] sm:flex" href="/shop">Semua kategori <ChevronRight size={15}/></Link></div>
-        <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-6">{categories.map(({icon:Icon,name,tone})=><Link className="group flex flex-col items-center gap-3 rounded-2xl border border-[#ece8f2] bg-white px-3 py-5 text-center transition hover:-translate-y-1 hover:border-violet-200 hover:shadow-lg" href="/shop" key={name}><span className={`grid size-14 place-items-center rounded-full ${tone}`}><Icon size={24}/></span><b className="text-[9px] text-[#4d4656]">{name}</b></Link>)}</div>
+        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">{categories.map(({name,position})=><Link className="group overflow-hidden rounded-[20px] border border-[#e9e6ef] bg-white transition hover:-translate-y-1 hover:border-[#cfc5ee] hover:shadow-lg" href="/shop" key={name}><span className="block aspect-[1.18] w-full bg-cover bg-no-repeat" role="img" aria-label={`Kategori ${name}`} style={{backgroundImage:"url('/category-sprite-v1.png')",backgroundSize:'300% 200%',backgroundPosition:position}}/><span className="flex items-center justify-between px-4 py-3"><b className="text-[10px] text-[#292333]">{name}</b><ChevronRight size={14} className="text-[#8b8494] transition group-hover:translate-x-0.5 group-hover:text-[#7446ff]"/></span></Link>)}</div>
       </section>
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:py-20" aria-labelledby="lagi-rame">

@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  ArrowRight, BadgeCheck, ChevronRight, Dumbbell, Headphones, House,
-  MapPin, PackageCheck, Palette, Recycle, RotateCcw,
-  ShieldCheck, Shirt, ShoppingBag, Smartphone, Sparkles, Star, Store,
+  ArrowRight, BadgeCheck, ChevronRight,
+  MapPin, PackageCheck, RotateCcw,
+  ShieldCheck, Sparkles, Star, Store,
   Truck, Zap,
 } from 'lucide-react';
 import { Footer, Header, MobileDock } from '../components';
@@ -19,15 +19,12 @@ export const metadata: Metadata = {
 };
 
 const categories = [
-  {icon:Shirt,name:'Fashion',tone:'bg-[#ffecef] text-[#d74763]'},
-  {icon:Smartphone,name:'HP & gadget',tone:'bg-[#e9f5ff] text-[#287bb4]'},
-  {icon:Sparkles,name:'Beauty',tone:'bg-[#fff0fb] text-[#b83c91]'},
-  {icon:House,name:'Rumah',tone:'bg-[#fff4dc] text-[#a86700]'},
-  {icon:Headphones,name:'Elektronik',tone:'bg-[#f0edff] text-[#5b3fd5]'},
-  {icon:Dumbbell,name:'Olahraga',tone:'bg-[#eaf8f1] text-[#237454]'},
-  {icon:Palette,name:'Hobi',tone:'bg-[#fff0e8] text-[#c25a25]'},
-  {icon:Recycle,name:'Preloved',tone:'bg-[#eff9d2] text-[#5d7615]'},
-  {icon:ShoppingBag,name:'Lihat semua',tone:'bg-[#f0eef2] text-[#625b6d]'},
+  {name:'Fashion',position:'0% 0%'},
+  {name:'HP & gadget',position:'50% 0%'},
+  {name:'Beauty',position:'100% 0%'},
+  {name:'Rumah',position:'0% 100%'},
+  {name:'Elektronik',position:'50% 100%'},
+  {name:'Preloved',position:'100% 100%'},
 ];
 
 const products = [
@@ -80,7 +77,7 @@ export default function ShopPage() {
       </section>
 
       <section className="mx-auto mt-4 max-w-[1240px] px-4 sm:px-6" id="kategori">
-        <div className="rounded-[22px] border border-[#e8e4f0] bg-white p-5 sm:p-6"><div className="flex items-end justify-between"><div><p className="text-[8px] font-black uppercase tracking-[.12em] text-[#5b3fd5]">Kategori</p><h2 className="mt-1 text-xl font-black tracking-[-.035em]">Mau lihat yang mana?</h2></div><a className="hidden items-center gap-1 text-[9px] font-black text-[#5b3fd5] sm:flex" href="#produk">Semua produk <ChevronRight size={13}/></a></div><div className="mt-5 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] lg:grid lg:grid-cols-9">{categories.map(({icon:Icon,name,tone})=><a className="flex min-w-20 flex-col items-center gap-2 text-center" href="#produk" key={name}><span className={`grid size-12 place-items-center rounded-xl transition hover:-translate-y-0.5 ${tone}`}><Icon size={20}/></span><b className="text-[8px] text-[#625b6d]">{name}</b></a>)}</div></div>
+        <div className="rounded-[22px] border border-[#e8e4f0] bg-white p-5 sm:p-6"><div className="flex items-end justify-between"><div><p className="text-[8px] font-black uppercase tracking-[.12em] text-[#7446ff]">Kategori</p><h2 className="mt-1 text-xl font-black tracking-[-.035em]">Mau lihat yang mana?</h2></div><a className="hidden items-center gap-1 text-[9px] font-black text-[#7446ff] sm:flex" href="#produk">Semua produk <ChevronRight size={13}/></a></div><div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">{categories.map(({name,position})=><a className="group overflow-hidden rounded-2xl border border-[#e9e6ef] bg-white text-left transition hover:-translate-y-0.5 hover:border-[#cfc5ee] hover:shadow-md" href="#produk" key={name}><span className="block aspect-[1.3] w-full bg-cover bg-no-repeat" role="img" aria-label={`Kategori ${name}`} style={{backgroundImage:"url('/category-sprite-v1.png')",backgroundSize:'300% 200%',backgroundPosition:position}}/><span className="flex items-center justify-between px-3 py-2.5"><b className="text-[9px] text-[#292333]">{name}</b><ChevronRight size={13} className="text-[#91899a] group-hover:text-[#7446ff]"/></span></a>)}</div></div>
       </section>
 
       <section className="mx-auto mt-4 max-w-[1240px] px-4 sm:px-6" aria-labelledby="promo-heading">
