@@ -94,18 +94,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-[1240px] gap-5 px-4 py-16 sm:px-6 lg:grid-cols-[1.08fr_.92fr] lg:py-24">
-        <div className="rounded-[30px] bg-[#292333] p-7 text-white sm:p-10 lg:p-12">
-          <span className="grid size-12 place-items-center rounded-2xl bg-[#dfff5b] text-[#292333]"><MessageCircleMore size={22}/></span>
-          <p className="mt-10 text-[10px] font-black uppercase tracking-[.14em] text-[#dfff5b]">Nggak tahu nama barangnya?</p>
-          <h2 className="mt-3 max-w-xl font-[var(--font-display)] text-4xl font-black leading-[.98] tracking-[-.055em] sm:text-6xl">Ceritain aja.<br/>NEMU ngerti.</h2>
-          <p className="mt-5 max-w-lg text-sm leading-7 text-[#d5cfdd]">Mau sepatu buat kuliah, kado ulang tahun, atau HP sesuai budget? Tulis seperti lagi chat. Hasilnya dibikin lebih ringkas.</p>
-          <Link className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#5b3fd5] px-5 py-3.5 text-[10px] font-black text-white" href="/shop#tanya-nemu">Coba cari sekarang <ArrowRight size={15}/></Link>
-        </div>
-        <div className="rounded-[30px] border border-[#e7e2ed] bg-[#f0edff] p-6 sm:p-8 lg:p-10">
-          <p className="text-[9px] font-black text-[#5b3fd5]">CONTOH PENCARIAN</p>
-          <div className="mt-5 rounded-2xl bg-white p-5 shadow-sm"><p className="text-sm font-bold leading-6">“Cari tas kerja hitam yang muat laptop, budget 300 ribuan.”</p></div>
-          <div className="mt-4 space-y-3">{['Budget di bawah Rp300 ribu','Warna hitam','Muat laptop','Cocok buat kerja'].map((item,index)=><div className="flex items-center gap-3 rounded-2xl bg-white/80 p-3" key={item}><span className="grid size-7 place-items-center rounded-full bg-[#dfff5b] text-[8px] font-black">{index+1}</span><b className="text-[10px] text-[#4d4656]">{item}</b></div>)}</div>
+      <section className="mx-auto max-w-[1240px] px-4 py-16 sm:px-6 lg:py-24">
+        <div className="relative isolate min-h-[600px] overflow-hidden rounded-[34px] bg-[#2b1838] text-white shadow-[0_24px_80px_rgba(45,28,63,.18)] sm:min-h-[540px]">
+          <span className="absolute inset-0 bg-cover bg-[68%_center] bg-no-repeat sm:bg-center" role="img" aria-label="Shopper memakai NEMU untuk mencari barang" style={{backgroundImage:"url('/ai-shopper-v1.png')"}}/>
+          <span className="absolute inset-0 bg-gradient-to-r from-[#23142e]/98 via-[#2c1939]/80 to-[#2c1939]/5 sm:via-[#2c1939]/45"/>
+          <div className="relative flex min-h-[600px] max-w-[610px] flex-col justify-center p-7 sm:min-h-[540px] sm:p-12 lg:p-16">
+            <span className="grid size-12 place-items-center rounded-2xl bg-[#dfff5b] text-[#34233d] shadow-lg"><MessageCircleMore size={22}/></span>
+            <p className="mt-8 text-[9px] font-black uppercase tracking-[.15em] text-[#dfff5b]">Nggak tahu nama barangnya?</p>
+            <h2 className="mt-3 max-w-xl font-[var(--font-display)] text-5xl font-black leading-[.94] tracking-[-.06em] sm:text-6xl">Ceritain aja.<br/>Biar NEMU nyari.</h2>
+            <p className="mt-5 max-w-md text-sm font-medium leading-7 text-[#e7dfeb]">Sebut kebutuhan, budget, atau warnanya. Nggak perlu pakai kata-kata ribet.</p>
+            <div className="mt-6 flex flex-wrap gap-2"><span className="rounded-full border border-white/20 bg-white/10 px-3 py-2 text-[8px] font-bold backdrop-blur">“Sepatu empuk buat kuliah”</span><span className="rounded-full border border-white/20 bg-white/10 px-3 py-2 text-[8px] font-bold backdrop-blur">“Kado ibu 200 ribuan”</span></div>
+            <Link className="mt-7 inline-flex w-fit items-center gap-3 rounded-full bg-[#6b4de6] px-6 py-4 text-[9px] font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-[#5c3ed2]" href="/shop#tanya-nemu">Tanya NEMU sekarang <ArrowRight size={15}/></Link>
+          </div>
         </div>
       </section>
 
