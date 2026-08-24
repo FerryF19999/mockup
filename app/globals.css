@@ -238,7 +238,7 @@ img { max-width: 100%; }
 .mobile-dock { display: none; }
 
 @media (max-width: 767px) {
-  body { padding-bottom: 82px; }
+  body { padding-bottom: 82px; overflow-x: hidden; } .home-page > section { padding-right: 16px; padding-left: 16px; } .home-page a, .home-page button { min-height: 44px; } .nemu-header-search input::placeholder { color: transparent; }
   .section-transition { filter: blur(4px); transform: translateY(24px) scale(.994); }
   .section-transition[data-revealed='true'] { filter: blur(0); transform: translateY(0) scale(1); }
   .section-cinematic { --scene-x: 0px; filter: blur(7px); transform: translate3d(0, 38px, 0) scale(.975); clip-path: inset(4% 2% 4% 2% round 26px); }

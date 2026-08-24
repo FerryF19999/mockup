@@ -41,7 +41,7 @@ export function AiShoppingAssistant() {
     event.preventDefault();
     const value = query.trim();
     if (!value) {
-      setMessage('Ceritain dulu yang kamu butuhin, ya.');
+      setMessage('Ketik dulu yang kamu butuhin, ya.');
       setResult('');
       return;
     }
@@ -51,7 +51,7 @@ export function AiShoppingAssistant() {
 
   return <div className="min-w-0">
     <form className="rounded-[24px] border border-[#d8d0ed] bg-white p-3 shadow-[0_10px_28px_rgba(74,52,135,.08)]" onSubmit={submit} role="search" aria-label="Mode AI NEMU">
-      <div className="flex gap-3 px-2 pt-2"><span className="mt-1 grid size-10 shrink-0 place-items-center rounded-[14px] bg-[#704BFD] text-white shadow-md"><Bot size={19}/></span><textarea className="min-h-20 min-w-0 flex-1 resize-none bg-transparent py-2 text-sm font-semibold leading-6 text-[#0B0B0E] outline-none placeholder:font-medium placeholder:text-[#7B7482]" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Contoh: sepatu putih buat kuliah, budget 300 ribuan, empuk." aria-label="Ceritakan barang yang kamu butuhkan"/></div>
+      <div className="flex gap-3 px-2 pt-2"><span className="mt-1 grid size-10 shrink-0 place-items-center rounded-[14px] bg-[#704BFD] text-white shadow-md"><Bot size={19}/></span><textarea className="min-h-20 min-w-0 flex-1 resize-none bg-transparent py-2 text-sm font-semibold leading-6 text-[#0B0B0E] outline-none placeholder:font-medium placeholder:text-[#7B7482]" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Contoh: sepatu putih buat kuliah, budget 300 ribuan, empuk." aria-label="Ketik barang yang kamu butuhkan"/></div>
       <div className="mt-2 flex flex-wrap items-center justify-between gap-2 border-t border-[#ddd5f0] pt-3"><button className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-[8px] font-black text-[#655a72] shadow-sm transition hover:text-[#704BFD]" type="button" onClick={()=>setMessage('Fitur kirim foto segera hadir. Untuk sekarang, ceritain cirinya dulu ya.')}><Camera size={13}/> Tambah foto</button><button className="inline-flex items-center justify-center gap-2 rounded-full bg-[#704BFD] px-6 py-3.5 text-[9px] font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#5638c8]" type="submit">Cariin buat aku <ArrowRight size={14}/></button></div>
     </form>
     <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">{suggestions.map(item=><button className="shrink-0 rounded-full border border-[#dcd5ee] bg-white/80 px-3 py-2 text-[8px] font-bold text-[#704BFD] transition hover:border-[#b9a8eb] hover:bg-white" type="button" key={item} onClick={()=>{setQuery(item);setMessage('');setResult('')}}>{item}</button>)}</div>

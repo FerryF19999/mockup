@@ -78,7 +78,7 @@ export default function ShopPage() {
         <article className="relative overflow-hidden rounded-[30px] border border-[#dfd9e8] bg-white p-6 shadow-[0_18px_50px_rgba(49,36,67,.07)] sm:p-9">
           <span className="absolute -right-16 -top-20 size-64 rounded-full bg-[#EDE8FF]/55 blur-2xl"/><span className="absolute -bottom-28 right-40 size-56 rounded-full bg-[#b9a8ff]/35 blur-3xl"/>
           <div className="relative grid items-end gap-7 lg:grid-cols-[.72fr_1.28fr]">
-            <div><div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.12em] text-[#704BFD]"><Search size={13}/> Mulai dari sini</div><h1 className="mt-3 font-[var(--font-display)] text-4xl font-black leading-[.96] tracking-[-.055em] sm:text-5xl">Mau cari<br/>barang apa?</h1><p className="mt-4 max-w-md text-sm leading-6 text-[#6B6B75]">Tulis nama barangnya. Kalau lupa namanya, pindah ke Mode AI dan ceritain aja.</p></div>
+            <div><div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.12em] text-[#704BFD]"><Search size={13}/> Mulai dari sini</div><h1 className="mt-3 font-[var(--font-display)] text-4xl font-black leading-[.96] tracking-[-.055em] sm:text-5xl">Mau cari<br/>barang apa?</h1><p className="mt-4 max-w-md text-sm leading-6 text-[#6B6B75]">Tulis nama barangnya. Kalau belum tahu namanya, pindah ke Mode AI dan ketik ciri atau kebutuhanmu.</p></div>
             <div className="rounded-[24px] border border-[#e5dfed] bg-[#faf9fc]/90 p-4 backdrop-blur sm:p-5"><ShopSearch/></div>
           </div>
         </article>

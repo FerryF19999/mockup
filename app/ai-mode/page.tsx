@@ -36,8 +36,8 @@ export default function AiModePage() {
         <div className="py-8 text-[#0b0b0e] sm:py-12">
           <div className="mx-auto flex max-w-[900px] flex-col items-center text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#dcdce0] bg-white/80 px-4 py-2 text-[9px] font-black uppercase tracking-[.14em] text-[#704bfd] backdrop-blur"><Sparkles size={14}/> Mode AI NEMU</span>
-            <h1 className="mt-6 max-w-4xl font-[var(--font-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-6xl">Cari barang tinggal <span className="text-[#704bfd]">cerita.</span></h1>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#6b6b75]">Sebut kebutuhan, budget, ukuran, warna, atau mau dipakai buat apa. NEMU yang bantu menyaring.</p>
+            <h1 className="mt-6 max-w-4xl font-[var(--font-display)] text-[42px] font-black leading-[.94] tracking-[-.06em] sm:text-6xl sm:leading-[.92]">Cari barang tinggal <span className="text-[#704bfd]">ketik.</span></h1>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#6b6b75]">Tulis barang yang kamu cari. Kalau belum tahu namanya, cukup ketik kebutuhan dan budgetmu.</p>
             <div className="mt-8 w-full max-w-[780px] text-left text-[#0b0b0e]">
               <div className="mb-4 flex items-center justify-between gap-4"><div><p className="text-[8px] font-black uppercase tracking-[.14em] text-[#704BFD]">Tanya NEMU</p><h2 className="mt-1 text-xl font-black tracking-[-.04em]">Lagi butuh apa?</h2></div><span className="hidden items-center gap-2 rounded-full bg-[#F2EFFF] px-3 py-2 text-[8px] font-black text-[#704BFD] sm:flex"><span className="size-2 rounded-full bg-[#704BFD]"/> Siap bantu</span></div>
               <AiShoppingAssistant/>
