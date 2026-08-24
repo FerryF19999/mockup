@@ -112,7 +112,7 @@ export default function Home() {
             <div className="mt-7 flex flex-wrap items-center gap-3"><a className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-[10px] font-black text-[#704bfd] shadow-[0_8px_20px_rgba(20,20,30,.12)] transition hover:-translate-y-1" href="#jadwal-onboarding">Jadwalkan onboarding <ArrowRight size={15}/></a><a className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-4 text-[9px] font-black text-white transition hover:bg-white/10" href="#download-app"><Smartphone size={15}/> Download aplikasi</a></div>
           </div>
           <div className="relative min-h-[370px] self-end sm:min-h-[430px] lg:min-h-[460px]">
-            <img className="absolute bottom-0 left-[38%] h-[88%] w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_24px_24px_rgba(42,24,96,.24)] sm:left-[45%] sm:h-[96%] lg:left-[38%] lg:h-[92%]" src="/model-seller-coral-v2.png" alt="Seller perempuan bersiap membuka toko di NEMU"/>
+            <img className="absolute bottom-0 left-[38%] h-[88%] w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_24px_24px_rgba(42,24,96,.24)] sm:left-[45%] sm:h-[96%] lg:left-[38%] lg:h-[92%]" src="/model-seller-coral-v4.png" alt="Seller perempuan bersiap membuka toko di NEMU"/>
             <div className="absolute right-0 top-5 z-20 w-[54%] max-w-[220px] rounded-[22px] bg-white p-5 text-[#17131f] shadow-[0_18px_42px_rgba(32,20,78,.22)] sm:right-5 sm:top-12 sm:max-w-[245px]">
               <span className="absolute -left-2 top-12 size-5 rotate-45 bg-white"/>
               <p className="text-[7px] font-black uppercase tracking-[.14em] text-[#704bfd]">Mulainya berapa?</p>
