@@ -80,7 +80,7 @@ export function ProductQuickView({ name, price, note, badge, sprite, position, l
                 aria-label={`${name}, tampilan bisa diperbesar dan digeser`}
                 style={{
                   backgroundImage:`url('${sprite}')`,
-                  backgroundSize:'300% 200%',
+                  backgroundSize:'cover',
                   backgroundPosition:position,
                   transform:`perspective(900px) translate3d(${pan.x}px,${pan.y}px,0) scale(${zoom}) rotateY(${tilt}deg)`,
                   transition: drag.current ? 'none' : 'transform 220ms ease',
