@@ -1,20 +1,43 @@
 # NEMU AI
 
-NEMU AI adalah marketplace Indonesia dengan pencarian produk berbantuan AI.
+NEMU AI adalah marketplace Indonesia sekaligus website jualan berbasis AI untuk buyer dan seller.
 
-## Untuk pembeli
-- Cari barang dengan nama produk atau kalimat biasa.
-- Sebutkan budget, warna, ukuran, kondisi, atau lokasi.
-- Bandingkan produk baru, preloved, harga, kondisi, dan seller.
+## Jawaban singkat
+
+- Buyer dapat mencari barang baru, preloved, dan produk seller lokal dengan nama produk atau bahasa sehari-hari.
+- Seller mendapat website toko siap pakai dan alat untuk menyiapkan listing, konten, iklan, pembayaran, serta pengiriman.
+- Harga seller: gratis sampai penjualan pertama atau “pecah telur”, lalu Rp199 ribu per bulan.
+- Pembayaran online diproses lewat DOKU.
+- Pengiriman tersedia melalui lebih dari 30 pilihan kurir.
+
+## Untuk buyer
+
+- Cari produk lewat kolom pencarian biasa.
+- Jika tidak tahu nama barangnya, gunakan Mode AI.
+- Sebut kebutuhan, budget, warna, ukuran, kondisi, atau barangnya akan dipakai untuk apa.
+- NEMU membantu menyaring pilihan; keputusan akhir tetap di tangan buyer.
 
 ## Untuk seller
-- Seller lokal, UMKM, brand, dan penjual preloved dapat membuka toko.
-- AI membantu menyiapkan judul, deskripsi, dan kategori dari informasi produk.
-- Seller tetap mengatur harga dan memeriksa listing sebelum tayang.
+
+### Snap · List · Sell
+
+Seller cukup memotret barang dan menentukan harga. NEMU membantu membuat nama produk, deskripsi, dan kategori. Seller memeriksa hasilnya sebelum listing tayang.
+
+### Website dan pemasaran
+
+- Website toko siap pakai.
+- AI untuk foto produk dan bahan konten Reels atau TikTok.
+- Iklan untuk Google, Meta, dan TikTok.
+- SEO dan optimasi informasi agar toko lebih mudah dipahami mesin pencari serta layanan pencarian AI.
+- Pembayaran DOKU dan lebih dari 30 pilihan kurir.
 
 ## Halaman utama
+
 - https://nemu-ai-redesign.openclawid6.chatgpt.site/
 - https://nemu-ai-redesign.openclawid6.chatgpt.site/shop
-- https://nemu-ai-redesign.openclawid6.chatgpt.site/ai-mode — pencarian dengan bahasa sehari-hari untuk pengguna yang belum tahu nama barangnya
+- https://nemu-ai-redesign.openclawid6.chatgpt.site/ai-mode
+- https://nemu-ai.com/
+- https://shop.nemu-ai.com/
 
 Bahasa utama: Indonesia (id-ID).
+Wilayah layanan: Indonesia.
