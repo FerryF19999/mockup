@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { NemuHelpHub } from './nemu-help-hub';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nemu-ai-redesign.openclawid6.chatgpt.site'),
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="id">
-      <body>{children}</body>
+      <body>{children}<NemuHelpHub /></body>
     </html>
   );
 }

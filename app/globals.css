@@ -79,20 +79,35 @@ img { max-width: 100%; }
   transition: opacity .72s ease, filter .72s ease, transform .9s cubic-bezier(.16,1,.3,1);
   will-change: opacity, filter, transform;
 }
-.section-transition[data-revealed='true'] {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(0) scale(1);
-}
+.section-transition[data-revealed='true'] { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
 .section-transition::after {
-  position: absolute;
-  right: max(1rem, calc((100vw - 1180px) / 2));
-  top: 0;
-  width: clamp(60px, 10vw, 140px);
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(105, 76, 255, .38));
-  content: '';
+  position: absolute; right: max(1rem, calc((100vw - 1180px) / 2)); top: 0; width: clamp(60px, 10vw, 140px); height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(105, 76, 255, .38)); content: '';
 }
+.section-cinematic {
+  --scene-x: 0px; --scene-rotate: 0deg; --section-parallax: 0px;
+  isolation: isolate; overflow: clip; filter: blur(13px);
+  transform: translate3d(var(--scene-x), 76px, 0) scale(.95) rotate(var(--scene-rotate));
+  clip-path: inset(7% 3% 7% 3% round 40px);
+  transition: opacity .7s ease, filter .8s ease, transform 1.15s cubic-bezier(.16,1,.3,1), clip-path 1.05s cubic-bezier(.16,1,.3,1);
+}
+.section-cinematic[data-enter='from-left'] { --scene-x: -86px; --scene-rotate: -.8deg; }
+.section-cinematic[data-enter='from-center'] { --scene-x: 0px; --scene-rotate: 0deg; }
+.section-cinematic[data-enter='from-right'] { --scene-x: 86px; --scene-rotate: .8deg; }
+.section-cinematic[data-revealed='true'] { opacity: 1; filter: blur(0); transform: translate3d(0, 0, 0) scale(1) rotate(0); clip-path: inset(0 0 0 0 round 0); }
+.section-cinematic > .scene-stage { position: relative; z-index: 2; transform: translate3d(0, var(--section-parallax), 0); transition: transform .12s linear; will-change: transform; }
+.section-cinematic .scene-beat { opacity: 0; transform: translateY(30px) scale(.985); transition: opacity .62s ease var(--beat-delay, 120ms), transform .85s cubic-bezier(.16,1,.3,1) var(--beat-delay, 120ms); }
+.section-cinematic[data-revealed='true'] .scene-beat { opacity: 1; transform: translateY(0) scale(1); }
+.section-cinematic::before {
+  position: absolute; inset: -35%; z-index: 3; pointer-events: none;
+  background: linear-gradient(108deg, transparent 42%, rgba(255,255,255,.3) 49%, rgba(112,75,253,.14) 52%, transparent 59%);
+  content: ''; opacity: 0; transform: translateX(-70%) rotate(3deg); mix-blend-mode: screen;
+}
+.section-cinematic[data-revealed='true']::before { animation: nemu-section-sweep 1.15s .18s both; }
+.section-cinematic::after { left: 50%; right: auto; z-index: 4; width: min(42vw, 420px); height: 2px; background: linear-gradient(90deg, transparent, #704bfd, transparent); opacity: 0; transform: translateX(-50%) scaleX(0); transform-origin: center; }
+.section-cinematic[data-revealed='true']::after { animation: nemu-section-line 1.05s .28s cubic-bezier(.16,1,.3,1) both; }
+@keyframes nemu-section-sweep { 0% { opacity: 0; transform: translateX(-70%) rotate(3deg); } 35% { opacity: .72; } 100% { opacity: 0; transform: translateX(70%) rotate(3deg); } }
+@keyframes nemu-section-line { from { opacity: 0; transform: translateX(-50%) scaleX(0); } to { opacity: 1; transform: translateX(-50%) scaleX(1); } }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item[open] summary svg { transform: rotate(45deg); }
 .faq-item summary svg { transition: transform .25s ease; }
@@ -156,12 +171,83 @@ img { max-width: 100%; }
 .depth-interactive { transition: box-shadow .25s ease, border-color .25s ease; }
 .depth-interactive:hover { border-color: rgba(143,113,255,.48); box-shadow: 0 24px 60px rgba(48,28,78,.16); }
 
+.nemu-chat-launcher { position: fixed; right: 22px; bottom: 22px; z-index: 90; display: flex; align-items: center; gap: 9px; }
+.nemu-chat-nudge { padding: 10px 13px; border: 1px solid #e1dcef; border-radius: 999px; background: rgba(255,255,255,.94); box-shadow: 0 10px 30px rgba(44,29,91,.13); color: #3f374b; font-size: 10px; font-weight: 800; backdrop-filter: blur(14px); animation: nemu-nudge-float 3s ease-in-out infinite; }
+.nemu-chat-button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: 9px; padding: 0 19px; border: 0; border-radius: 999px; background: #704bfd; box-shadow: 0 16px 36px rgba(74,45,180,.32); color: white; cursor: pointer; font-size: 11px; font-weight: 900; transition: transform .25s ease, box-shadow .25s ease, background .25s ease; }
+.nemu-chat-button:hover { background: #5f3de9; box-shadow: 0 20px 42px rgba(74,45,180,.4); transform: translateY(-3px); }
+@keyframes nemu-nudge-float { 50% { transform: translateY(-4px); } }
+.nemu-chat-panel { position: fixed; right: 22px; bottom: 86px; z-index: 89; display: flex; width: min(370px, calc(100vw - 28px)); max-height: min(590px, calc(100vh - 112px)); flex-direction: column; overflow: hidden; border: 1px solid #ded7ef; border-radius: 26px; background: #fff; box-shadow: 0 28px 80px rgba(39,22,90,.24); animation: nemu-chat-in .42s cubic-bezier(.16,1,.3,1) both; }
+@keyframes nemu-chat-in { from { opacity: 0; transform: translateY(18px) scale(.94); } }
+.nemu-chat-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; padding: 16px; background: linear-gradient(135deg, #704bfd, #8c6cff); color: #fff; }
+.nemu-chat-avatar { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 13px; background: #fff; color: #704bfd; }
+.nemu-chat-header b { display: block; font-size: 13px; }
+.nemu-chat-header small { display: flex; align-items: center; gap: 5px; margin-top: 2px; color: rgba(255,255,255,.78); font-size: 9px; }
+.nemu-chat-header small i { width: 6px; height: 6px; border-radius: 50%; background: #d8ff47; box-shadow: 0 0 0 3px rgba(216,255,71,.18); }
+.nemu-chat-header button { display: grid; width: 34px; height: 34px; place-items: center; border: 0; border-radius: 50%; background: rgba(255,255,255,.14); color: white; cursor: pointer; }
+.nemu-chat-messages { display: flex; min-height: 150px; flex: 1; flex-direction: column; gap: 9px; overflow-y: auto; padding: 16px; background: #faf9fd; }
+.nemu-message { max-width: 88%; margin: 0; padding: 11px 13px; border-radius: 16px; font-size: 10px; line-height: 1.65; }
+.nemu-message-nemu { align-self: flex-start; border-bottom-left-radius: 5px; background: #eee9ff; color: #382b69; }
+.nemu-message-user { align-self: flex-end; border-bottom-right-radius: 5px; background: #704bfd; color: #fff; }
+.nemu-quick-questions { display: flex; gap: 7px; overflow-x: auto; padding: 0 14px 12px; background: #faf9fd; scrollbar-width: none; }
+.nemu-quick-questions button { flex: none; padding: 8px 10px; border: 1px solid #d9d0f9; border-radius: 999px; background: white; color: #6045d5; cursor: pointer; font-size: 8px; font-weight: 800; }
+.nemu-chat-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 12px; border-top: 1px solid #ece8f3; background: white; }
+.nemu-chat-form input { min-width: 0; padding: 11px 13px; border: 1px solid #ded7ef; border-radius: 13px; outline: 0; color: #251f30; font-size: 10px; }
+.nemu-chat-form input:focus { border-color: #704bfd; box-shadow: 0 0 0 3px rgba(112,75,253,.11); }
+.nemu-chat-form button { display: grid; width: 41px; height: 41px; place-items: center; border: 0; border-radius: 13px; background: #704bfd; color: white; cursor: pointer; }
+.nemu-chat-form button:disabled { cursor: not-allowed; opacity: .35; }
+.nemu-feedback-backdrop { position: fixed; inset: 0; z-index: 120; display: grid; overflow-y: auto; place-items: center; padding: 20px; background: rgba(22,13,42,.58); backdrop-filter: blur(12px); animation: nemu-feedback-bg .3s ease both; }
+@keyframes nemu-feedback-bg { from { opacity: 0; } }
+.nemu-feedback-card { position: relative; width: min(570px, 100%); max-height: calc(100vh - 36px); overflow-y: auto; border: 1px solid rgba(255,255,255,.6); border-radius: 30px; background: #fff; box-shadow: 0 34px 110px rgba(28,13,66,.34); animation: nemu-feedback-in .5s cubic-bezier(.16,1,.3,1) both; }
+@keyframes nemu-feedback-in { from { opacity: 0; transform: translateY(28px) scale(.94); } }
+.nemu-feedback-card form { padding: 34px; }
+.nemu-feedback-close { position: absolute; top: 15px; right: 15px; z-index: 2; display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid #e5e0ed; border-radius: 50%; background: white; color: #4f465b; cursor: pointer; }
+.nemu-feedback-kicker { display: flex; align-items: center; gap: 7px; color: #704bfd; font-size: 9px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.nemu-feedback-card h2 { max-width: 440px; margin: 13px 0 0; color: #17131f; font-size: clamp(30px, 5vw, 46px); font-weight: 950; line-height: .98; letter-spacing: -.055em; }
+.nemu-feedback-copy { margin: 14px 0 24px; color: #6b6373; font-size: 11px; line-height: 1.7; }
+.nemu-feedback-card fieldset { margin: 0 0 19px; padding: 0; border: 0; }
+.nemu-feedback-card legend, .nemu-feedback-label { display: block; margin-bottom: 9px; color: #292232; font-size: 10px; font-weight: 900; }
+.nemu-feedback-label span { color: #91899a; font-size: 8px; font-weight: 700; }
+.nemu-star-row { display: flex; gap: 7px; }
+.nemu-star-row button { display: grid; width: 46px; height: 43px; place-items: center; border: 1px solid #e4dff0; border-radius: 13px; background: #faf9fd; color: #cbc4d5; cursor: pointer; transition: transform .18s ease, color .18s ease, background .18s ease; }
+.nemu-star-row button:hover { transform: translateY(-3px) rotate(-4deg); }
+.nemu-star-row button.is-active { border-color: #e7c300; background: #fff8c7; color: #f2c800; }
+.nemu-interest-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.nemu-interest-row button { min-height: 42px; padding: 8px; border: 1px solid #ddd7e9; border-radius: 13px; background: white; color: #5e5667; cursor: pointer; font-size: 9px; font-weight: 850; }
+.nemu-interest-row button.is-active { border-color: #704bfd; background: #eee9ff; color: #6040e5; box-shadow: inset 0 0 0 1px #704bfd; }
+.nemu-feedback-card textarea { width: 100%; resize: vertical; padding: 12px 14px; border: 1px solid #ddd7e9; border-radius: 14px; outline: 0; color: #292232; font-size: 10px; }
+.nemu-feedback-card textarea:focus { border-color: #704bfd; box-shadow: 0 0 0 3px rgba(112,75,253,.1); }
+.nemu-schedule-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: -4px 0 20px; padding: 15px; border-radius: 17px; background: #f4f0ff; }
+.nemu-schedule-fields p { grid-column: 1 / -1; display: flex; align-items: center; gap: 7px; margin: 0; color: #6040e5; font-size: 10px; font-weight: 900; }
+.nemu-schedule-fields label { color: #686071; font-size: 8px; font-weight: 800; }
+.nemu-schedule-fields input { display: block; width: 100%; margin-top: 6px; padding: 9px; border: 1px solid #d7cff0; border-radius: 10px; background: white; color: #292232; font-size: 9px; }
+.nemu-feedback-submit { display: flex; width: 100%; min-height: 50px; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; border: 0; border-radius: 15px; background: #704bfd; color: white; cursor: pointer; font-size: 10px; font-weight: 900; }
+.nemu-feedback-submit:disabled { cursor: not-allowed; opacity: .35; }
+.nemu-feedback-thanks { display: flex; min-height: 400px; flex-direction: column; align-items: center; justify-content: center; padding: 36px; text-align: center; }
+.nemu-feedback-thanks > span { display: grid; width: 62px; height: 62px; place-items: center; border-radius: 21px; background: #dfffab; color: #477900; }
+.nemu-feedback-thanks p { margin: 20px 0 6px; color: #17131f; font-size: 28px; font-weight: 950; line-height: 1.05; letter-spacing: -.04em; }
+.nemu-feedback-thanks small { color: #746d7b; font-size: 10px; }
+.nemu-feedback-thanks a, .nemu-feedback-thanks button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; padding: 13px 18px; border: 0; border-radius: 999px; background: #704bfd; color: white; cursor: pointer; font-size: 9px; font-weight: 900; }
+.nemu-feedback-thanks button { margin-top: 9px; background: transparent; color: #704bfd; }
+
 .mobile-dock { display: none; }
 
 @media (max-width: 767px) {
   body { padding-bottom: 82px; }
   .section-transition { filter: blur(4px); transform: translateY(24px) scale(.994); }
   .section-transition[data-revealed='true'] { filter: blur(0); transform: translateY(0) scale(1); }
+  .section-cinematic { --scene-x: 0px; filter: blur(7px); transform: translate3d(0, 38px, 0) scale(.975); clip-path: inset(4% 2% 4% 2% round 26px); }
+  .section-cinematic[data-revealed='true'] { filter: blur(0); transform: translate3d(0, 0, 0) scale(1); clip-path: inset(0 0 0 0 round 0); }
+  .section-cinematic > .scene-stage { transform: none; transition: none; }
+  .section-cinematic .scene-beat { transform: translateY(18px); }
+  .nemu-chat-launcher { right: 12px; bottom: 95px; }
+  .nemu-chat-nudge { display: none; }
+  .nemu-chat-button { width: 50px; min-height: 50px; padding: 0; border-radius: 17px; }
+  .nemu-chat-button span { display: none; }
+  .nemu-chat-panel { right: 10px; bottom: 154px; left: 10px; width: auto; max-height: calc(100vh - 170px); }
+  .nemu-feedback-backdrop { align-items: end; padding: 0; }
+  .nemu-feedback-card { width: 100%; max-height: min(88vh, 760px); border-radius: 28px 28px 0 0; }
+  .nemu-feedback-card form { padding: 28px 20px 24px; }
+  .nemu-interest-row { grid-template-columns: 1fr; }
   .market-hero { padding-right: 0; padding-left: 0; padding-top: 0; }
   .market-hero > div { border-radius: 0 0 28px 28px; }
   .mobile-dock {
@@ -190,4 +276,8 @@ img { max-width: 100%; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
   body.route-leaving main { opacity: 1; transform: none; filter: none; }
+  .section-transition, .section-cinematic, .section-cinematic .scene-beat { opacity: 1 !important; filter: none !important; transform: none !important; clip-path: none !important; }
+  .section-cinematic::before, .section-cinematic::after { display: none !important; }
+  .section-cinematic > .scene-stage { transform: none !important; }
+  .nemu-chat-nudge { animation: none !important; }
 }

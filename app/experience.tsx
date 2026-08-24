@@ -151,25 +151,73 @@ export function ScrollDepth({ children, className = '' }: { children: React.Reac
   return <div ref={ref} className={`scroll-depth ${className}`}>{children}</div>;
 }
 
-export function SectionTransitions() {
+export function SectionTransitions({ variant = 'soft' }: { variant?: 'soft' | 'cinematic' } = {}) {
   useEffect(() => {
-    const sections = Array.from(document.querySelectorAll<HTMLElement>('main > section'));
+    const selector = variant === 'cinematic' ? 'main.home-page > section' : 'main > section';
+    const sections = Array.from(document.querySelectorAll<HTMLElement>(selector));
+    const animatedSections = sections.slice(1);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reducedMotion) return;
-    sections.forEach((section, index) => {
-      if (index === 0) return;
+
+    if (reducedMotion) {
+      animatedSections.forEach((section) => { section.dataset.revealed = 'true'; });
+      return;
+    }
+
+    animatedSections.forEach((section, index) => {
       section.classList.add('section-transition');
+      if (variant !== 'cinematic') return;
+      section.classList.add('section-cinematic');
+      section.dataset.enter = ['from-left', 'from-center', 'from-right'][index % 3];
+      const stage = (section.querySelector(':scope > div') ?? section.firstElementChild) as HTMLElement | null;
+      if (!stage) return;
+      stage.classList.add('scene-stage');
+      Array.from(stage.children).slice(0, 6).forEach((child, beatIndex) => {
+        const beat = child as HTMLElement;
+        beat.classList.add('scene-beat');
+        beat.style.setProperty('--beat-delay', `${140 + beatIndex * 115}ms`);
+      });
     });
+
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
-        if (entry.isIntersecting) {
-          (entry.target as HTMLElement).dataset.revealed = 'true';
-          observer.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) continue;
+        (entry.target as HTMLElement).dataset.revealed = 'true';
+        observer.unobserve(entry.target);
       }
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
-    sections.slice(1).forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
+    }, {
+      rootMargin: variant === 'cinematic' ? '0px 0px -14% 0px' : '0px 0px -8% 0px',
+      threshold: variant === 'cinematic' ? 0.12 : 0.06,
+    });
+    animatedSections.forEach((section) => observer.observe(section));
+
+    let frame = 0;
+    const updateParallax = () => {
+      frame = 0;
+      if (variant !== 'cinematic') return;
+      for (const section of animatedSections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) continue;
+        const center = rect.top + rect.height / 2;
+        const normalized = (center - window.innerHeight / 2) / (window.innerHeight + rect.height);
+        const shift = Math.max(-30, Math.min(30, normalized * -62));
+        section.style.setProperty('--section-parallax', `${shift.toFixed(1)}px`);
+      }
+    };
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateParallax);
+    };
+    if (variant === 'cinematic') {
+      updateParallax();
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+    }
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
+      window.cancelAnimationFrame(frame);
+    };
+  }, [variant]);
   return null;
 }
