@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6, p, b, strong, small { color: inherit; }
 [class~="text-[9px]"] { font-size: 11px !important; line-height: 1.5 !important; }
 [class~="text-[10px]"] { font-size: 11px !important; line-height: 1.5 !important; }
 a { color: inherit; text-decoration: none; }
-a[href="https://seller.nemu-ai.com/register"].bg-white { color: #704BFD !important; }
+a[href="#jadwal-onboarding"].bg-white { color: #704BFD !important; }
 button, input { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 img { max-width: 100%; }
@@ -220,7 +220,13 @@ img { max-width: 100%; }
 .nemu-schedule-fields p { grid-column: 1 / -1; display: flex; align-items: center; gap: 7px; margin: 0; color: #6040e5; font-size: 10px; font-weight: 900; }
 .nemu-schedule-fields label { color: #686071; font-size: 8px; font-weight: 800; }
 .nemu-schedule-fields input { display: block; width: 100%; margin-top: 6px; padding: 9px; border: 1px solid #d7cff0; border-radius: 10px; background: white; color: #292232; font-size: 9px; }
-.nemu-feedback-submit { display: flex; width: 100%; min-height: 50px; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; border: 0; border-radius: 15px; background: #704bfd; color: white; cursor: pointer; font-size: 10px; font-weight: 900; }
+.nemu-onboarding-card { width: min(520px, 100%); }
+.nemu-onboarding-contact { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; margin: -5px 0 19px; padding: 13px; border: 1px solid #e2dcef; border-radius: 16px; background: #fbfaff; color: #704bfd; }
+.nemu-onboarding-contact > span { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 12px; background: #704bfd; color: white; }
+.nemu-onboarding-contact small { display: block; color: #8a8194; font-size: 8px; font-weight: 750; }
+.nemu-onboarding-contact b { display: block; margin-top: 2px; color: #2f2838; font-size: 10px; }
+.nemu-schedule-standalone { margin: 0; }
+.nemu-calendar-note { margin: 11px 0 0; color: #8a8194; font-size: 8px; line-height: 1.55; text-align: center; }.nemu-feedback-submit { display: flex; width: 100%; min-height: 50px; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; border: 0; border-radius: 15px; background: #704bfd; color: white; cursor: pointer; font-size: 10px; font-weight: 900; }
 .nemu-feedback-submit:disabled { cursor: not-allowed; opacity: .35; }
 .nemu-feedback-thanks { display: flex; min-height: 400px; flex-direction: column; align-items: center; justify-content: center; padding: 36px; text-align: center; }
 .nemu-feedback-thanks > span { display: grid; width: 62px; height: 62px; place-items: center; border-radius: 21px; background: #dfffab; color: #477900; }

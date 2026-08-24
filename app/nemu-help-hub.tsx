@@ -24,11 +24,17 @@ function googleDate(date: string, time: string, offsetMinutes = 0) {
 export function NemuHelpHub() {
   const [chatOpen, setChatOpen] = useState(false);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const [onboardingOpen, setOnboardingOpen] = useState(false);
+  const [onboardingCreated, setOnboardingCreated] = useState(false);
   const [feedbackSent, setFeedbackSent] = useState(false);
   const [rating, setRating] = useState(0);
   const [interest, setInterest] = useState('');
   const [comment, setComment] = useState('');
-  const [onboardingDate, setOnboardingDate] = useState('');
+  const [onboardingDate, setOnboardingDate] = useState(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().slice(0, 10);
+  });
   const [onboardingTime, setOnboardingTime] = useState('10:00');
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -44,6 +50,7 @@ export function NemuHelpHub() {
       dates,
       details: 'Kenalan singkat dengan NEMU, lihat alur buka toko, dan bahas kebutuhan jualanmu. Website: https://nemu-ai.com/',
       location: 'Google Meet — link menyusul dari tim NEMU',
+      add: 'ferry.f@nemu-ai.com',
       ctz: 'Asia/Jakarta',
     });
     return `https://calendar.google.com/calendar/render?${params.toString()}`;
@@ -80,10 +87,26 @@ export function NemuHelpHub() {
   }, []);
 
   useEffect(() => {
+    const openOnboarding = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const trigger = target.closest<HTMLAnchorElement>('a[href="#jadwal-onboarding"]');
+      if (!trigger) return;
+      event.preventDefault();
+      setChatOpen(false);
+      setFeedbackOpen(false);
+      setOnboardingCreated(false);
+      setOnboardingOpen(true);
+    };
+    document.addEventListener('click', openOnboarding);
+    return () => document.removeEventListener('click', openOnboarding);
+  }, []);
+
+  useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setChatOpen(false);
       setFeedbackOpen(false);
+      setOnboardingOpen(false);
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
@@ -106,6 +129,13 @@ export function NemuHelpHub() {
     if (!rating || !interest || (interest !== 'no' && (!onboardingDate || !onboardingTime))) return;
     sessionStorage.setItem('nemu-feedback-submitted', JSON.stringify({ rating, interest, comment, onboardingDate, onboardingTime }));
     setFeedbackSent(true);
+  };
+
+  const submitOnboarding = (event: FormEvent) => {
+    event.preventDefault();
+    if (!onboardingDate || !onboardingTime) return;
+    window.open(calendarUrl, '_blank', 'noopener,noreferrer');
+    setOnboardingCreated(true);
   };
 
   const needsSchedule = interest === 'yes' || interest === 'maybe';
@@ -136,6 +166,33 @@ export function NemuHelpHub() {
             <button aria-label="Kirim pertanyaan" disabled={!input.trim()} type="submit"><Send size={17}/></button>
           </form>
         </section>
+      )}
+
+      {onboardingOpen && (
+        <div className="nemu-feedback-backdrop" role="presentation">
+          <section aria-labelledby="onboarding-title" aria-modal="true" className="nemu-feedback-card nemu-onboarding-card" role="dialog">
+            <button aria-label="Tutup jadwal onboarding" className="nemu-feedback-close" onClick={() => setOnboardingOpen(false)} type="button"><X size={19}/></button>
+            {onboardingCreated ? (
+              <div className="nemu-feedback-thanks">
+                <span><CalendarPlus size={25}/></span>
+                <p>Jadwalnya sudah siap.</p>
+                <small>Google Calendar terbuka dengan ferry.f@nemu-ai.com sebagai tamu.</small>
+                <a href={calendarUrl} rel="noreferrer" target="_blank"><CalendarPlus size={17}/> Buka lagi Google Calendar</a>
+                <button onClick={() => setOnboardingOpen(false)} type="button">Selesai <Check size={15}/></button>
+              </div>
+            ) : (
+              <form onSubmit={submitOnboarding}>
+                <span className="nemu-feedback-kicker"><CalendarPlus size={14}/> Onboarding gratis</span>
+                <h2 id="onboarding-title">Mau mulai kapan?</h2>
+                <p className="nemu-feedback-copy">Pilih waktu yang enak. Jadwal Google Calendar langsung disiapkan bareng tim NEMU.</p>
+                <div className="nemu-onboarding-contact"><span><Sparkles size={16}/></span><div><small>Terhubung dengan</small><b>ferry.f@nemu-ai.com</b></div><Check size={17}/></div>
+                <div className="nemu-schedule-fields nemu-schedule-standalone"><p><CalendarPlus size={15}/> Pilih jadwalmu</p><label>Tanggal<input min={new Date().toISOString().slice(0, 10)} onChange={(event) => setOnboardingDate(event.target.value)} required type="date" value={onboardingDate}/></label><label>Jam WIB<input onChange={(event) => setOnboardingTime(event.target.value)} required type="time" value={onboardingTime}/></label></div>
+                <button className="nemu-feedback-submit" disabled={!onboardingDate || !onboardingTime} type="submit"><CalendarPlus size={17}/> Buat di Google Calendar</button>
+                <p className="nemu-calendar-note">Event berdurasi 45 menit. Kamu tinggal cek lalu tekan Simpan di Google Calendar.</p>
+              </form>
+            )}
+          </section>
+        </div>
       )}
 
       {feedbackOpen && (
