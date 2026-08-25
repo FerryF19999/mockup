@@ -29,6 +29,12 @@ const sellerShowcases = [
   { title: 'Atur gratis ongkir', copy: 'Pilih produk dan tentukan sendiri batas subsidi ongkirnya.', image: '/seller-free-shipping.png', size: 'lg:col-span-1' },
   { title: 'Pilih kurir tokomu', copy: 'Aktifkan layanan pengiriman yang memang cocok buat tokomu.', image: '/seller-couriers.png', size: 'lg:col-span-1' },
 ];
+const generatedVideos = [
+  { title: 'Review produk, tinggal posting', copy: 'Hasil video review yang siap dipakai buat konten jualan.', src: '/hasil-video-review-kaus.mp4', poster: '/hasil-video-review-kaus.jpg', fit: 'object-cover' },
+  { title: 'Produk jadi lebih hidup', copy: 'Dari satu gambar, jadi video singkat yang lebih enak dilihat.', src: '/hasil-video-produk-square.mp4', poster: '/hasil-video-produk-square.jpg', fit: 'object-contain' },
+  { title: 'Bikin orang berhenti scroll', copy: 'Visual produk bergerak buat Reels, TikTok, dan Shorts.', src: '/hasil-video-barang.mp4', poster: '/hasil-video-barang.jpg', fit: 'object-cover' },
+  { title: 'Konten dinamis tanpa ngedit', copy: 'Gerak, tempo, dan format videonya sudah disiapkan NEMU.', src: '/hasil-video-dynamic.mp4', poster: '/hasil-video-dynamic.jpg', fit: 'object-cover' },
+];
 const sellerTools = [
   ['Tampil di NEMU Marketplace', 'Listing produkmu di marketplace NEMU supaya buyer bisa lihat, cari, dan checkout produkmu.', 'Produkmu punya tempat baru buat ketemu calon pembeli.'],
   ['Website official seller', 'Setiap seller dapat website toko dengan link sendiri, katalog, profil, dan halaman produk seperti TRACKER Official Shop.', 'Tokomu punya rumah sendiri yang siap dibagikan ke mana-mana.'],
@@ -113,19 +119,38 @@ export default function Home() {
         </div>
       </div>
     </section>
-    <section className="relative overflow-hidden border-y border-[#ece8f2] bg-[#17131f] px-4 py-16 text-white sm:px-6 lg:py-24" aria-labelledby="seller-dashboard-heading">
-      <span className="absolute -left-28 top-24 size-[360px] rounded-full border-[58px] border-[#704bfd]/20"/>
+    <section className="relative overflow-hidden border-y border-[#e8e3ef] bg-[#f7f5fb] px-4 py-16 sm:px-6 lg:py-24" aria-labelledby="seller-dashboard-heading">
+      <span className="absolute -right-24 -top-24 size-[360px] rounded-full border-[58px] border-white"/>
       <div className="relative mx-auto max-w-[1240px]">
-        <div className="grid gap-7 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
-          <div><p className="text-[9px] font-black uppercase tracking-[.15em] text-[#bcaaff]">Di dashboard seller NEMU</p><h2 id="seller-dashboard-heading" className="mt-3 max-w-[580px] text-4xl font-black leading-[.98] tracking-[-.05em] sm:text-5xl">Bukan cuma janji.<br/><span className="text-[#bcaaff]">Ini yang seller pakai.</span></h2></div>
-          <div className="lg:pb-1"><p className="max-w-2xl text-sm leading-7 text-white/65">Setelah produk tayang di NEMU Marketplace, seller bisa bikin gambar, video, dan postingan—lalu mengatur promo ongkir serta kurir langsung dari dashboardnya.</p><a className="mt-5 inline-flex items-center gap-2 text-[9px] font-black text-[#cfff43]" href="#jadwal-onboarding">Mau dashboard kayak gini? <ArrowRight size={14}/></a></div>
+        <div className="grid gap-7 lg:grid-cols-[.82fr_1.18fr] lg:items-end">
+          <div><p className="text-[9px] font-black uppercase tracking-[.15em] text-[#704bfd]">Di dashboard seller NEMU</p><h2 id="seller-dashboard-heading" className="mt-3 max-w-[580px] text-4xl font-black leading-[.98] tracking-[-.05em] sm:text-5xl">Yang dibutuhin seller,<br/><span className="text-[#704bfd]">udah ada tempatnya.</span></h2></div>
+          <div className="lg:pb-1"><p className="max-w-2xl text-sm leading-7 text-[#625d6d]">Setelah produk tayang di NEMU Marketplace, kamu bisa bikin materi promosi, menyiapkan postingan, mengatur gratis ongkir, dan memilih kurir langsung dari dashboard seller.</p><a className="mt-5 inline-flex items-center gap-2 text-[9px] font-black text-[#704bfd]" href="#jadwal-onboarding">Mau dashboard kayak gini? <ArrowRight size={14}/></a></div>
         </div>
-        <div className="mt-10 grid gap-4 lg:auto-rows-[250px] lg:grid-cols-4">
-          {sellerShowcases.map((item,index)=><article className={`group relative min-h-[300px] overflow-hidden rounded-[24px] border border-white/10 bg-[#292332] ${item.size}`} key={item.title}>
-            <img className="absolute inset-0 h-full w-full object-cover object-top opacity-88 transition duration-700 group-hover:scale-[1.025]" src={item.image} alt={item.title}/>
-            <span className="absolute inset-0 bg-gradient-to-t from-[#17131f] via-[#17131f]/5 to-transparent"/>
-            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6"><span className="grid size-9 place-items-center rounded-xl bg-[#704bfd] text-white">{index===0?<WandSparkles size={16}/>:index===1?<Play size={16}/>:index===2?<Smartphone size={16}/>:index===3?<Megaphone size={16}/>:<Truck size={16}/>}</span><h3 className="mt-4 text-xl font-black tracking-[-.03em]">{item.title}</h3><p className="mt-2 max-w-md text-[9px] leading-5 text-white/70">{item.copy}</p></div>
+
+        <article className="mt-10 overflow-hidden rounded-[28px] border border-[#ded8e8] bg-white shadow-[0_24px_65px_rgba(54,37,95,.11)]">
+          <div className="grid lg:grid-cols-[.72fr_1.28fr] lg:items-stretch">
+            <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10"><span className="grid size-11 place-items-center rounded-2xl bg-[#704bfd] text-white"><WandSparkles size={19}/></span><p className="mt-6 text-[8px] font-black uppercase tracking-[.13em] text-[#704bfd]">Buat Gambar</p><h3 className="mt-2 text-3xl font-black tracking-[-.04em]">Foto produknya biasa?<br/>Bikin lebih niat.</h3><p className="mt-4 max-w-md text-[11px] leading-6 text-[#625d6d]">{sellerShowcases[0].copy}</p><div className="mt-6 flex flex-wrap gap-2">{['Feed 1:1','Story 9:16','Banner 16:9'].map(label=><span className="rounded-full bg-[#f0ebff] px-3 py-2 text-[7px] font-black text-[#704bfd]" key={label}>{label}</span>)}</div></div>
+            <div className="min-h-[300px] border-t border-[#ebe6f1] bg-[#f4f2f7] lg:min-h-[430px] lg:border-l lg:border-t-0"><img className="h-full w-full object-cover object-top" src={sellerShowcases[0].image} alt={sellerShowcases[0].title}/></div>
+          </div>
+        </article>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          {sellerShowcases.slice(1).map((item,index)=><article className="overflow-hidden rounded-[24px] border border-[#ded8e8] bg-white shadow-[0_14px_36px_rgba(54,37,95,.07)]" key={item.title}>
+            <div className="aspect-[16/9] overflow-hidden border-b border-[#ebe6f1] bg-[#f4f2f7]"><img className="h-full w-full object-cover object-top transition duration-500 hover:scale-[1.015]" src={item.image} alt={item.title}/></div>
+            <div className="grid grid-cols-[42px_1fr] gap-4 p-5 sm:p-6"><span className="grid size-10 place-items-center rounded-2xl bg-[#eee8ff] text-[#704bfd]">{index===0?<Play size={17}/>:index===1?<Smartphone size={17}/>:index===2?<Megaphone size={17}/>:<Truck size={17}/>}</span><div><h3 className="text-lg font-black tracking-[-.03em] text-[#17131f]">{item.title}</h3><p className="mt-2 text-[9px] leading-5 text-[#625d6d]">{item.copy}</p></div></div>
           </article>)}
+        </div>
+        <div className="mt-14 border-t border-[#ddd7e8] pt-10">
+          <div className="grid gap-5 lg:grid-cols-[.76fr_1.24fr] lg:items-end">
+            <div><p className="text-[9px] font-black uppercase tracking-[.15em] text-[#704bfd]">Contoh hasil video</p><h3 className="mt-3 max-w-[520px] text-3xl font-black leading-[1.02] tracking-[-.045em] sm:text-4xl">Bukan cuma tombol.<br/><span className="text-[#704bfd]">Ini hasil jadinya.</span></h3></div>
+            <p className="max-w-2xl text-sm leading-7 text-[#625d6d]">Seller pilih foto produk dan arah geraknya. NEMU bantu bikin video pendek yang siap dipakai buat Reels, TikTok, Shorts, atau konten toko.</p>
+          </div>
+          <div className="mt-7 flex snap-x gap-4 overflow-x-auto pb-3 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-4">
+            {generatedVideos.map((video,index)=><article className="min-w-[74vw] snap-center overflow-hidden rounded-[24px] border border-[#ded8e8] bg-white shadow-[0_14px_36px_rgba(54,37,95,.07)] sm:min-w-0" key={video.src}>
+              <div className="relative aspect-[9/13] overflow-hidden bg-[#17131f]"><span className="absolute left-4 top-4 z-10 rounded-full bg-black/55 px-3 py-2 text-[7px] font-black uppercase tracking-[.1em] text-white backdrop-blur">Hasil {String(index+1).padStart(2,'0')}</span><video className={`h-full w-full ${video.fit}`} controls muted playsInline preload="metadata" poster={video.poster}><source src={video.src} type="video/mp4"/>Browser kamu belum mendukung video.</video></div>
+              <div className="p-5"><h4 className="text-base font-black tracking-[-.025em] text-[#17131f]">{video.title}</h4><p className="mt-2 text-[9px] leading-5 text-[#625d6d]">{video.copy}</p></div>
+            </article>)}
+          </div>
         </div>
       </div>
     </section>
