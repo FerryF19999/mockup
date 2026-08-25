@@ -22,6 +22,13 @@ const products = [
   { name: 'Aluna Linen Dress', price: 'Rp385.000', badge: 'Baru masuk', position: '100% 100%' },
 ];
 
+const sellerShowcases = [
+  { title: 'Bikin foto jualan', copy: 'Pilih produk dan gaya. NEMU bantu ubah foto biasa jadi visual promosi.', image: '/seller-ai-image.png', size: 'lg:col-span-2 lg:row-span-2' },
+  { title: 'Ubah jadi video pendek', copy: 'Bikin video siap Reels, TikTok, dan Shorts dari gambar produkmu.', image: '/seller-ai-video.png', size: 'lg:col-span-2' },
+  { title: 'Siapkan postingan', copy: 'Carousel, caption, hashtag, dan tone disusun dalam satu alur.', image: '/seller-studio-posting.png', size: 'lg:col-span-2' },
+  { title: 'Atur gratis ongkir', copy: 'Pilih produk dan tentukan sendiri batas subsidi ongkirnya.', image: '/seller-free-shipping.png', size: 'lg:col-span-1' },
+  { title: 'Pilih kurir tokomu', copy: 'Aktifkan layanan pengiriman yang memang cocok buat tokomu.', image: '/seller-couriers.png', size: 'lg:col-span-1' },
+];
 const sellerTools = [
   ['Tampil di NEMU Marketplace', 'Listing produkmu di marketplace NEMU supaya buyer bisa lihat, cari, dan checkout produkmu.', 'Produkmu punya tempat baru buat ketemu calon pembeli.'],
   ['Website official seller', 'Setiap seller dapat website toko dengan link sendiri, katalog, profil, dan halaman produk seperti TRACKER Official Shop.', 'Tokomu punya rumah sendiri yang siap dibagikan ke mana-mana.'],
@@ -103,6 +110,22 @@ export default function Home() {
           <div className="grid border-t border-[#dcd6e7] bg-[#17131f] text-white sm:grid-cols-3">
             {[['100+','seller sudah mulai'],['3','channel iklan'],['30+','pilihan kurir']].map(([number,label],index)=><div className={index?'border-t border-white/10 px-6 py-6 sm:border-l sm:border-t-0':'px-6 py-6'} key={label}><strong className="text-3xl font-black tracking-[-.06em] text-[#cfff43]">{number}</strong><p className="mt-1 text-[8px] font-black uppercase tracking-[.12em] text-white/65">{label}</p></div>)}
           </div>
+        </div>
+      </div>
+    </section>
+    <section className="relative overflow-hidden border-y border-[#ece8f2] bg-[#17131f] px-4 py-16 text-white sm:px-6 lg:py-24" aria-labelledby="seller-dashboard-heading">
+      <span className="absolute -left-28 top-24 size-[360px] rounded-full border-[58px] border-[#704bfd]/20"/>
+      <div className="relative mx-auto max-w-[1240px]">
+        <div className="grid gap-7 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+          <div><p className="text-[9px] font-black uppercase tracking-[.15em] text-[#bcaaff]">Di dashboard seller NEMU</p><h2 id="seller-dashboard-heading" className="mt-3 max-w-[580px] text-4xl font-black leading-[.98] tracking-[-.05em] sm:text-5xl">Bukan cuma janji.<br/><span className="text-[#bcaaff]">Ini yang seller pakai.</span></h2></div>
+          <div className="lg:pb-1"><p className="max-w-2xl text-sm leading-7 text-white/65">Setelah produk tayang di NEMU Marketplace, seller bisa bikin gambar, video, dan postingan—lalu mengatur promo ongkir serta kurir langsung dari dashboardnya.</p><a className="mt-5 inline-flex items-center gap-2 text-[9px] font-black text-[#cfff43]" href="#jadwal-onboarding">Mau dashboard kayak gini? <ArrowRight size={14}/></a></div>
+        </div>
+        <div className="mt-10 grid gap-4 lg:auto-rows-[250px] lg:grid-cols-4">
+          {sellerShowcases.map((item,index)=><article className={`group relative min-h-[300px] overflow-hidden rounded-[24px] border border-white/10 bg-[#292332] ${item.size}`} key={item.title}>
+            <img className="absolute inset-0 h-full w-full object-cover object-top opacity-88 transition duration-700 group-hover:scale-[1.025]" src={item.image} alt={item.title}/>
+            <span className="absolute inset-0 bg-gradient-to-t from-[#17131f] via-[#17131f]/5 to-transparent"/>
+            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6"><span className="grid size-9 place-items-center rounded-xl bg-[#704bfd] text-white">{index===0?<WandSparkles size={16}/>:index===1?<Play size={16}/>:index===2?<Smartphone size={16}/>:index===3?<Megaphone size={16}/>:<Truck size={16}/>}</span><h3 className="mt-4 text-xl font-black tracking-[-.03em]">{item.title}</h3><p className="mt-2 max-w-md text-[9px] leading-5 text-white/70">{item.copy}</p></div>
+          </article>)}
         </div>
       </div>
     </section>
