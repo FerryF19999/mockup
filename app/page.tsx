@@ -23,19 +23,23 @@ const products = [
 ];
 
 const sellerTools = [
-  ['Tampil di NEMU Marketplace', 'Listing produkmu di marketplace NEMU agar bisa dilihat dan ditemukan buyer.', 'Kamu punya tempat baru untuk ketemu calon pembeli.'],
-  ['Website toko siap pakai', 'Setiap seller mendapatkan toko online dengan link sendiri untuk dibagikan ke WhatsApp, Instagram, TikTok, atau channel lainnya.', 'Brand dan produkmu punya etalase online sendiri.'],
-  ['Snap · List · Sell', 'Foto barang dan isi harga. NEMU bantu merapikan informasi produk jadi listing yang enak dilihat.', 'Produk siap tayang tanpa harus menulis semuanya dari nol.'],
-  ['Konten & iklan dibantu AI', 'Buat foto dan bahan konten, lalu jalankan iklan Google, Meta, dan TikTok langsung ke tokomu.', 'Promosi lebih gampang dibuat dan hasil tiap channel bisa dilihat.'],
-  ['Muncul di Google & AI search', 'Informasi toko dan produk disusun agar lebih mudah dipahami mesin pencari dan pencarian AI.', 'Produkmu lebih mudah ditemukan calon pembeli.'],
-  ['Bayar & kirim dalam satu alur', 'Terima pembayaran lewat DOKU dan sediakan pilihan pengiriman dari 30+ kurir.', 'Pembayaran dan pengiriman lebih praktis untuk kamu dan pembeli.'],
+  ['Tampil di NEMU Marketplace', 'Listing produkmu di marketplace NEMU supaya buyer bisa lihat, cari, dan checkout produkmu.', 'Produkmu punya tempat baru buat ketemu calon pembeli.'],
+  ['Website official seller', 'Setiap seller dapat website toko dengan link sendiri, katalog, profil, dan halaman produk seperti TRACKER Official Shop.', 'Tokomu punya rumah sendiri yang siap dibagikan ke mana-mana.'],
+  ['Snap · List · Sell', 'Foto barang, isi harga, lalu NEMU bantu rapikan nama, deskripsi, dan kategori produknya.', 'Listing siap tayang tanpa nulis semuanya dari nol.'],
+  ['Buat Gambar dengan AI', 'Pilih produk, format, dan gaya visual. NEMU bantu bikin foto promosi untuk feed, story, Reels, atau banner toko.', 'Foto produk biasa bisa jadi materi jualan yang lebih niat.'],
+  ['Buat Video pendek', 'Ubah gambar produk jadi video singkat dengan gerakan dan format yang pas buat Reels, TikTok, atau Shorts.', 'Punya konten video tanpa harus mulai dari kamera dan editing.'],
+  ['Studio Posting', 'Susun carousel, caption, hashtag, tone, dan tujuan posting dalam satu alur.', 'Konten jualan lebih rutin dan nggak bikin blank tiap mau posting.'],
+  ['Iklan & gampang ditemukan', 'Jalankan iklan Google, Meta, dan TikTok, lalu rapikan informasi toko untuk Google dan pencarian AI.', 'Promosi jalan dan produkmu lebih gampang dicari.'],
+  ['Atur Gratis Ongkir', 'Tentukan batas subsidi ongkir dan pilih produk mana yang mau dikasih promo gratis ongkir.', 'Promonya tetap menarik tanpa bikin biaya lepas kontrol.'],
+  ['Pilih pengiriman & kurir', 'Aktifkan layanan pengiriman yang cocok buat tokomu dari pilihan 30+ kurir.', 'Buyer cuma melihat kurir yang memang kamu sediakan.'],
+  ['Bayar online lewat DOKU', 'Buyer bisa bayar online lewat QRIS, virtual account, dan metode pembayaran lain yang tersedia.', 'Pembayaran masuk lewat alur yang lebih rapi dan jelas.'],
 ];
 
 const faq = [
   ['NEMU itu sebenarnya apa?', 'NEMU adalah marketplace Indonesia tempat buyer mencari barang dan seller menampilkan produk. Seller juga mendapatkan website toko sendiri, alat bantu listing, konten dan iklan, pembayaran DOKU, serta pilihan 30+ kurir.'],
   ['Kalau nggak tahu nama barangnya gimana?', 'Masuk ke Mode AI, lalu ketik kebutuhan, budget, warna, ukuran, atau barangnya mau dipakai untuk apa.'],
   ['Buka toko di NEMU bayar berapa?', 'Gratis sampai tokomu mendapatkan penjualan pertama atau pecah telur. Setelah itu, biayanya Rp199.000 per bulan.'],
-  ['Apa saja yang didapat seller?', 'Website toko siap pakai, Snap List Sell, AI foto dan konten, iklan Google Meta TikTok, SEO dan AI search, pembayaran DOKU, serta pilihan 30+ kurir.'],
+  ['Apa saja yang didapat seller?', 'Listing di NEMU Marketplace, website official seller, Snap List Sell, AI Buat Gambar dan Video, Studio Posting, iklan Google Meta TikTok, SEO dan AI search, pengaturan gratis ongkir, pembayaran DOKU, serta pilihan 30+ kurir.'],
   ['Harus bisa desain atau paham teknis?', 'Nggak perlu. Mulai saja dari foto produk dan harga. NEMU bantu merapikan listing, konten, promosi, pembayaran, dan pengirimannya.'],
 ];
 
@@ -44,7 +48,7 @@ const jsonLd = {
   '@graph': [
     { '@type': ['Organization', 'OnlineStore'], '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization', name: 'NEMU AI', url: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/', logo: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/favicon.svg', description: 'Marketplace Indonesia tempat buyer menemukan produk dan seller membangun channel jualan dengan website toko, AI marketing, pembayaran DOKU, dan 30+ pilihan kurir.', areaServed: 'Indonesia', sameAs: ['https://nemu-ai.com/', 'https://shop.nemu-ai.com/'] },
     { '@type': 'WebSite', '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#website', url: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/', name: 'NEMU AI', publisher: { '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization' }, inLanguage: 'id-ID', potentialAction: { '@type': 'SearchAction', target: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/shop?q={search_term_string}', 'query-input': 'required name=search_term_string' } },
-    { '@type': 'Service', name: 'Layanan seller NEMU Marketplace', provider: { '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization' }, areaServed: 'Indonesia', audience: { '@type': 'BusinessAudience', audienceType: 'Seller, UMKM, dan brand lokal' }, description: 'Fasilitas seller di NEMU Marketplace berupa website toko, Snap List Sell, AI foto dan konten, iklan Google Meta TikTok, SEO dan AI search, pembayaran DOKU, serta 30+ pilihan kurir. Gratis sampai penjualan pertama, lalu Rp199.000 per bulan.', offers: { '@type': 'Offer', price: '199000', priceCurrency: 'IDR', description: 'Gratis sampai penjualan pertama, lalu Rp199.000 per bulan.' } },
+    { '@type': 'Service', name: 'Layanan seller NEMU Marketplace', provider: { '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization' }, areaServed: 'Indonesia', audience: { '@type': 'BusinessAudience', audienceType: 'Seller, UMKM, dan brand lokal' }, description: 'Fasilitas seller di NEMU Marketplace berupa website official seller, Snap List Sell, AI Buat Gambar dan Video, Studio Posting, iklan Google Meta TikTok, SEO dan AI search, pengaturan gratis ongkir, pembayaran DOKU, serta 30+ pilihan kurir. Gratis sampai penjualan pertama, lalu Rp199.000 per bulan.', offers: { '@type': 'Offer', price: '199000', priceCurrency: 'IDR', description: 'Gratis sampai penjualan pertama, lalu Rp199.000 per bulan.' } },
     { '@type': 'FAQPage', mainEntity: faq.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
   ],
 };
@@ -74,8 +78,8 @@ export default function Home() {
       <span className="absolute left-1/2 top-0 h-px w-[min(86vw,1100px)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#b9a8ff] to-transparent"/>
       <div className="mx-auto max-w-[1240px]">
         <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
-          <div><p className="text-[9px] font-black uppercase tracking-[.15em] text-[#704bfd]">Yang seller dapat</p><h2 id="seller-tools-heading" className="mt-3 max-w-[600px] text-4xl font-black leading-[.98] tracking-[-.05em] sm:text-5xl">Masuk marketplace, sekalian dapat alat jualan lengkap.</h2></div>
-          <div className="lg:pb-1"><p className="max-w-2xl text-sm leading-7 text-[#6b6b75]">Seller bisa menjangkau buyer lewat NEMU Marketplace sambil mengelola website toko, listing, konten, iklan, pembayaran, dan pengiriman dari satu tempat.</p><a className="mt-5 inline-flex items-center gap-2 text-[9px] font-black text-[#704bfd]" href="#jadwal-onboarding">Mulai jualan di NEMU <ArrowRight size={14}/></a></div>
+          <div><p className="text-[9px] font-black uppercase tracking-[.15em] text-[#704bfd]">Yang seller dapat</p><h2 id="seller-tools-heading" className="mt-3 max-w-[600px] text-4xl font-black leading-[.98] tracking-[-.05em] sm:text-5xl">Jualan di marketplace, tools sellernya sekalian lengkap.</h2></div>
+          <div className="lg:pb-1"><p className="max-w-2xl text-sm leading-7 text-[#6b6b75]">Produkmu tayang di NEMU Marketplace. Di baliknya, kamu dapat website official seller, AI buat gambar dan video, Studio Posting, promo gratis ongkir, pembayaran DOKU, dan pilihan 30+ kurir.</p><a className="mt-5 inline-flex items-center gap-2 text-[9px] font-black text-[#704bfd]" href="#jadwal-onboarding">Mulai jualan di NEMU <ArrowRight size={14}/></a></div>
         </div>
 
         <div className="mt-10 overflow-hidden rounded-[30px] border border-[#dcd6e7] bg-[#f7f4ff] shadow-[0_30px_80px_rgba(47,30,96,.11)]">
@@ -85,20 +89,38 @@ export default function Home() {
           </div>
 
           <div className="grid gap-3 p-4 md:hidden">
-            {sellerTools.map(([title,help,result],index)=>{const Icon=[Store,Globe2,Camera,Megaphone,SearchCheck,Truck][index]; const featured=index===0||index===3; return <article className={featured?'relative overflow-hidden rounded-[22px] border border-[#704bfd] bg-[#704bfd] p-5 text-white':'relative overflow-hidden rounded-[22px] border border-[#e2dceb] bg-white p-5'} key={title}><span className={featured?'grid size-10 place-items-center rounded-2xl bg-white/15 text-white':'grid size-10 place-items-center rounded-2xl bg-[#eee8ff] text-[#704bfd]'}><Icon size={18}/></span><p className={featured?'mt-5 text-[7px] font-black uppercase tracking-[.13em] text-[#ded6ff]':'mt-5 text-[7px] font-black uppercase tracking-[.13em] text-[#704bfd]'}>Langkah 0{index+1}</p><h3 className="mt-1 text-lg font-black tracking-[-.03em]">{title}</h3><p className={featured?'mt-3 text-[10px] leading-5 text-white/75':'mt-3 text-[10px] leading-5 text-[#625d6d]'}>{help}</p><p className={featured?'mt-5 border-t border-white/20 pt-4 text-[9px] font-bold leading-5 text-white':'mt-5 border-t border-[#e5dff0] pt-4 text-[9px] font-bold leading-5 text-[#2f2938]'}>{result}</p></article>})}
+            {sellerTools.map(([title,help,result],index)=>{const Icon=[Store,Globe2,Camera,WandSparkles,Play,Smartphone,SearchCheck,Megaphone,Truck,Globe2][index]; const featured=index===0||index===3; return <article className={featured?'relative overflow-hidden rounded-[22px] border border-[#704bfd] bg-[#704bfd] p-5 text-white':'relative overflow-hidden rounded-[22px] border border-[#e2dceb] bg-white p-5'} key={title}><span className={featured?'grid size-10 place-items-center rounded-2xl bg-white/15 text-white':'grid size-10 place-items-center rounded-2xl bg-[#eee8ff] text-[#704bfd]'}><Icon size={18}/></span><p className={featured?'mt-5 text-[7px] font-black uppercase tracking-[.13em] text-[#ded6ff]':'mt-5 text-[7px] font-black uppercase tracking-[.13em] text-[#704bfd]'}>Fitur {String(index+1).padStart(2,'0')}</p><h3 className="mt-1 text-lg font-black tracking-[-.03em]">{title}</h3><p className={featured?'mt-3 text-[10px] leading-5 text-white/75':'mt-3 text-[10px] leading-5 text-[#625d6d]'}>{help}</p><p className={featured?'mt-5 border-t border-white/20 pt-4 text-[9px] font-bold leading-5 text-white':'mt-5 border-t border-[#e5dff0] pt-4 text-[9px] font-bold leading-5 text-[#2f2938]'}>{result}</p></article>})}
           </div>
 
           <div className="hidden overflow-x-auto bg-white md:block">
             <table className="w-full min-w-[900px] border-collapse text-left">
               <caption className="sr-only">Fitur seller NEMU dari pembuatan toko hingga pembayaran dan pengiriman</caption>
               <thead><tr className="border-b border-[#e4e0eb] bg-[#f7f4ff]"><th className="w-[30%] px-7 py-5 text-[8px] font-black uppercase tracking-[.13em] text-[#704bfd]" scope="col">Yang kamu butuhin</th><th className="w-[37%] px-7 py-5 text-[8px] font-black uppercase tracking-[.13em] text-[#704bfd]" scope="col">Yang NEMU kerjain</th><th className="px-7 py-5 text-[8px] font-black uppercase tracking-[.13em] text-[#704bfd]" scope="col">Jadinya buat tokomu</th></tr></thead>
-              <tbody>{sellerTools.map(([title,help,result],index)=>{const Icon=[Store,Globe2,Camera,Megaphone,SearchCheck,Truck][index]; return <tr className="group border-b border-[#e8e4ec] last:border-b-0 hover:bg-[#faf8ff]" key={title}><th className="px-7 py-6 align-middle" scope="row"><span className="flex items-center gap-4"><span className="grid size-10 shrink-0 place-items-center rounded-2xl bg-[#eee8ff] text-[#704bfd] transition group-hover:bg-[#704bfd] group-hover:text-white"><Icon size={17}/></span><span><small className="block text-[7px] font-black text-[#9a91a5]">0{index+1}</small><b className="mt-1 block text-sm tracking-[-.02em]">{title}</b></span></span></th><td className="px-7 py-6 text-[10px] leading-6 text-[#625d6d]">{help}</td><td className="px-7 py-6 text-[10px] font-bold leading-6 text-[#2f2938]">{result}</td></tr>})}</tbody>
+              <tbody>{sellerTools.map(([title,help,result],index)=>{const Icon=[Store,Globe2,Camera,WandSparkles,Play,Smartphone,SearchCheck,Megaphone,Truck,Globe2][index]; return <tr className="group border-b border-[#e8e4ec] last:border-b-0 hover:bg-[#faf8ff]" key={title}><th className="px-7 py-6 align-middle" scope="row"><span className="flex items-center gap-4"><span className="grid size-10 shrink-0 place-items-center rounded-2xl bg-[#eee8ff] text-[#704bfd] transition group-hover:bg-[#704bfd] group-hover:text-white"><Icon size={17}/></span><span><small className="block text-[7px] font-black text-[#9a91a5]">{String(index+1).padStart(2,'0')}</small><b className="mt-1 block text-sm tracking-[-.02em]">{title}</b></span></span></th><td className="px-7 py-6 text-[10px] leading-6 text-[#625d6d]">{help}</td><td className="px-7 py-6 text-[10px] font-bold leading-6 text-[#2f2938]">{result}</td></tr>})}</tbody>
             </table>
           </div>
 
           <div className="grid border-t border-[#dcd6e7] bg-[#17131f] text-white sm:grid-cols-3">
             {[['100+','seller sudah mulai'],['3','channel iklan'],['30+','pilihan kurir']].map(([number,label],index)=><div className={index?'border-t border-white/10 px-6 py-6 sm:border-l sm:border-t-0':'px-6 py-6'} key={label}><strong className="text-3xl font-black tracking-[-.06em] text-[#cfff43]">{number}</strong><p className="mt-1 text-[8px] font-black uppercase tracking-[.12em] text-white/65">{label}</p></div>)}
           </div>
+        </div>
+      </div>
+    </section>
+    <section className="relative overflow-hidden bg-[#f5f1ff] px-4 py-16 sm:px-6 lg:py-24" aria-labelledby="official-seller-heading">
+      <span className="absolute -right-32 -top-32 size-[420px] rounded-full border-[68px] border-white/75"/>
+      <div className="relative mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-center">
+        <div>
+          <p className="text-[9px] font-black uppercase tracking-[.15em] text-[#704bfd]">Contoh official seller</p>
+          <h2 id="official-seller-heading" className="mt-3 max-w-[520px] text-4xl font-black leading-[.98] tracking-[-.05em] sm:text-5xl">Bukan cuma listing.<br/><span className="text-[#704bfd]">Seller dapat website sendiri.</span></h2>
+          <p className="mt-5 max-w-[500px] text-sm leading-7 text-[#625d6d]">TRACKER Official Shop punya halaman toko dengan identitas brand, katalog, produk pilihan, profil seller, dan tombol checkout. Link tokonya bisa langsung dibagikan ke calon pembeli.</p>
+          <div className="mt-7 grid gap-3 sm:grid-cols-3">
+            {[['01','Brand kelihatan','Nama dan identitas toko jelas'],['02','Katalog sendiri','Semua produk rapi di satu link'],['03','Tetap di marketplace','Buyer tetap bisa checkout di NEMU']].map(([number,title,copy])=><div className="rounded-[20px] border border-[#ded6ef] bg-white p-4" key={number}><span className="text-[8px] font-black text-[#704bfd]">{number}</span><b className="mt-3 block text-[10px]">{title}</b><small className="mt-1 block text-[8px] leading-4 text-[#777080]">{copy}</small></div>)}
+          </div>
+          <div className="mt-7 flex flex-wrap gap-3"><a className="inline-flex items-center gap-2 rounded-full bg-[#704bfd] px-6 py-4 text-[10px] font-black text-white shadow-[0_12px_28px_rgba(84,54,190,.22)] transition hover:-translate-y-1" href="#jadwal-onboarding">Bikin official shop <ArrowRight size={15}/></a><Link className="inline-flex items-center gap-2 rounded-full border border-[#d8d0e8] bg-white px-6 py-4 text-[10px] font-black text-[#704bfd] transition hover:-translate-y-1" href="/shop">Lihat marketplace <ArrowRight size={15}/></Link></div>
+        </div>
+        <div className="overflow-hidden rounded-[28px] border border-[#d9d0ec] bg-white shadow-[0_28px_70px_rgba(50,34,104,.15)]">
+          <div className="flex items-center gap-2 border-b border-[#ece8f2] bg-white px-5 py-4"><span className="size-2.5 rounded-full bg-[#ff715b]"/><span className="size-2.5 rounded-full bg-[#ffd65a]"/><span className="size-2.5 rounded-full bg-[#bdf86b]"/><span className="ml-3 truncate rounded-full bg-[#f4f1fa] px-4 py-2 text-[7px] font-bold text-[#777080]">shop.nemu-ai.com · TRACKER Official Shop</span></div>
+          <div className="relative aspect-[16/10] overflow-hidden bg-[#f4f2f8]"><img className="absolute inset-0 h-auto w-full object-cover object-top transition duration-700 hover:-translate-y-[8%]" src="/tracker-official-shop-proof.png" alt="Contoh website TRACKER Official Shop sebagai official seller di NEMU"/></div>
         </div>
       </div>
     </section>
