@@ -23,27 +23,28 @@ const products = [
 ];
 
 const sellerTools = [
-  ['Website toko siap pakai', 'Punya website jualan sendiri yang langsung bisa dibagikan.', 'Toko online siap menerima pembeli.'],
-  ['Snap · List · Sell', 'Foto barang, isi harga, lalu NEMU bantu merapikan listing.', 'Produk bisa tayang tanpa ribet nulis dari nol.'],
-  ['AI foto dan konten', 'Rapikan foto produk dan ubah menjadi bahan Reels atau TikTok.', 'Konten jualan lebih menarik dan rutin.'],
-  ['Iklan Google, Meta, dan TikTok', 'Jalankan iklan dari channel yang paling cocok untuk produkmu.', 'Kamu bisa lihat channel mana yang paling cuan.'],
-  ['SEO dan AI search', 'Susun informasi toko serta produk agar mudah dipahami mesin pencari.', 'Lebih mudah ditemukan di Google dan pencarian AI.'],
-  ['Pembayaran DOKU & 30+ kurir', 'Buyer bisa bayar online lewat DOKU, lalu seller memilih layanan pengiriman dari 30+ kurir.', 'Pembayaran dan pengiriman tertata dalam satu alur.'],
+  ['Website toko siap pakai', 'Dapatkan toko online dengan link sendiri. Tinggal isi produk, lalu bagikan ke WhatsApp, Instagram, TikTok, atau channel lainnya.', 'Kamu punya channel jualan sendiri yang siap menerima pembeli.'],
+  ['Snap · List · Sell', 'Foto barang dan isi harga. NEMU bantu merapikan informasi produk jadi listing yang enak dilihat.', 'Produk siap dijual tanpa harus menulis semuanya dari nol.'],
+  ['Foto produk & konten', 'Buat visual produk dan bahan konten Reels atau TikTok agar tokomu terlihat lebih meyakinkan.', 'Konten jualan lebih menarik dan lebih gampang dibuat rutin.'],
+  ['Iklan langsung ke tokomu', 'Jalankan iklan Google, Meta, dan TikTok untuk membawa calon pembeli ke website tokomu.', 'Kamu bisa melihat channel promosi yang paling menghasilkan.'],
+  ['Muncul di Google & AI search', 'Informasi toko dan produk disusun agar lebih mudah dipahami mesin pencari dan pencarian AI.', 'Produkmu lebih mudah ditemukan calon pembeli.'],
+  ['Bayar & kirim dalam satu alur', 'Terima pembayaran lewat DOKU dan sediakan pilihan pengiriman dari 30+ kurir.', 'Pembayaran dan pengiriman lebih praktis untuk kamu dan pembeli.'],
 ];
 
 const faq = [
-  ['NEMU itu sebenarnya apa?', 'NEMU adalah marketplace untuk buyer sekaligus channel jualan lengkap untuk seller. Buyer bisa mencari barang, sementara seller mendapatkan website toko dan alat bantu untuk mengelola serta mengembangkan penjualan.'],
-  ['Kalau nggak tahu nama barangnya gimana?', 'Masuk ke Mode AI, lalu ceritakan kebutuhan, budget, warna, ukuran, atau barangnya mau dipakai untuk apa.'],
-  ['Buka toko di NEMU bayar berapa?', 'Mulai gratis sampai pecah telur. Detail paket lanjutannya dibahas saat onboarding supaya sesuai kebutuhan tokomu.'],
-  ['Apa saja yang didapat seller?', 'Website siap pakai, Snap List Sell, AI foto dan konten, iklan lintas platform, SEO, optimasi pencarian AI, pembayaran DOKU, 30+ kurir, dan data penjualan.'],
+  ['NEMU itu sebenarnya apa?', 'NEMU adalah SaaS atau platform jualan online untuk seller dan UMKM. Kamu mendapatkan website toko sendiri, alat bantu listing dan promosi, pembayaran DOKU, serta pilihan 30+ kurir. Produkmu juga bisa ditemukan buyer lewat NEMU Marketplace.'],
+  ['Kalau nggak tahu nama barangnya gimana?', 'Masuk ke Mode AI, lalu ketik kebutuhan, budget, warna, ukuran, atau barangnya mau dipakai untuk apa.'],
+  ['Buka toko di NEMU bayar berapa?', 'Gratis sampai tokomu mendapatkan penjualan pertama atau pecah telur. Setelah itu, biayanya Rp199.000 per bulan.'],
+  ['Apa saja yang didapat seller?', 'Website toko siap pakai, Snap List Sell, AI foto dan konten, iklan Google Meta TikTok, SEO dan AI search, pembayaran DOKU, serta pilihan 30+ kurir.'],
+  ['Harus bisa desain atau paham teknis?', 'Nggak perlu. Mulai saja dari foto produk dan harga. NEMU bantu merapikan listing, konten, promosi, pembayaran, dan pengirimannya.'],
 ];
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': ['Organization', 'OnlineStore'], '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization', name: 'NEMU AI', url: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/', logo: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/favicon.svg', description: 'Marketplace Indonesia dan website jualan berbasis AI untuk buyer dan seller.', areaServed: 'Indonesia', sameAs: ['https://nemu-ai.com/', 'https://shop.nemu-ai.com/'] },
+    { '@type': ['Organization', 'OnlineStore'], '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization', name: 'NEMU AI', url: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/', logo: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/favicon.svg', description: 'SaaS jualan online untuk seller Indonesia dengan website toko, AI marketing, pembayaran DOKU, dan 30+ pilihan kurir.', areaServed: 'Indonesia', sameAs: ['https://nemu-ai.com/', 'https://shop.nemu-ai.com/'] },
     { '@type': 'WebSite', '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#website', url: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/', name: 'NEMU AI', publisher: { '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization' }, inLanguage: 'id-ID', potentialAction: { '@type': 'SearchAction', target: 'https://nemu-ai-redesign.openclawid6.chatgpt.site/shop?q={search_term_string}', 'query-input': 'required name=search_term_string' } },
-    { '@type': 'Service', name: 'Website dan alat jualan NEMU untuk seller', provider: { '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization' }, areaServed: 'Indonesia', audience: { '@type': 'BusinessAudience', audienceType: 'Seller, UMKM, dan brand lokal' }, description: 'Website toko siap pakai dengan Snap List Sell, AI foto dan konten, iklan Google Meta TikTok, SEO, optimasi pencarian AI, pembayaran DOKU, dan 30+ pilihan kurir.' },
+    { '@type': 'Service', name: 'SaaS jualan online NEMU untuk seller dan UMKM', provider: { '@id': 'https://nemu-ai-redesign.openclawid6.chatgpt.site/#organization' }, areaServed: 'Indonesia', audience: { '@type': 'BusinessAudience', audienceType: 'Seller, UMKM, dan brand lokal' }, description: 'Platform jualan online dengan website toko, Snap List Sell, AI foto dan konten, iklan Google Meta TikTok, SEO dan AI search, pembayaran DOKU, serta 30+ pilihan kurir. Gratis sampai penjualan pertama, lalu Rp199.000 per bulan.', offers: { '@type': 'Offer', price: '199000', priceCurrency: 'IDR', description: 'Gratis sampai penjualan pertama, lalu Rp199.000 per bulan.' } },
     { '@type': 'FAQPage', mainEntity: faq.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
   ],
 };
@@ -59,11 +60,11 @@ export default function Home() {
       <span className="absolute -right-32 top-16 size-[580px] rounded-full bg-[#e7dfff]"/>
       <div className="relative mx-auto grid min-h-[620px] max-w-[1240px] lg:min-h-[690px] lg:grid-cols-[1.03fr_.97fr]">
         <div className="relative z-20 flex flex-col justify-center py-14 lg:py-20">
-          <p className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.14em] text-[#704bfd]"><Sparkles size={14}/> Mulai jualan online, NEMU yang bantu</p>
-          <h1 className="mt-5 max-w-[720px] font-[var(--font-display)] text-[43px] font-black leading-[1.01] tracking-[-.06em] sm:text-7xl sm:leading-[.98] lg:text-[76px]">Punya produk?<br/>Yuk, bikin toko.<br/><span className="text-[#704bfd]">NEMU bantu.</span></h1>
-          <p className="mt-6 max-w-[620px] text-base font-medium leading-8 text-[#5a5a66]">Foto produk sekali, tokomu langsung kebentuk. NEMU bantu rapihin listing, bikin konten dan iklan, terima pembayaran DOKU, sampai pilih kiriman.</p>
+          <p className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.14em] text-[#704bfd]"><Sparkles size={14}/> SaaS jualan buat seller & UMKM</p>
+          <h1 className="mt-5 max-w-[720px] font-[var(--font-display)] text-[43px] font-black leading-[1.01] tracking-[-.06em] sm:text-7xl sm:leading-[.98] lg:text-[76px]">Punya toko online sendiri.<br/><span className="text-[#704bfd]">Jualan lebih gampang.</span></h1>
+          <p className="mt-6 max-w-[650px] text-base font-medium leading-8 text-[#5a5a66]">NEMU adalah platform SaaS buat seller: dapat website toko siap pakai, upload produk lebih cepat, bikin foto dan konten dengan AI, pasang iklan Google, Meta, dan TikTok, terima pembayaran DOKU, sampai pilih pengiriman dari 30+ kurir.</p>
           <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap"><a className="col-span-2 inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#704bfd] px-6 py-4 text-[10px] font-black text-white shadow-[0_12px_28px_rgba(84,54,190,.24)] transition hover:-translate-y-1 sm:w-auto" href="#jadwal-onboarding"><Store size={17}/> Buka toko gratis</a><a className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#dcdce0] bg-white px-3 py-4 text-[9px] font-black text-[#704bfd] transition hover:-translate-y-1 sm:w-auto sm:gap-3 sm:px-6 sm:text-[10px]" href="#fitur-seller"><Sparkles size={16}/> Yang seller dapat</a><a className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#cfc3ff] bg-[#ede8ff] px-3 py-4 text-[9px] font-black text-[#704bfd] transition hover:-translate-y-1 hover:bg-white sm:w-auto sm:gap-3 sm:px-6 sm:text-[10px]" href="#download-app"><Smartphone size={16}/> Download aplikasi</a></div>
-          <div className="mt-10 grid max-w-[680px] gap-5 border-t border-[#dcdce0] pt-6 sm:grid-cols-2"><div><p className="text-[8px] font-black uppercase tracking-[.14em] text-[#704bfd]">Coba dulu, gratis</p><p className="mt-2 text-[10px] leading-6 text-[#5a5a66]">Belum laku? Belum bayar. Lanjut setelah tokomu pecah telur.</p></div><div className="border-t border-[#dcdce0] pt-5 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0"><p className="text-[8px] font-black uppercase tracking-[.14em] text-[#704bfd]">Urus jualan di satu tempat</p><p className="mt-2 text-[10px] leading-6 text-[#5a5a66]">Produk, konten, iklan, pembayaran, sampai kiriman bisa kamu urus dari NEMU.</p></div></div>
+          <div className="mt-10 grid max-w-[680px] gap-5 border-t border-[#dcdce0] pt-6 sm:grid-cols-2"><div><p className="text-[8px] font-black uppercase tracking-[.14em] text-[#704bfd]">Mulai Rp0</p><p className="mt-2 text-[10px] leading-6 text-[#5a5a66]">Gratis sampai penjualan pertama. Setelah pecah telur, lanjut Rp199.000 per bulan.</p></div><div className="border-t border-[#dcdce0] pt-5 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0"><p className="text-[8px] font-black uppercase tracking-[.14em] text-[#704bfd]">Nggak perlu ngerti teknis</p><p className="mt-2 text-[10px] leading-6 text-[#5a5a66]">Foto produk dan isi harga. NEMU bantu menyiapkan toko serta alat jualannya.</p></div></div>
         </div>
         <div className="relative min-h-[410px] self-end sm:min-h-[560px] lg:min-h-full"><img className="absolute bottom-0 left-[28%] z-10 h-[82%] w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_28px_28px_rgba(71,47,128,.20)] sm:left-[40%] sm:h-[78%] lg:left-[42%] lg:h-[92%]" src="/model-hero-buyer-v2.png" alt="Perempuan Indonesia menggunakan NEMU untuk belanja dan jualan"/><div className="absolute right-0 top-2 z-30 w-[54%] max-w-[190px] rounded-[22px] bg-white p-4 shadow-[0_18px_40px_rgba(54,36,112,.16)] sm:right-6 sm:top-8 sm:max-w-[220px] lg:right-[2%] lg:top-[14%] lg:max-w-[250px]"><span className="absolute -left-2 top-16 hidden size-5 rotate-45 bg-white lg:block"/><p className="text-[7px] font-black uppercase tracking-[.14em] text-[#704bfd]">Seller yang sudah mulai</p><p className="mt-2 text-[12px] font-black leading-[1.45] tracking-[-.02em] text-[#1a1a1f]">“100+ seller sudah gabung. Sekarang giliran tokomu.”</p><div className="mt-3 grid grid-cols-2 gap-2 border-t border-[#ececef] pt-3">{[['https://nemu-ai.com/_next/static/media/fdr-logo.d19a7a83.svg','FDR'],['https://nemu-ai.com/_next/static/media/arei-outdoor-gear-logo.474cad27.svg','AREI'],['https://nemu-ai.com/_next/static/media/kemfood-logo.61ab1b2c.svg','Kemfood'],['https://nemu-ai.com/_next/static/media/tracker-logo.ef0c9116.svg','Tracker']].map(([src,name])=><span className="flex min-w-0 items-center gap-1.5 rounded-lg bg-[#f8f6ff] px-2 py-1.5" key={name}><img className="h-3.5 w-8 shrink-0 object-contain brightness-0 opacity-65" src={src} alt={`Logo seller ${name}`}/><small className="truncate text-[6px] font-black uppercase tracking-[.05em] text-[#5a5a66]">{name}</small></span>)}</div></div></div>
       </div>
@@ -73,8 +74,8 @@ export default function Home() {
       <span className="absolute left-1/2 top-0 h-px w-[min(86vw,1100px)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#b9a8ff] to-transparent"/>
       <div className="mx-auto max-w-[1240px]">
         <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
-          <div><p className="text-[9px] font-black uppercase tracking-[.15em] text-[#704bfd]">Satu alur buat jualan</p><h2 id="seller-tools-heading" className="mt-3 max-w-[540px] text-4xl font-black leading-[.98] tracking-[-.05em] sm:text-5xl">Dari foto produk sampai pesanan dikirim.</h2></div>
-          <div className="lg:pb-1"><p className="max-w-2xl text-sm leading-7 text-[#6b6b75]">NEMU bantu bagian yang biasanya bikin seller capek. Kamu tetap pegang produk dan harga; urusan toko, promosi, bayar, dan kirim jadi lebih ringkas.</p><a className="mt-5 inline-flex items-center gap-2 text-[9px] font-black text-[#704bfd]" href="#jadwal-onboarding">Jadwalkan onboarding <ArrowRight size={14}/></a></div>
+          <div><p className="text-[9px] font-black uppercase tracking-[.15em] text-[#704bfd]">Yang seller dapat</p><h2 id="seller-tools-heading" className="mt-3 max-w-[600px] text-4xl font-black leading-[.98] tracking-[-.05em] sm:text-5xl">Satu platform buat buka, promosi, dan jalanin toko online.</h2></div>
+          <div className="lg:pb-1"><p className="max-w-2xl text-sm leading-7 text-[#6b6b75]">NEMU menyatukan website toko, listing produk, konten, iklan, pembayaran, dan pengiriman. Kamu fokus ke produk dan pelanggan; alat jualannya sudah siap dipakai.</p><a className="mt-5 inline-flex items-center gap-2 text-[9px] font-black text-[#704bfd]" href="#jadwal-onboarding">Buat toko gratis <ArrowRight size={14}/></a></div>
         </div>
 
         <div className="mt-10 overflow-hidden rounded-[30px] border border-[#dcd6e7] bg-[#f7f4ff] shadow-[0_30px_80px_rgba(47,30,96,.11)]">
@@ -107,17 +108,17 @@ export default function Home() {
         <div className="relative grid lg:min-h-[460px] lg:grid-cols-[1.05fr_.95fr]">
           <div className="relative z-20 flex flex-col justify-center py-12 lg:py-16">
             <p className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.15em] text-[#e7dfff]"><Store size={15}/> Harga seller NEMU</p>
-            <h2 id="seller-pricing-heading" className="mt-4 max-w-[580px] text-4xl font-black leading-[1.02] tracking-[-.05em] sm:text-5xl lg:text-[54px]">Mulai gratis.<br/><span className="text-[#e7dfff]">Bayar setelah laku.</span></h2>
-            <p className="mt-5 max-w-[560px] text-sm font-medium leading-7 text-white/82">Toko belum pecah telur? Belum perlu bayar. Kamu tetap dapat website toko, bantuan konten dan iklan, pembayaran DOKU, serta pilihan 30+ kurir.</p>
+            <h2 id="seller-pricing-heading" className="mt-4 max-w-[620px] text-4xl font-black leading-[1.02] tracking-[-.05em] sm:text-5xl lg:text-[54px]">Mulai gratis.<br/><span className="text-[#e7dfff]">Bayar setelah tokomu benar-benar jualan.</span></h2>
+            <p className="mt-5 max-w-[590px] text-sm font-medium leading-7 text-white/82">Buka toko dan pakai fitur NEMU tanpa biaya sampai penjualan pertamamu masuk. Setelah pecah telur, lanjut Rp199.000 per bulan.</p>
             <div className="mt-7 flex flex-wrap items-center gap-3"><a className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-[10px] font-black text-[#704bfd] shadow-[0_8px_20px_rgba(20,20,30,.12)] transition hover:-translate-y-1" href="#jadwal-onboarding">Jadwalkan onboarding <ArrowRight size={15}/></a><a className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-4 text-[9px] font-black text-white transition hover:bg-white/10" href="#download-app"><Smartphone size={15}/> Download aplikasi</a></div>
           </div>
           <div className="relative min-h-[370px] self-end sm:min-h-[430px] lg:min-h-[460px]">
             <img className="absolute bottom-0 left-[38%] h-[88%] w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_24px_24px_rgba(42,24,96,.24)] sm:left-[45%] sm:h-[96%] lg:left-[38%] lg:h-[92%]" src="/model-seller-coral-v4.png" alt="Seller perempuan bersiap membuka toko di NEMU"/>
             <div className="absolute right-0 top-5 z-20 w-[54%] max-w-[220px] rounded-[22px] bg-white p-5 text-[#17131f] shadow-[0_18px_42px_rgba(32,20,78,.22)] sm:right-5 sm:top-12 sm:max-w-[245px]">
               <span className="absolute -left-2 top-12 size-5 rotate-45 bg-white"/>
-              <p className="text-[7px] font-black uppercase tracking-[.14em] text-[#704bfd]">Mulainya berapa?</p>
-              <p className="mt-2 text-lg font-black leading-5">Rp0 sampai pecah telur.</p>
-              <p className="mt-3 border-t border-[#ececef] pt-3 text-[9px] font-bold leading-5 text-[#6b6b75]">Setelah ada penjualan pertama, lanjut Rp199 ribu/bulan.</p>
+              <p className="text-[7px] font-black uppercase tracking-[.14em] text-[#704bfd]">Harga seller NEMU</p>
+              <p className="mt-2 text-lg font-black leading-5">Gratis sampai penjualan pertama.</p>
+              <p className="mt-3 border-t border-[#ececef] pt-3 text-[9px] font-bold leading-5 text-[#6b6b75]">Setelah pecah telur, lanjut Rp199.000 per bulan.</p>
             </div>
           </div>
         </div>
