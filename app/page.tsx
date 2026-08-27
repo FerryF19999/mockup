@@ -5,22 +5,7 @@ import {
 import { Footer, Header, MobileDock } from './components';
 import { PaymentMethods } from './payment-methods';
 import { SectionTransitions } from './experience';
-
-const categories = [
-  { name: 'Fashion', note: 'Buat ngampus sampai kondangan', image: '/collection-fashion-v1.jpg', size: 'lg:col-span-2 lg:row-span-2' },
-  { name: 'HP & gadget', note: 'Yang kepakai tiap hari', image: '/collection-gadget-v1.jpg', size: 'lg:col-span-2' },
-  { name: 'Beauty', note: 'Skincare dan makeup pilihan', image: '/collection-beauty-v1.jpg', size: 'lg:col-span-1' },
-  { name: 'Rumah', note: 'Biar rumah makin nyaman', image: '/collection-home-v1.jpg', size: 'lg:col-span-1' },
-];
-
-const products = [
-  { name: 'Vivo V11 Pro 6/64', price: 'Rp950.000', old: 'Rp1.050.000', badge: 'Hemat 10%', position: '0% 0%' },
-  { name: 'GM Shoes Flat Sandal', price: 'Rp70.000', badge: 'Produk lokal', position: '50% 0%' },
-  { name: 'Kopi Gayo Arabika 250 gr', price: 'Rp95.000', old: 'Rp110.000', badge: 'Hemat 14%', position: '100% 0%' },
-  { name: 'Arunika Work Tote', price: 'Rp749.000', badge: 'Seller pilihan', position: '0% 100%' },
-  { name: 'Keramik Mug Handmade', price: 'Rp180.000', badge: 'Produk lokal', position: '50% 100%' },
-  { name: 'Aluna Linen Dress', price: 'Rp385.000', badge: 'Baru masuk', position: '100% 100%' },
-];
+import { WhatnotMarketplaceIntro } from './whatnot-marketplace-intro';
 
 const sellerShowcases = [
   { title: 'Bikin foto jualan', copy: 'Pilih produk dan gaya. NEMU bantu ubah foto biasa jadi visual promosi.', image: '/seller-ai-image.png', size: 'lg:col-span-2 lg:row-span-2' },
@@ -73,19 +58,7 @@ export default function Home() {
     <MobileDock />
     <SectionTransitions variant="cinematic" />
 
-    <section className="relative isolate overflow-hidden border-b border-[#ececef] bg-[#f4f0ff] px-4 sm:px-6">
-      <span className="absolute -right-32 top-16 size-[580px] rounded-full bg-[#e7dfff]"/>
-      <div className="relative mx-auto grid min-h-[620px] max-w-[1240px] lg:min-h-[690px] lg:grid-cols-[1.03fr_.97fr]">
-        <div className="relative z-20 flex flex-col justify-center py-14 lg:py-20">
-          <p className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.14em] text-[#704bfd]"><Sparkles size={14}/> NEMU Marketplace buat seller Indonesia</p>
-          <h1 className="mt-5 max-w-[720px] font-[var(--font-display)] text-[43px] font-black leading-[1.01] tracking-[-.06em] sm:text-7xl sm:leading-[.98] lg:text-[76px]">Produkmu masuk NEMU.<br/><span className="text-[#704bfd]">Tokomu langsung siap.</span></h1>
-          <p className="mt-6 max-w-[650px] text-base font-medium leading-8 text-[#5a5a66]">Upload produk sekali. Barangmu tampil di NEMU Marketplace sekaligus di website tokomu sendiri. Konten, promo, pembayaran, dan kiriman juga sudah disiapkan—kamu tinggal fokus jualan.</p>
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap"><a className="col-span-2 inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#704bfd] px-6 py-4 text-[10px] font-black text-white shadow-[0_12px_28px_rgba(84,54,190,.24)] transition hover:-translate-y-1 sm:w-auto" href="#jadwal-onboarding"><Store size={17}/> Mulai jualan di NEMU</a><a className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#dcdce0] bg-white px-3 py-4 text-[9px] font-black text-[#704bfd] transition hover:-translate-y-1 sm:w-auto sm:gap-3 sm:px-6 sm:text-[10px]" href="#fitur-seller"><Sparkles size={16}/> Lihat yang kamu dapat</a><a className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#cfc3ff] bg-[#ede8ff] px-3 py-4 text-[9px] font-black text-[#704bfd] transition hover:-translate-y-1 hover:bg-white sm:w-auto sm:gap-3 sm:px-6 sm:text-[10px]" href="#download-app"><Smartphone size={16}/> Download aplikasi</a></div>
-          <div className="mt-10 grid max-w-[680px] gap-5 border-t border-[#dcdce0] pt-6 sm:grid-cols-2"><div><p className="text-[8px] font-black uppercase tracking-[.14em] text-[#704bfd]">Produkmu makin kelihatan</p><p className="mt-2 text-[10px] leading-6 text-[#5a5a66]">Tampil di marketplace dan punya link toko sendiri yang tinggal dibagikan.</p></div><div className="border-t border-[#dcdce0] pt-5 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0"><p className="text-[8px] font-black uppercase tracking-[.14em] text-[#704bfd]">Mulai tanpa takut rugi</p><p className="mt-2 text-[10px] leading-6 text-[#5a5a66]">Coba semua yang penting buat jualan. Bayar setelah tokomu pecah telur.</p></div></div>
-        </div>
-        <div className="relative min-h-[410px] self-end sm:min-h-[560px] lg:min-h-full"><img className="absolute bottom-0 left-[28%] z-10 h-[82%] w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_28px_28px_rgba(71,47,128,.20)] sm:left-[40%] sm:h-[78%] lg:left-[42%] lg:h-[92%]" src="/model-hero-buyer-v2.png" alt="Perempuan Indonesia menggunakan NEMU untuk belanja dan jualan"/><div className="absolute right-0 top-2 z-30 w-[54%] max-w-[190px] rounded-[22px] bg-white p-4 shadow-[0_18px_40px_rgba(54,36,112,.16)] sm:right-6 sm:top-8 sm:max-w-[220px] lg:right-[2%] lg:top-[14%] lg:max-w-[250px]"><span className="absolute -left-2 top-16 hidden size-5 rotate-45 bg-white lg:block"/><p className="text-[7px] font-black uppercase tracking-[.14em] text-[#704bfd]">Seller yang sudah mulai</p><p className="mt-2 text-[12px] font-black leading-[1.45] tracking-[-.02em] text-[#1a1a1f]">“100+ seller sudah gabung. Sekarang giliran tokomu.”</p><div className="mt-3 grid grid-cols-2 gap-2 border-t border-[#ececef] pt-3">{[['https://nemu-ai.com/_next/static/media/fdr-logo.d19a7a83.svg','FDR'],['https://nemu-ai.com/_next/static/media/arei-outdoor-gear-logo.474cad27.svg','AREI'],['https://nemu-ai.com/_next/static/media/kemfood-logo.61ab1b2c.svg','Kemfood'],['https://nemu-ai.com/_next/static/media/tracker-logo.ef0c9116.svg','Tracker']].map(([src,name])=><span className="flex min-w-0 items-center gap-1.5 rounded-lg bg-[#f8f6ff] px-2 py-1.5" key={name}><img className="h-3.5 w-8 shrink-0 object-contain brightness-0 opacity-65" src={src} alt={`Logo seller ${name}`}/><small className="truncate text-[6px] font-black uppercase tracking-[.05em] text-[#5a5a66]">{name}</small></span>)}</div></div></div>
-      </div>
-    </section>
+    <WhatnotMarketplaceIntro />
 
     <section className="relative overflow-hidden bg-white px-4 py-20 sm:px-6 lg:py-28" id="fitur-seller" aria-labelledby="seller-tools-heading">
       <span className="absolute left-1/2 top-0 h-px w-[min(86vw,1100px)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#b9a8ff] to-transparent"/>
@@ -195,15 +168,6 @@ export default function Home() {
       </div>
     </section>
     <PaymentMethods />
-
-    <section className="px-4 py-20 sm:px-6 lg:py-28" aria-labelledby="buyer-heading">
-      <div className="mx-auto max-w-[1240px]"><div className="grid gap-8 lg:grid-cols-[.75fr_1.25fr] lg:items-end"><div><p className="text-[9px] font-black uppercase tracking-[.15em] text-[#704bfd]">Isi NEMU Marketplace</p><h2 id="buyer-heading" className="mt-3 text-4xl font-black leading-[.98] tracking-[-.05em] sm:text-5xl">Sudah ada yang jual ini di NEMU.</h2></div><p className="max-w-xl text-sm leading-7 text-[#6b6b75] lg:ml-auto">Lagi cari fashion, gadget, beauty, atau barang buat rumah? Pilih kategorinya, lalu lihat produk dari seller NEMU.</p></div>
-        <div className="home-category-grid mt-8 sm:mt-10">{categories.map((category,index)=><Link className={`home-category-card group relative overflow-hidden rounded-[22px] ${index===0?'home-category-card-featured':''} ${category.size}`} href="/shop" key={category.name}><span className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105" style={{backgroundImage:`url('${category.image}')`}}/><span className="absolute inset-0 bg-gradient-to-t from-[#1a1a1f]/80 via-transparent to-transparent"/><div className="absolute inset-x-4 bottom-4 pr-12 text-white sm:inset-x-6 sm:bottom-6"><p className="text-[8px] font-black uppercase tracking-[.12em] text-white/70">{category.note}</p><h3 className="mt-1 text-xl font-black sm:text-2xl">{category.name}</h3></div><span className="absolute bottom-4 right-4 grid size-9 place-items-center rounded-full bg-white text-[#704bfd] sm:bottom-6 sm:right-6 sm:size-10"><ArrowRight size={16}/></span></Link>)}</div>
-      </div>
-    </section>
-
-    <section className="border-y border-[#e6e0f2] bg-[#f7f4ff] px-4 py-20 sm:px-6 lg:py-24" id="produk" aria-labelledby="trending-heading"><div className="mx-auto max-w-[1240px]"><div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="text-[9px] font-black uppercase tracking-[.15em] text-[#704bfd]">Baru dari seller NEMU</p><h2 id="trending-heading" className="mt-2 text-4xl font-black tracking-[-.055em] sm:text-5xl">Produk baru yang siap kamu lihat.</h2><p className="mt-3 max-w-xl text-sm leading-7 text-[#6b6b75]">Pilihan terbaru dari seller yang sudah buka toko di NEMU.</p></div><Link className="inline-flex w-fit items-center gap-2 text-[9px] font-black text-[#704bfd]" href="/shop">Lihat semua produk <ArrowRight size={14}/></Link></div>
-      <div className="mt-10 flex snap-x gap-4 overflow-x-auto pb-4 lg:grid lg:grid-cols-6 lg:overflow-visible lg:pb-0">{products.map(product=><article className="group min-w-[174px] snap-start overflow-hidden rounded-[24px] border border-[#e3ddec] bg-white shadow-[0_16px_36px_rgba(58,39,110,.08)] sm:min-w-[210px] lg:min-w-0" key={product.name}><div className="relative aspect-square overflow-hidden bg-[#f3f3f7]"><span className="absolute inset-0 bg-cover bg-center bg-no-repeat transition duration-500 group-hover:scale-105" role="img" aria-label={product.name} style={{backgroundImage:"url('/product-sprite-a-v1.png')",backgroundSize:'300% 200%',backgroundPosition:product.position}}/><span className="absolute left-3 top-3 rounded-full bg-[#704bfd] px-3 py-1.5 text-[7px] font-black text-white">{product.badge}</span></div><div className="p-4"><h3 className="line-clamp-2 min-h-9 text-[10px] font-black leading-4">{product.name}</h3><strong className="mt-2 block text-base">{product.price}</strong>{product.old&&<small className="mt-1 block text-[8px] text-[#84848f] line-through">{product.old}</small>}<Link className="mt-3 inline-flex items-center gap-1 text-[8px] font-black text-[#704bfd]" href="/shop">Buka produk <ArrowRight size={11}/></Link></div></article>)}</div></div></section>
 
 
 
