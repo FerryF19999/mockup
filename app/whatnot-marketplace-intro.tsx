@@ -1,98 +1,80 @@
 import Link from 'next/link';
-import { ArrowRight, Download, Search, ShoppingBag, Sparkles, Store } from 'lucide-react';
+import { ArrowRight, Play, ShoppingBag, Sparkles, Store } from 'lucide-react';
 
-const marketCategories = [
-  { name: 'Fashion', note: 'Buat ngampus sampai kondangan', image: '/collection-fashion-v1.jpg', className: 'md:col-span-2 md:row-span-2' },
-  { name: 'HP & gadget', note: 'Yang kepakai tiap hari', image: '/collection-gadget-v1.jpg', className: 'md:col-span-2' },
-  { name: 'Beauty', note: 'Skincare dan makeup pilihan', image: '/collection-beauty-v1.jpg', className: '' },
-  { name: 'Rumah', note: 'Biar makin betah', image: '/collection-home-v1.jpg', className: '' },
+const shows = [
+  { title: 'Kausnya dipakai langsung', seller: 'Review seller NEMU', video: '/hasil-video-review-kaus.mp4', poster: '/hasil-video-review-kaus.jpg', color: '#ff715b' },
+  { title: 'Satu foto jadi bergerak', seller: 'Dibikin lewat NEMU', video: '/hasil-video-produk-square.mp4', poster: '/hasil-video-produk-square.jpg', color: '#cfff43' },
+  { title: 'Barangnya kelihatan jelas', seller: 'Konten siap posting', video: '/hasil-video-barang.mp4', poster: '/hasil-video-barang.jpg', color: '#9d83ff' },
+  { title: 'Bikin orang berhenti scroll', seller: 'Visual promo seller', video: '/hasil-video-dynamic.mp4', poster: '/hasil-video-dynamic.jpg', color: '#ffbf3f' },
 ];
 
-const freshProducts = [
-  { name: 'Vivo V11 Pro 6/64', price: 'Rp950.000', old: 'Rp1.050.000', badge: 'Hemat 10%', position: '0% 0%' },
-  { name: 'GM Shoes Flat Sandal', price: 'Rp70.000', badge: 'Produk lokal', position: '50% 0%' },
-  { name: 'Kopi Gayo Arabika 250 gr', price: 'Rp95.000', old: 'Rp110.000', badge: 'Hemat 14%', position: '100% 0%' },
-  { name: 'Arunika Work Tote', price: 'Rp749.000', badge: 'Seller pilihan', position: '0% 100%' },
-  { name: 'Keramik Mug Handmade', price: 'Rp180.000', badge: 'Produk lokal', position: '50% 100%' },
-  { name: 'Aluna Linen Dress', price: 'Rp385.000', badge: 'Baru masuk', position: '100% 100%' },
+const categories = [
+  { title: 'Fashion', note: 'Buat dipakai tiap hari', image: '/collection-fashion-v1.jpg', rotate: '-rotate-2' },
+  { title: 'HP & gadget', note: 'Yang kepakai terus', image: '/collection-gadget-v1.jpg', rotate: 'rotate-2' },
+  { title: 'Beauty', note: 'Biar makin pede', image: '/collection-beauty-v1.jpg', rotate: '-rotate-1' },
+  { title: 'Rumah', note: 'Biar makin betah', image: '/collection-home-v1.jpg', rotate: 'rotate-1' },
 ];
 
 export function WhatnotMarketplaceIntro() {
   return <>
-    <section className="relative overflow-hidden bg-[#121016] px-4 pb-5 pt-5 text-white sm:px-6 sm:pb-7 sm:pt-7">
-      <div className="relative mx-auto overflow-hidden rounded-[30px] bg-[#704bfd] shadow-[0_30px_90px_rgba(38,22,84,.28)] lg:min-h-[720px] lg:max-w-[1440px]">
-        <span className="absolute -left-48 -top-48 size-[620px] rounded-full border-[92px] border-white/10"/>
-        <span className="absolute -bottom-36 left-[38%] size-[420px] rounded-full bg-[#cfff43]/20 blur-3xl"/>
-        <div className="relative grid gap-6 p-5 sm:p-8 lg:min-h-[720px] lg:grid-cols-[.78fr_1.22fr] lg:p-12">
-          <div className="relative z-20 flex flex-col justify-center py-8 lg:py-12">
-            <p className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.16em] text-[#dcd3ff]"><Sparkles size={15}/> NEMU Marketplace</p>
-            <h1 className="mt-5 max-w-[610px] text-[48px] font-black leading-[.92] tracking-[-.065em] sm:text-7xl lg:text-[84px]">Belanja seru.<br/>Jualan juga<br/><span className="text-[#cfff43]">langsung siap.</span></h1>
-            <p className="mt-6 max-w-[540px] text-sm font-medium leading-7 text-white/78 sm:text-base">Temukan barang dari seller lokal. Mau ikut jualan? Produkmu tampil di marketplace sekaligus punya website toko sendiri.</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link className="inline-flex items-center justify-center gap-2 rounded-full bg-[#cfff43] px-6 py-4 text-[10px] font-black text-[#1a1424] transition hover:-translate-y-1 hover:bg-white" href="/shop"><ShoppingBag size={17}/> Jelajahi NEMU <ArrowRight size={15}/></Link>
-              <a className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-6 py-4 text-[10px] font-black text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white/15" href="#jadwal-onboarding"><Store size={17}/> Mulai jualan</a>
-            </div>
-            <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 border-t border-white/20 pt-6 text-[8px] font-black uppercase tracking-[.11em] text-white/68">
-              <span>100+ seller</span><span>Produk lokal</span><span>Baru + preloved</span>
-            </div>
+    <section className="relative overflow-hidden bg-[#704bfd] text-white" aria-labelledby="nemu-hero-heading">
+      <span className="absolute -left-44 -top-44 size-[560px] rounded-full border-[90px] border-white/10"/>
+      <span className="absolute -bottom-56 right-[-8%] size-[680px] rounded-full bg-[#cfff43]/25 blur-[100px]"/>
+      <div className="relative mx-auto grid min-h-[760px] max-w-[1440px] gap-8 px-5 pb-14 pt-12 sm:px-8 lg:grid-cols-[.78fr_1.22fr] lg:items-center lg:px-14 lg:py-16">
+        <div className="relative z-20 max-w-[620px]">
+          <p className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.18em] text-[#dcd3ff]"><Sparkles size={15}/> Marketplace punya seller Indonesia</p>
+          <h1 id="nemu-hero-heading" className="mt-6 text-[52px] font-black leading-[.88] tracking-[-.07em] sm:text-7xl lg:text-[92px]">Barang seru.<br/>Seller nyata.<br/><span className="text-[#cfff43]">Ketemunya di NEMU.</span></h1>
+          <p className="mt-7 max-w-[540px] text-sm font-medium leading-7 text-white/80 sm:text-base">Lihat produk dari seller lokal lewat foto dan video. Mau ikut jualan? Produkmu masuk marketplace sekaligus punya website toko sendiri.</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link className="inline-flex items-center justify-center gap-2 rounded-full bg-[#cfff43] px-7 py-4 text-[10px] font-black text-[#17131f] transition hover:-translate-y-1 hover:bg-white" href="/shop"><ShoppingBag size={17}/> Mulai lihat-lihat <ArrowRight size={15}/></Link>
+            <a className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 py-4 text-[10px] font-black text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white/15" href="#jadwal-onboarding"><Store size={17}/> Mulai jualan</a>
           </div>
+          <div className="mt-8 flex flex-wrap gap-2 text-[8px] font-black"><span className="rounded-full bg-white/12 px-4 py-2">100+ seller sudah mulai</span><span className="rounded-full bg-white/12 px-4 py-2">Baru + preloved</span><span className="rounded-full bg-white/12 px-4 py-2">Produk lokal</span></div>
+        </div>
 
-          <div className="relative min-h-[560px] lg:min-h-0">
-            <Link className="group absolute inset-x-0 top-0 h-[330px] overflow-hidden rounded-[26px] bg-[#292331] sm:h-[390px] lg:bottom-[26%] lg:h-auto" href="/shop">
-              <img className="size-full object-cover transition duration-700 group-hover:scale-105" src="/collection-fashion-v1.jpg" alt="Pilihan fashion dari seller NEMU"/>
-              <span className="absolute inset-0 bg-gradient-to-t from-[#17131f]/90 via-transparent to-black/10"/>
-              <span className="absolute left-5 top-5 rounded-full bg-[#ff6d57] px-4 py-2 text-[8px] font-black uppercase tracking-[.1em]">Lagi ramai</span>
-              <div className="absolute inset-x-6 bottom-6 flex items-end justify-between gap-4"><div><p className="text-[8px] font-black uppercase tracking-[.13em] text-[#cfff43]">Seller lokal pilihan</p><h2 className="mt-1 text-3xl font-black tracking-[-.05em] sm:text-4xl">Fashion yang lagi dicari.</h2></div><span className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-[#704bfd]"><ArrowRight size={18}/></span></div>
-            </Link>
-            <Link className="group absolute bottom-0 left-0 h-[205px] w-[48.5%] overflow-hidden rounded-[24px] bg-[#292331]" href="/shop">
-              <img className="size-full object-cover transition duration-700 group-hover:scale-105" src="/collection-gadget-v1.jpg" alt="Gadget pilihan di NEMU"/>
-              <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"/>
-              <div className="absolute inset-x-4 bottom-4"><p className="text-[7px] font-black uppercase tracking-[.12em] text-[#cfff43]">Baru masuk</p><h3 className="mt-1 text-lg font-black">HP & gadget</h3></div>
-            </Link>
-            <Link className="group absolute bottom-0 right-0 h-[205px] w-[48.5%] overflow-hidden rounded-[24px] bg-[#292331]" href="/shop">
-              <img className="size-full object-cover transition duration-700 group-hover:scale-105" src="/collection-beauty-v1.jpg" alt="Produk beauty pilihan di NEMU"/>
-              <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"/>
-              <div className="absolute inset-x-4 bottom-4"><p className="text-[7px] font-black uppercase tracking-[.12em] text-[#cfff43]">Seller pilihan</p><h3 className="mt-1 text-lg font-black">Beauty</h3></div>
-            </Link>
-            <div className="absolute right-4 top-[300px] z-20 rounded-[18px] bg-white px-4 py-3 text-[#17131f] shadow-[0_16px_36px_rgba(18,16,22,.25)] sm:top-[360px] lg:right-[-18px] lg:top-[49%]"><p className="text-[7px] font-black uppercase tracking-[.12em] text-[#704bfd]">Tayang di NEMU</p><p className="mt-1 text-[10px] font-black">Produk seller, siap dilihat buyer.</p></div>
+        <div className="relative mx-auto h-[520px] w-full max-w-[720px] sm:h-[640px] lg:h-[690px]">
+          <div className="absolute left-1/2 top-1/2 z-20 aspect-[9/16] h-[480px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[38px] border-[8px] border-[#17131f] bg-[#17131f] shadow-[0_38px_90px_rgba(23,13,52,.42)] sm:h-[585px] lg:h-[650px]">
+            <video className="size-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="/hasil-video-review-kaus.jpg"><source src="/hasil-video-review-kaus.mp4" type="video/mp4"/></video>
+            <span className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/60 to-transparent"/>
+            <div className="absolute inset-x-4 top-4 flex items-center justify-between"><span className="rounded-full bg-[#ff715b] px-3 py-2 text-[7px] font-black uppercase tracking-[.1em]">Lagi diputar</span><span className="grid size-9 place-items-center rounded-full bg-white/18 backdrop-blur"><Play className="fill-white" size={14}/></span></div>
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/75 to-transparent p-5 pt-28"><p className="text-[8px] font-black uppercase tracking-[.13em] text-[#cfff43]">Hasil video seller</p><h2 className="mt-2 text-2xl font-black leading-tight">Produknya nggak cuma diam di katalog.</h2><p className="mt-3 text-[9px] leading-5 text-white/70">Lihat barangnya bergerak sebelum kamu pilih.</p><Link className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-[8px] font-black text-[#17131f]" href="/shop">Lihat produknya <ArrowRight size={13}/></Link></div>
           </div>
+          <Link className="absolute left-0 top-[15%] z-10 hidden w-[210px] -rotate-6 overflow-hidden rounded-[24px] bg-white p-3 text-[#17131f] shadow-[0_26px_60px_rgba(34,20,74,.28)] transition hover:-translate-y-2 sm:block" href="/shop"><img className="aspect-[4/3] w-full rounded-[17px] object-cover" src="/collection-fashion-v1.jpg" alt="Fashion di NEMU"/><p className="mt-3 text-[8px] font-black uppercase tracking-[.12em] text-[#704bfd]">Fashion pilihan</p><p className="mt-1 text-sm font-black">Buat ngampus sampai kondangan</p></Link>
+          <Link className="absolute bottom-[11%] right-0 z-30 hidden w-[205px] rotate-6 overflow-hidden rounded-[24px] bg-[#cfff43] p-3 text-[#17131f] shadow-[0_26px_60px_rgba(34,20,74,.28)] transition hover:-translate-y-2 sm:block" href="/shop"><img className="aspect-[4/3] w-full rounded-[17px] object-cover" src="/collection-beauty-v1.jpg" alt="Beauty di NEMU"/><p className="mt-3 text-[8px] font-black uppercase tracking-[.12em]">Beauty seller lokal</p><p className="mt-1 text-sm font-black">Yang baru tayang hari ini</p></Link>
+          <div className="absolute right-[3%] top-[7%] z-30 hidden rounded-[20px] bg-white px-5 py-4 text-[#17131f] shadow-[0_18px_45px_rgba(34,20,74,.24)] md:block"><p className="text-[7px] font-black uppercase tracking-[.13em] text-[#704bfd]">Seller di NEMU</p><p className="mt-1 text-lg font-black">100+</p></div>
         </div>
       </div>
     </section>
 
-    <section className="bg-white px-4 py-20 sm:px-6 lg:py-28" aria-labelledby="market-categories-heading">
+    <section className="bg-white px-4 py-20 sm:px-6 lg:py-28" aria-labelledby="seller-show-heading">
       <div className="mx-auto max-w-[1320px]">
-        <div className="grid gap-6 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
-          <div><p className="text-[9px] font-black uppercase tracking-[.16em] text-[#704bfd]">Ada banyak yang bisa ditemukan</p><h2 id="market-categories-heading" className="mt-3 max-w-[560px] text-4xl font-black leading-[.96] tracking-[-.055em] sm:text-6xl">Cari yang kamu suka. Ketemu yang nggak disangka.</h2></div>
-          <div className="lg:pb-2"><p className="max-w-xl text-sm leading-7 text-[#66636d]">Fashion, gadget, beauty, kebutuhan rumah, sampai barang preloved dari seller yang sudah tayang di NEMU.</p><Link className="mt-5 inline-flex items-center gap-2 text-[9px] font-black text-[#704bfd]" href="/shop"><Search size={14}/> Cari semua produk <ArrowRight size={14}/></Link></div>
+        <div className="mx-auto max-w-[760px] text-center"><p className="text-[9px] font-black uppercase tracking-[.17em] text-[#704bfd]">Ikut lihat yang lagi seru</p><h2 id="seller-show-heading" className="mt-4 text-4xl font-black leading-[.93] tracking-[-.06em] sm:text-6xl">Produknya tampil.<br/>Sellernya ikut cerita.</h2><p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-[#67616f]">Bukan cuma foto dan harga. Video pendek bikin kamu lebih kebayang barangnya sebelum pilih.</p></div>
+        <div className="mt-12 flex snap-x gap-4 overflow-x-auto pb-8 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-4">
+          {shows.map((show,index)=><article className={`group relative aspect-[9/14] min-w-[76vw] snap-center overflow-hidden rounded-[28px] bg-[#17131f] shadow-[0_22px_58px_rgba(35,24,56,.16)] sm:min-w-0 ${index%2?'lg:translate-y-10':''}`} key={show.title}>
+            <video className="size-full object-cover transition duration-700 group-hover:scale-[1.03]" autoPlay muted loop playsInline preload="metadata" poster={show.poster}><source src={show.video} type="video/mp4"/></video>
+            <span className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20"/>
+            <span className="absolute left-4 top-4 grid size-10 place-items-center rounded-full bg-white/18 text-white backdrop-blur"><Play className="fill-white" size={15}/></span>
+            <span className="absolute right-4 top-4 rounded-full px-3 py-2 text-[7px] font-black text-[#17131f]" style={{backgroundColor:show.color}}>0{index+1}</span>
+            <div className="absolute inset-x-5 bottom-5 text-white"><p className="text-[7px] font-black uppercase tracking-[.13em] text-white/65">{show.seller}</p><h3 className="mt-2 text-xl font-black tracking-[-.035em]">{show.title}</h3></div>
+          </article>)}
         </div>
-        <div className="mt-10 grid auto-rows-[190px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:auto-rows-[220px]">
-          {marketCategories.map((item)=><Link className={`group relative overflow-hidden rounded-[26px] bg-[#28232f] ${item.className}`} href="/shop" key={item.name}>
-            <img className="size-full object-cover transition duration-700 group-hover:scale-105" src={item.image} alt={item.name}/>
-            <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/5 to-transparent"/>
-            <div className="absolute inset-x-5 bottom-5 pr-12 text-white"><p className="text-[7px] font-black uppercase tracking-[.12em] text-white/68">{item.note}</p><h3 className="mt-1 text-2xl font-black tracking-[-.04em]">{item.name}</h3></div>
-            <span className="absolute bottom-5 right-5 grid size-10 place-items-center rounded-full bg-white text-[#704bfd] transition group-hover:rotate-[-12deg]"><ArrowRight size={17}/></span>
-          </Link>)}
+        <div className="mt-8 text-center lg:mt-20"><Link className="inline-flex items-center gap-2 rounded-full bg-[#17131f] px-6 py-4 text-[10px] font-black text-white" href="/shop">Lihat semua yang tayang <ArrowRight size={15}/></Link></div>
+      </div>
+    </section>
+
+    <section className="overflow-hidden bg-[#cfff43] px-4 py-20 text-[#17131f] sm:px-6 lg:py-28" aria-labelledby="category-world-heading">
+      <div className="mx-auto max-w-[1320px]">
+        <div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-end"><div><p className="text-[9px] font-black uppercase tracking-[.17em]">Semua ada di NEMU</p><h2 id="category-world-heading" className="mt-3 text-5xl font-black leading-[.9] tracking-[-.065em] sm:text-7xl">Pilih duniamu.</h2></div><p className="max-w-xl text-sm font-medium leading-7 lg:pb-2">Mau cari yang kepakai tiap hari, yang bikin rumah makin enak, atau sekadar lihat barang seru? Tinggal masuk dari sini.</p></div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {categories.map((item,index)=><Link className={`group relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#17131f] shadow-[0_22px_52px_rgba(54,70,12,.18)] transition duration-300 hover:-translate-y-3 hover:rotate-0 ${item.rotate}`} href="/shop" key={item.title}><img className="size-full object-cover transition duration-700 group-hover:scale-105" src={item.image} alt={item.title}/><span className="absolute inset-0 bg-gradient-to-t from-black/88 via-transparent to-transparent"/><span className="absolute left-5 top-5 grid size-9 place-items-center rounded-full bg-white text-[8px] font-black text-[#704bfd]">0{index+1}</span><div className="absolute inset-x-5 bottom-5 text-white"><p className="text-[7px] font-black uppercase tracking-[.12em] text-[#cfff43]">{item.note}</p><h3 className="mt-2 text-3xl font-black tracking-[-.045em]">{item.title}</h3></div></Link>)}
         </div>
       </div>
     </section>
 
-    <section className="overflow-hidden bg-[#f2eff8] py-20 lg:py-28" aria-labelledby="fresh-products-heading">
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6">
-        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="text-[9px] font-black uppercase tracking-[.16em] text-[#704bfd]">Baru tayang di NEMU</p><h2 id="fresh-products-heading" className="mt-3 text-4xl font-black tracking-[-.055em] sm:text-6xl">Yang baru masuk. Yang bikin pengin lihat.</h2></div><Link className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-[9px] font-black text-[#704bfd]" href="/shop">Lihat semuanya <ArrowRight size={14}/></Link></div>
-      </div>
-      <div className="mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-6 sm:px-6 lg:px-[max(24px,calc((100vw-1320px)/2))]">
-        {freshProducts.map((product,index)=><article className={`group min-w-[230px] snap-start overflow-hidden rounded-[26px] bg-white shadow-[0_18px_50px_rgba(48,33,92,.09)] sm:min-w-[270px] ${index===0?'lg:min-w-[360px]':''}`} key={product.name}>
-          <div className={`relative overflow-hidden bg-[#e9e5f0] ${index===0?'aspect-[4/5]':'aspect-square'}`}><span className="absolute inset-0 bg-cover bg-center bg-no-repeat transition duration-500 group-hover:scale-105" role="img" aria-label={product.name} style={{backgroundImage:"url('/product-sprite-a-v1.png')",backgroundSize:'300% 200%',backgroundPosition:product.position}}/><span className="absolute left-4 top-4 rounded-full bg-[#704bfd] px-3 py-2 text-[7px] font-black text-white">{product.badge}</span></div>
-          <div className="p-5"><h3 className="text-[11px] font-black leading-5">{product.name}</h3><div className="mt-3 flex items-end justify-between gap-3"><span><strong className="block text-lg">{product.price}</strong>{product.old&&<small className="mt-1 block text-[8px] text-[#8b8791] line-through">{product.old}</small>}</span><Link className="grid size-10 place-items-center rounded-full bg-[#cfff43] text-[#17131f]" href="/shop"><ArrowRight size={16}/></Link></div></div>
-        </article>)}
-      </div>
-    </section>
-
-    <section className="bg-[#121016] px-4 py-16 text-white sm:px-6 lg:py-24" aria-labelledby="whatnot-seller-heading">
-      <div className="mx-auto grid max-w-[1320px] gap-8 overflow-hidden rounded-[32px] bg-[#1c1822] p-5 sm:p-8 lg:grid-cols-[1.1fr_.9fr] lg:p-10">
-        <div className="relative min-h-[430px] overflow-hidden rounded-[26px] bg-[#ece8f4] sm:min-h-[540px]"><img className="size-full object-cover object-top" src="/tracker-official-shop-proof.png" alt="Contoh website official seller NEMU"/><span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#121016] via-[#121016]/75 to-transparent px-6 pb-6 pt-24"><b className="text-2xl font-black">TRACKER Official Shop</b><small className="mt-2 block text-[9px] text-white/65">Website toko seller yang langsung siap dibagikan.</small></span></div>
-        <div className="flex flex-col justify-center py-4 lg:px-6"><p className="text-[9px] font-black uppercase tracking-[.16em] text-[#cfff43]">Mau ikut jualan?</p><h2 id="whatnot-seller-heading" className="mt-4 text-4xl font-black leading-[.95] tracking-[-.055em] sm:text-6xl">Produkmu tampil. Tokomu ikut jadi.</h2><p className="mt-6 max-w-lg text-sm leading-7 text-white/68">Sekali upload, produkmu bisa ditemukan di NEMU Marketplace dan punya halaman toko sendiri. NEMU juga bantu konten, promo, pembayaran, dan pengiriman.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><a className="inline-flex items-center justify-center gap-2 rounded-full bg-[#cfff43] px-6 py-4 text-[10px] font-black text-[#17131f]" href="#jadwal-onboarding"><Store size={17}/> Buka toko di NEMU <ArrowRight size={15}/></a><a className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 text-[10px] font-black text-white" href="#download-app"><Download size={16}/> Download aplikasi</a></div></div>
+    <section className="bg-[#17131f] px-4 py-20 text-white sm:px-6 lg:py-28" aria-labelledby="official-store-heading">
+      <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[.76fr_1.24fr] lg:items-center">
+        <div><p className="text-[9px] font-black uppercase tracking-[.17em] text-[#cfff43]">Toko yang bisa kamu percaya</p><h2 id="official-store-heading" className="mt-4 text-5xl font-black leading-[.9] tracking-[-.065em] sm:text-7xl">Brand-nya jelas.<br/>Tokonya beneran ada.</h2><p className="mt-6 max-w-xl text-sm leading-7 text-white/68">Official seller punya halaman toko sendiri, katalog lengkap, info seller, dan checkout di NEMU. Kamu bisa lihat semuanya sebelum beli.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="inline-flex items-center justify-center gap-2 rounded-full bg-[#cfff43] px-6 py-4 text-[10px] font-black text-[#17131f]" href="/shop">Lihat official seller <ArrowRight size={15}/></Link><a className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 text-[10px] font-black" href="#jadwal-onboarding"><Store size={16}/> Buka official shop</a></div></div>
+        <div className="relative overflow-hidden rounded-[30px] bg-white p-3 shadow-[0_34px_80px_rgba(0,0,0,.35)] sm:p-5"><div className="flex items-center gap-2 border-b border-[#ece8f2] px-2 pb-4"><span className="size-2.5 rounded-full bg-[#ff715b]"/><span className="size-2.5 rounded-full bg-[#ffd65a]"/><span className="size-2.5 rounded-full bg-[#bdf86b]"/><span className="ml-2 text-[7px] font-black text-[#777080]">TRACKER OFFICIAL SHOP · NEMU</span></div><div className="mt-3 aspect-[16/10] overflow-hidden rounded-[20px] bg-[#eeeaf3]"><img className="h-auto w-full object-cover object-top transition duration-1000 hover:-translate-y-[10%]" src="/tracker-official-shop-proof.png" alt="Website TRACKER Official Shop di NEMU"/></div><span className="absolute bottom-8 left-8 rounded-full bg-[#704bfd] px-4 py-3 text-[8px] font-black text-white">Seller terverifikasi</span></div>
       </div>
     </section>
   </>;

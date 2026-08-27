@@ -9,7 +9,7 @@ export function Logo({ light = false }: { light?: boolean }) {
   return <Link className="inline-flex items-center" href="/" aria-label="NEMU AI beranda"><img className={`h-7 w-auto sm:h-8 ${light?'brightness-0 invert':''}`} src="https://nemu-ai.com/_next/static/media/nemu-logo.d670f3d9.svg" alt="nemu.ai"/></Link>;
 }
 
-export function Header({ showSearch = true }: { showSearch?: boolean }) {
+export function Header({ showSearch = true, landing = false }: { showSearch?: boolean; landing?: boolean }) {
   const pathname = usePathname();
   const router = useRouter();
   const aiActive = pathname === '/ai-mode';
@@ -33,6 +33,22 @@ export function Header({ showSearch = true }: { showSearch?: boolean }) {
     }, reduced ? 0 : 280);
   };
 
+  if (landing) return (
+    <div className="sticky top-0 z-50 bg-[#704bfd] px-4 py-3 text-white sm:px-6">
+      <header className="mx-auto flex max-w-[1320px] items-center justify-between gap-4">
+        <Logo light />
+        <nav className="hidden items-center gap-7 text-[9px] font-black md:flex" aria-label="Navigasi landing page">
+          <a className="transition hover:text-[#cfff43]" href="#seller-show-heading">Yang lagi seru</a>
+          <a className="transition hover:text-[#cfff43]" href="#fitur-seller">Buat seller</a>
+          <a className="transition hover:text-[#cfff43]" href="#seller-pricing">Harga</a>
+        </nav>
+        <div className="flex items-center gap-2">
+          <a className="hidden px-4 py-3 text-[9px] font-black text-white sm:block" href="https://shop.nemu-ai.com/login">Masuk</a>
+          <a className="rounded-full bg-[#cfff43] px-5 py-3 text-[9px] font-black text-[#17131f] transition hover:-translate-y-0.5 hover:bg-white" href="#jadwal-onboarding">Mulai jualan</a>
+        </div>
+      </header>
+    </div>
+  );
   const modeToggle = <div className={`nemu-mode-toggle mr-1 flex shrink-0 items-center rounded-full border p-1 transition duration-300 ${aiActive||switching?'border-[#704BFD] bg-[#17131F]':'border-[#ddd6e7] bg-white'}`} role="group" aria-label="Pilih cara mencari"><button className={`nemu-mode-regular flex h-8 items-center gap-1.5 rounded-full px-2.5 text-[8px] font-black transition sm:px-3 ${!aiActive&&!switching?'bg-[#0B0B0E] text-white shadow':'text-[#6B6B75]'}`} type="button" onClick={()=>switchMode('/shop')} aria-pressed={!aiActive}><Search size={12}/><span className="hidden lg:inline">Cari biasa</span></button><button className={`flex h-8 items-center gap-1.5 rounded-full px-2.5 text-[8px] font-black transition sm:px-3 ${aiActive||switching?'bg-[#EDE8FF] text-[#0B0B0E] shadow':'text-[#704BFD] hover:bg-[#F2EFFF]'}`} type="button" onClick={()=>switchMode('/ai-mode')} aria-pressed={aiActive}><Sparkles size={12}/><span className="hidden lg:inline">Mode AI</span></button></div>;
 
   return (

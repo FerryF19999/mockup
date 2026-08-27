@@ -54,7 +54,7 @@ const jsonLd = {
 export default function Home() {
   return <main className="home-page overflow-hidden bg-[#fbfbfc] text-[#0b0b0e]">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <Header />
+    <Header landing />
     <MobileDock />
     <SectionTransitions variant="cinematic" />
 
