@@ -35,7 +35,7 @@ export default function NemuAddonEditor({ value, onChange, liveName, liveMonthly
 
     <section className={s.addonItem}>
       <div className={s.addonTop}><div className={s.addonStatic}><span className={s.addonDot} aria-hidden="true" /><span><b>Live Commerce</b><small>Human Live, AI Commerce Live, atau paket Hybrid.</small></span></div><em>{liveMonthly ? `${rupiah(liveMonthly)} / bulan` : 'Belum dipilih'}</em></div>
-      <a className={s.addonLink} href="#paket-live">{liveName === 'Tanpa paket Live' ? 'Lihat pilihan paket Live ↓' : `Paket aktif: ${liveName} · ubah pilihan ↓`}</a>
+      <a className={s.addonLink} href="#paket-live">{liveName === 'Tanpa paket Live' ? 'Lihat pilihan paket Live ↑' : `Paket aktif: ${liveName} · ubah pilihan ↑`}</a>
     </section>
 
     <div className={s.addonTotal}><span>Total add-on NEMU terpilih</span><strong>{result.valid ? `${rupiah(total)} / bulan` : 'Lengkapi add-on'}</strong><small>Di luar langganan NEMU Core Rp199.000/bulan.</small></div>
