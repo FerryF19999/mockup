@@ -29,8 +29,8 @@ const categories = [
 
 const promoGallery = [
   {label:'FLASH SALE',title:'Harga turun. Jangan cuma dilihatin.',image:'/campaign-flash-sale-v1.jpg',tone:'from-[#7d1f16]/95'},
-  {label:'LAGI FYP',title:'Yang rame di timeline, ada di sini.',image:'/campaign-fyp-v1.jpg',tone:'from-[#3d1b69]/95'},
-  {label:'GRATIS ONGKIR',title:'Belanjanya jalan. Ongkirnya dibantu.',image:'/campaign-free-shipping-v1.jpg',tone:'from-[#273783]/95'},
+  {label:'LAGI FYP',title:'Yang rame di timeline, ada di sini.',image:'/campaign-fyp-v2.png',tone:'from-[#3d1b69]/95'},
+  {label:'BARU NAIK',title:'Baru tayang. Layak masuk radar.',image:'/banner-local-v1.png',tone:'from-[#4b2582]/95'},
   {label:'GAJIAN SALE',title:'Baru gajian? Pilih yang kepakai.',image:'/campaign-payday-v1.jpg',tone:'from-[#19583d]/95'},
   {label:'9.9 SALE',title:'Tanggal cantik. Harganya ikut cakep.',image:'/campaign-99-v1.jpg',tone:'from-[#7a1649]/95'},
 ];
@@ -90,7 +90,7 @@ export default function ShopPage() {
       </section>
 
       <section className="mx-auto max-w-[1240px] px-4 py-8 sm:px-6" aria-labelledby="promo-gallery-heading">
-        <div className="flex items-end justify-between gap-4"><div><p className="text-[9px] font-black uppercase tracking-[.14em] text-[#704BFD]">Lagi ramai</p><h2 id="promo-gallery-heading" className="mt-2 text-3xl font-black tracking-[-.045em]">Diskon, ongkir, sampai tanggal cantik.</h2></div><span className="hidden text-[9px] font-bold text-[#6B6B75] sm:block">Lihat semuanya →</span></div>
+        <div className="flex items-end justify-between gap-4"><div><p className="text-[9px] font-black uppercase tracking-[.14em] text-[#704BFD]">Lagi ramai</p><h2 id="promo-gallery-heading" className="mt-2 text-3xl font-black tracking-[-.045em]">Yang FYP, lokal, sampai tanggal cantik.</h2></div><span className="hidden text-[9px] font-bold text-[#6B6B75] sm:block">Lihat semuanya →</span></div>
         <div className="mt-6 flex snap-x gap-4 overflow-x-auto pb-4 [scrollbar-width:none]">{promoGallery.map((promo,index)=><a className={`group relative isolate min-h-[260px] min-w-[270px] snap-start overflow-hidden rounded-[28px] shadow-[0_18px_45px_rgba(45,30,65,.14)] sm:min-w-[360px] ${index===0?'sm:min-w-[470px]':''}`} href="#produk" key={promo.label}><span className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105" style={{backgroundImage:`url('${promo.image}')`}}/><span className={`absolute inset-0 bg-gradient-to-r ${promo.tone} via-black/30 to-transparent`}/><span className="relative flex min-h-[260px] max-w-[270px] flex-col justify-end p-6 text-white"><small className="w-fit rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[8px] font-black tracking-[.14em] backdrop-blur">{promo.label}</small><b className="mt-3 text-2xl leading-[1.02] tracking-[-.04em]">{promo.title}</b><span className="mt-4 inline-flex items-center gap-2 text-[9px] font-black">Lihat pilihan <ArrowRight size={13}/></span></span></a>)}</div>
       </section>
 

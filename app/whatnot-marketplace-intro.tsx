@@ -22,13 +22,14 @@ export function WhatnotMarketplaceIntro() {
       <span className="absolute -bottom-56 right-[-8%] size-[680px] rounded-full bg-[#cfff43]/25 blur-[100px]"/>
       <div className="relative mx-auto grid min-h-[760px] max-w-[1440px] gap-8 px-5 pb-14 pt-12 sm:px-8 lg:grid-cols-[.78fr_1.22fr] lg:items-center lg:px-14 lg:py-16">
         <div className="relative z-20 max-w-[620px]">
-          <p className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.18em] text-[#dcd3ff]"><Sparkles size={15}/> Marketplace punya seller Indonesia</p>
-          <h1 id="nemu-hero-heading" className="mt-6 text-[52px] font-black leading-[.88] tracking-[-.07em] sm:text-7xl lg:text-[92px]">Barang seru.<br/>Seller nyata.<br/><span className="text-[#cfff43]">Ketemunya di NEMU.</span></h1>
-          <p className="mt-7 max-w-[540px] text-sm font-medium leading-7 text-white/80 sm:text-base">Lihat produk dari seller lokal lewat foto dan video. Mau ikut jualan? Produkmu masuk marketplace sekaligus punya website toko sendiri.</p>
+          <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[.12em] text-[#dcd3ff]"><Sparkles size={15}/> Mulai jualan di NEMU Marketplace</p>
+          <h1 id="nemu-hero-heading" className="mt-6 text-[48px] font-black leading-[.98] tracking-[-.055em] sm:text-6xl lg:text-[76px]">Punya produk?<br/><span className="text-[#cfff43]">Mulai jualan<br/>di NEMU.</span></h1>
+          <p className="mt-7 max-w-[540px] text-base font-medium leading-7 text-white/80">Unggah foto produkmu. NEMU bantu siapkan listing dan toko online yang bisa langsung kamu bagikan.</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link className="inline-flex items-center justify-center gap-2 rounded-full bg-[#cfff43] px-7 py-4 text-[10px] font-black text-[#17131f] transition hover:-translate-y-1 hover:bg-white" href="/shop"><ShoppingBag size={17}/> Mulai lihat-lihat <ArrowRight size={15}/></Link>
-            <a className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 py-4 text-[10px] font-black text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white/15" href="#jadwal-onboarding"><Store size={17}/> Mulai jualan</a>
+            <a className="inline-flex items-center justify-center gap-2 rounded-full bg-[#cfff43] px-6 py-4 text-sm font-black text-[#17131f] transition hover:-translate-y-1 hover:bg-white" href="#jadwal-onboarding"><Store size={17}/> Buka toko gratis <ArrowRight size={15}/></a>
+            <Link className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-6 py-4 text-sm font-black text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white/15" href="/shop"><ShoppingBag size={17}/> Lihat marketplace</Link>
           </div>
+          <div className="mt-6 max-w-[500px]"><p className="text-sm font-bold">Tanpa komisi penjualan NEMU.</p><p className="mt-1 text-xs leading-5 text-white/80">Biaya pembayaran, langganan, dan layanan lain mengikuti ketentuan.</p></div>
           <div className="mt-8 flex flex-wrap gap-2 text-[8px] font-black"><span className="rounded-full bg-white/12 px-4 py-2">100+ seller sudah mulai</span><span className="rounded-full bg-white/12 px-4 py-2">Baru + preloved</span><span className="rounded-full bg-white/12 px-4 py-2">Produk lokal</span></div>
         </div>
 

@@ -2,5 +2,6 @@ allowBuilds:
   '@astryxdesign/core': true
   esbuild: true
   sharp: true
+  tesseract.js: false
   unrs-resolver: true
   workerd: true

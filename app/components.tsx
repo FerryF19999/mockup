@@ -41,6 +41,7 @@ export function Header({ showSearch = true, landing = false }: { showSearch?: bo
           <a className="transition hover:text-[#cfff43]" href="#seller-show-heading">Yang lagi seru</a>
           <a className="transition hover:text-[#cfff43]" href="#fitur-seller">Buat seller</a>
           <a className="transition hover:text-[#cfff43]" href="#seller-pricing">Harga</a>
+          <Link className="transition hover:text-[#cfff43]" href="/kalkulator">Kalkulator biaya</Link>
         </nav>
         <div className="flex items-center gap-2">
           <a className="hidden px-4 py-3 text-[9px] font-black text-white sm:block" href="https://shop.nemu-ai.com/login">Masuk</a>
@@ -112,11 +113,11 @@ export function Footer() {
         <div><Logo light /><p className="mt-6 max-w-xs text-sm leading-7 text-[#d5cfdd]">Marketplace buat nemuin barang seru. Tempat seller mulai jualan dengan toko, konten, pembayaran, dan kiriman yang sudah siap.</p><div className="mt-6 flex gap-2"><a className="grid size-9 place-items-center rounded-full border border-white/15 text-[#d5cfdd] transition hover:border-violet-400 hover:text-white" href="https://www.instagram.com/nemu_ai_/" aria-label="Instagram"><Camera size={16} /></a><a className="grid size-9 place-items-center rounded-full border border-white/15 text-[#d5cfdd] transition hover:border-violet-400 hover:text-white" href="https://www.tiktok.com/@nemu_ai_" aria-label="TikTok"><Music2 size={16} /></a><a className="grid size-9 place-items-center rounded-full border border-white/15 text-[#d5cfdd] transition hover:border-violet-400 hover:text-white" href="mailto:hello@nemu-ai.com" aria-label="Email"><Mail size={16} /></a></div></div>
         {[
           ['NEMU',[['Mulai belanja','/shop'],['Cari pakai Mode AI','/ai-mode'],['Buka toko gratis','#jadwal-onboarding'],['Harga seller','/#seller-pricing']]],
-          ['Buat seller',[['Website toko','/#seller-tools-heading'],['AI marketing','/#seller-tools-heading'],['Pembayaran & kurir','/#payment-heading'],['Download aplikasi','/#download-app']]],
+          ['Buat seller',[['Kalkulator biaya','/kalkulator'],['Website toko','/#seller-tools-heading'],['AI marketing','/#seller-tools-heading'],['Pembayaran & kurir','/#payment-heading'],['Download aplikasi','/#download-app']]],
           ['Legal',[['Privasi','https://shop.nemu-ai.com/privacy'],['Syarat','https://shop.nemu-ai.com/terms'],['Hapus akun','https://shop.nemu-ai.com/account-deletion']]],
         ].map(([title,links])=><div className="hidden md:block" key={title as string}><p className="mb-5 text-[10px] font-black uppercase tracking-[.16em] text-[#b9a8ff]">{title as string}</p><div className="space-y-3">{(links as string[][]).map(([label,href])=><a className="flex items-center gap-1.5 text-[11px] text-zinc-400 transition hover:text-white" href={href} key={label}>{label}<ArrowUpRight size={11}/></a>)}</div></div>)}
       </div>
-      <div className="mx-auto flex max-w-[1180px] flex-col gap-2 pt-6 text-[9px] text-[#91899a] sm:flex-row sm:justify-between"><span>© 2026 PT Nusa Era Modern Unggul</span><span>Buyer lebih gampang nemu. Seller lebih jelas tumbuh.</span></div>
+      <div className="mx-auto flex max-w-[1180px] flex-col gap-2 pt-6 text-[9px] text-[#91899a] sm:flex-row sm:justify-between"><span>© 2026 PT Nusa Era Modern Unggul</span><Link className="py-2 text-sm text-white" href="/kalkulator">Hitung biaya jualan →</Link><span>Buyer lebih gampang nemu. Seller lebih jelas tumbuh.</span></div>
     </footer>
   );
 }

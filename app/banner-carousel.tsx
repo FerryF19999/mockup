@@ -7,11 +7,11 @@ import { useEffect, useState } from 'react';
 
 const slides = [
   {
-    image: '/banner-shipping-v1.png',
-    eyebrow: 'GRATIS ONGKIR PERTAMA',
-    title: 'Ongkir pertama, NEMU bantu.',
-    copy: 'Dapat potongan ongkir hingga Rp30.000 untuk pesanan pertamamu.',
-    cta: 'Pakai promonya',
+    image: '/campaign-fyp-v2.png',
+    eyebrow: 'LAGI FYP DI NEMU',
+    title: 'Yang lagi ramai, ada di sini.',
+    copy: 'Cek produk yang lagi ramai.',
+    cta: 'Lihat yang lagi FYP',
     href: '#produk',
     accent: '#704BFD',
   },
