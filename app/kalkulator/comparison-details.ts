@@ -35,7 +35,7 @@ export function nemuComparisonLines(price: number | null, orders: number | null,
     { id: 'nemu-promo', name: 'Promo seller', kind: 'order', rate: fees.promotion, group: 'promotion' },
     { id: 'nemu-core', name: 'NEMU Core', kind: 'month', rate: String(core), group: 'monthly' },
     { id: 'nemu-live', name: liveName === 'Tanpa paket Live' ? 'Paket Live' : liveName, kind: 'month', rate: String(live), group: 'monthly' },
-    { id: 'nemu-extras', name: 'Add-on NEMU lainnya', kind: 'month', rate: extras, group: 'monthly' },
+    { id: 'nemu-extras', name: 'Add-on promosi NEMU', kind: 'month', rate: extras, group: 'monthly' },
     { id: 'nemu-seller', name: 'Host sendiri, iklan mandiri & operasional', kind: 'month', rate: sellerOperations, group: 'monthly' },
   ].map(row => ({ ...row, kind: row.kind as FeeRow['kind'], group: row.group as FeeRow['group'], enabled: row.id === 'nemu-core' ? core > 0 : row.id === 'nemu-live' ? live > 0 : true, cap: '', count: '', note: '' }));
   const groups = marketplaceComparisonLines(price, orders, rows);

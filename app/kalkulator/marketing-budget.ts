@@ -7,10 +7,11 @@ export const adChannels = [
 ] as const;
 export type MarketingBudget = {
   socialEnabled: boolean; videos: string; perVideo: string; postingChannels: string[];
+  collabEnabled: boolean; collabBudget: string;
   ads: Record<string, { enabled: boolean; budget: string; days: string }>;
 };
 export function initialMarketingBudget(): MarketingBudget {
-  return { socialEnabled: false, videos: '4', perVideo: '', postingChannels: ['Instagram'], ads: Object.fromEntries(adChannels.map(c => [c.id, { enabled: false, budget: c.id === 'nemu' ? '49000' : '', days: '7' }])) };
+  return { socialEnabled: false, videos: '4', perVideo: '', postingChannels: ['Instagram'], collabEnabled: false, collabBudget: '', ads: Object.fromEntries(adChannels.map(c => [c.id, { enabled: false, budget: c.id === 'nemu' ? '49000' : '', days: '7' }])) };
 }
 export function calculateMarketingBudget(value: MarketingBudget) {
   const errors: string[] = [];
@@ -21,11 +22,17 @@ export function calculateMarketingBudget(value: MarketingBudget) {
     if (!value.videos.trim() || !Number.isInteger(videos) || videos < 1 || videos > 10000 || unit === null || !value.postingChannels.length) errors.push('Lengkapi jumlah video, budget per video, dan kanal posting.');
     else social = videos * unit;
   }
+  const collabUnit = amount(value.collabBudget);
+  let collab = 0;
+  if (value.collabEnabled) {
+    if (collabUnit === null || value.collabBudget.trim() === '') errors.push('Isi harga penawaran Collab posting.');
+    else collab = collabUnit;
+  }
   const items = adChannels.filter(c => value.ads[c.id]?.enabled).map(c => {
     const ad = value.ads[c.id], budget = amount(ad.budget), days = Number(ad.days);
     if (budget === null || (c.id !== 'nemu' && (!ad.days.trim() || !Number.isInteger(days) || days < 1 || days > 31))) { errors.push(`Periksa budget dan durasi ${c.name}.`); return { id: c.id, name: c.name, total: 0 }; }
     return { id: c.id, name: c.name, total: budget * (c.id === 'nemu' ? 1 : days) };
   });
   const ads = items.reduce((sum, row) => sum + row.total, 0);
-  return { valid: errors.length === 0, social, ads, total: social + ads, items, errors };
+  return { valid: errors.length === 0, social, collab, ads, total: social + collab + ads, items, errors };
 }

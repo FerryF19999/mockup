@@ -6,13 +6,13 @@ import { livePlans, type Costs } from './calculation';
 import s from './calculator.module.css';
 import SkincareBenchmark from './skincare-benchmark';
 import MarketingBudgetEditor from './marketing-budget-editor';
-import { initialMarketingBudget, calculateMarketingBudget } from './marketing-budget';
+import { initialMarketingBudget, calculateMarketingBudget, type MarketingBudget } from './marketing-budget';
 import { splitNemuCosts, nemuCostTotals, type NemuCostSplit } from './nemu-costs';
 
 const money = (n: number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n);
 const defaults = { product: '', packaging: '0', labor: '0', inbound: '0', shipping: '0', promo: '0', monthly: '0', liveHours: '0', units: '100', margin: '20' };
 type Values = typeof defaults;
-export default function PricingWorkbench({ onCompare }: { onCompare: (price: number, cost: number, orders: number, fees: Costs, split: NemuCostSplit) => void }) {
+export default function PricingWorkbench({ onCompare }: { onCompare: (price: number, cost: number, orders: number, fees: Costs, split: NemuCostSplit, marketing: MarketingBudget) => void }) {
   const [values, setValues] = useState<Values>(defaults);
   const [months, setMonths] = useState(3);
   const [category, setCategory] = useState('serum');
@@ -61,7 +61,7 @@ export default function PricingWorkbench({ onCompare }: { onCompare: (price: num
           <li><b>Uji harga {money(result.recommended)}.</b> Bandingkan dengan produk sejenis dan respons pembeli. Jika terlalu tinggi, tinjau modal atau target margin; jangan langsung memangkas harga di bawah {money(result.floor)} pada target volume ini.</li>
           <li>{scenarios[0].monthlyRemainder < 0 ? <>Skenario sepi masih minus <b>{money(Math.abs(scenarios[0].monthlyRemainder))}/bulan</b>. Tinjau biaya bulanan dan siapkan cadangan biaya sebelum menambah pengeluaran.</> : <>Skenario sepi menyisakan <b>{money(scenarios[0].monthlyRemainder)}/bulan</b> sebelum biaya yang belum dimasukkan. Cek lagi asumsi ongkir, promo, dan retur.</>}</li>
           <li>{result.breakEvenOrders === null ? 'Kontribusi per pesanan belum cukup untuk menutup biaya.' : <>Butuh minimal <b>{result.breakEvenOrders} pesanan/bulan</b> untuk menutup biaya yang diisi pada harga saran. Perbarui simulasi dengan pesanan aktual, bukan target saja.</>}</li>
-        </ul><details className={s.details}><summary>Lihat cara menghitung</summary><p>Harga = (modal, ongkir, dan promo per pesanan + total langganan, add-on, dan operasional bulanan ÷ target pesanan) ÷ (1 − margin%). Tidak ada persentase komisi NEMU. Titik impas = biaya bulanan ÷ kontribusi per pesanan, dibulatkan ke atas.</p></details><p className={s.note}>Saran otomatis dari rumus lokal, tidak memakai API Codex atau mengirim data ke AI. Belum menghitung pertumbuhan, stok, atau arus kas.</p><button className={s.primary} disabled={result.recommended > 1000000000 || cost > 1000000000 || fees.monthly > 1000000000} onClick={() => onCompare(result.recommended, cost, Number(values.units), fees, split)}>Pakai untuk bandingkan marketplace →</button>{(result.recommended > 1000000000 || cost > 1000000000 || fees.monthly > 1000000000) && <p className={s.error}>Belum bisa dipindahkan: mode perbandingan membatasi harga, modal, dan biaya bulanan masing-masing Rp1 miliar.</p>}<p className={s.note}>Angka dipindahkan dengan Core, Live, add-on NEMU, dan pengeluaran usaha tetap terpisah. Tidak dihitung ulang dua kali. Tarif pembanding tetap perlu diisi.</p></section>
+        </ul><details className={s.details}><summary>Lihat cara menghitung</summary><p>Harga = (modal, ongkir, dan promo per pesanan + total langganan, add-on, dan operasional bulanan ÷ target pesanan) ÷ (1 − margin%). Tidak ada persentase komisi NEMU. Titik impas = biaya bulanan ÷ kontribusi per pesanan, dibulatkan ke atas.</p></details><p className={s.note}>Saran otomatis dari rumus lokal, tidak memakai API Codex atau mengirim data ke AI. Belum menghitung pertumbuhan, stok, atau arus kas.</p><button className={s.primary} disabled={result.recommended > 1000000000 || cost > 1000000000 || fees.monthly > 1000000000} onClick={() => onCompare(result.recommended, cost, Number(values.units), fees, split, marketing)}>Pakai untuk bandingkan marketplace →</button>{(result.recommended > 1000000000 || cost > 1000000000 || fees.monthly > 1000000000) && <p className={s.error}>Belum bisa dipindahkan: mode perbandingan membatasi harga, modal, dan biaya bulanan masing-masing Rp1 miliar.</p>}<p className={s.note}>Angka dipindahkan dengan Core, Live, add-on NEMU, dan pengeluaran usaha tetap terpisah. Tidak dihitung ulang dua kali. Tarif pembanding tetap perlu diisi.</p></section>
       </>}
     </aside>
   </div>;

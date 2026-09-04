@@ -10,6 +10,8 @@ import { parseRupiah } from './pricing';
 import MarketplaceFeeEditor from './marketplace-fee-editor';
 import ComparisonTable from './comparison-table';
 import { calculateMarketplace, initialMarketplaceFees, type FeeRow } from './marketplace-fees';
+import NemuAddonEditor from './nemu-addon-editor';
+import { calculateMarketingBudget, initialMarketingBudget, type MarketingBudget } from './marketing-budget';
 
 const rupiah = (value: number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(value);
 type FeeFields = { percent: string; perOrder: string; shipping: string; promotion: string };
@@ -31,7 +33,7 @@ export default function Calculator() {
   const [nemu, setNemu] = useState<FeeFields>({ ...initialFees });
   const [marketplaceRows, setMarketplaceRows] = useState<Record<string, FeeRow[]>>({});
   const [marketplace, setMarketplace] = useState('Marketplace lain');
-  const [nemuExtras, setNemuExtras] = useState('0');
+  const [nemuAddons, setNemuAddons] = useState<MarketingBudget>(initialMarketingBudget);
   const [sellerOperations, setSellerOperations] = useState('0');
   const [coreCharged, setCoreCharged] = useState(true);
   const [live, setLive] = useState<keyof typeof livePlans>('none');
@@ -82,13 +84,15 @@ export default function Calculator() {
   const plan = livePlans[live];
   const liveMonthly = plan.prices[term];
   const coreMonthly = coreCharged && (live === 'none' || liveExtra) ? 199000 : 0;
+  const addonResult = calculateMarketingBudget(nemuAddons);
+  const nemuAddonTotal = addonResult.social + addonResult.collab + (addonResult.items.find(item => item.id === 'nemu')?.total ?? 0);
   const validFees = (f: FeeFields) => [f.shipping, f.promotion].every(v => moneyValid(v));
   const activeRows = marketplaceRows[marketplace] ?? initialMarketplaceFees(marketplace);
   const productValid = [price, cost].every(v => moneyValid(v)) && numberValid(orders, 1000000) && Number.isInteger(Number(orders));
   const detailedOther = productValid ? calculateMarketplace(parseRupiah(price), parseRupiah(cost), Number(orders), activeRows) : null;
-  const valid = productValid && moneyValid(nemuExtras) && moneyValid(sellerOperations) && validFees(nemu) && detailedOther !== null;
+  const valid = productValid && addonResult.valid && moneyValid(sellerOperations) && validFees(nemu) && detailedOther !== null;
   const asCosts = (f: FeeFields, monthly: number) => ({ percent: 0, perOrder: 0, shipping: parseRupiah(f.shipping), promotion: parseRupiah(f.promotion), monthly });
-  const resultNemu = productValid && moneyValid(nemuExtras) && moneyValid(sellerOperations) && validFees(nemu) ? calculate(parseRupiah(price), parseRupiah(cost), Number(orders), asCosts(nemu, coreMonthly + liveMonthly + parseRupiah(nemuExtras) + parseRupiah(sellerOperations))) : null;
+  const resultNemu = productValid && addonResult.valid && moneyValid(sellerOperations) && validFees(nemu) ? calculate(parseRupiah(price), parseRupiah(cost), Number(orders), asCosts(nemu, coreMonthly + liveMonthly + nemuAddonTotal + parseRupiah(sellerOperations))) : null;
   const resultOther = detailedOther;
   const difference = resultNemu && resultOther ? resultOther.totalFees - resultNemu.totalFees : 0;
   const feeRows = (fees: FeeFields, setter: (value: FeeFields) => void) => <div className={s.twoCol}>
@@ -101,7 +105,7 @@ export default function Calculator() {
     <div className={s.workspace}>
       <div className={s.intro}><div><h1>Kalkulator jualan</h1><p>Isi angkanya. Cek harga, biaya, dan sisa uangmu.</p></div><span className={s.beta}>SIMULASI</span></div>
       <div className={s.modeSwitch} role="group" aria-label="Mode kalkulator"><button aria-pressed={mode === 'compare'} onClick={() => setMode('compare')}>Bandingkan marketplace</button><button aria-pressed={mode === 'price'} onClick={() => setMode('price')}>Tentukan harga & forecast</button></div>
-      <div hidden={mode !== 'price'}><PricingWorkbench onCompare={(newPrice, newCost, newOrders, fees, split) => { setPrice(String(newPrice)); setCost(String(newCost)); setOrders(String(newOrders)); setNemu({ percent: '0', perOrder: '0', shipping: String(fees.shipping), promotion: String(fees.promotion) }); setNemuExtras(String(split.addons)); setSellerOperations(String(split.sellerOperations)); setCoreCharged(split.coreCharged); setLive(split.live); setTerm(split.term); setLiveExtra(true); setApplied(null); setMode('compare'); }} /></div>
+      <div hidden={mode !== 'price'}><PricingWorkbench onCompare={(newPrice, newCost, newOrders, fees, split, marketing) => { setPrice(String(newPrice)); setCost(String(newCost)); setOrders(String(newOrders)); setNemu({ percent: '0', perOrder: '0', shipping: String(fees.shipping), promotion: String(fees.promotion) }); setNemuAddons(marketing); setSellerOperations(String(split.sellerOperations)); setCoreCharged(split.coreCharged); setLive(split.live); setTerm(split.term); setLiveExtra(true); setApplied(null); setMode('compare'); }} /></div>
       <div hidden={mode !== 'compare'}><div className={s.layout}><div className={s.formColumn}>
         <section className={s.card} aria-labelledby="product-title"><div className={s.cardHeading}><span className={s.step}>01</span><h2 id="product-title">Produk & penjualan</h2></div>
           <details className={s.disclosure}><summary>Ambil harga dari screenshot <span>Opsional</span></summary><div className={s.upload}><ImagePlus size={25} /><div><label htmlFor="screenshot" className={s.uploadTitle}>Pilih screenshot produk</label><p>JPG, PNG, WebP · maksimal 10 MB. Diproses di browser; pembaca teks perlu internet.</p><input id="screenshot" type="file" accept="image/png,image/jpeg,image/webp" disabled={busy} onChange={e => { const chosen = e.target.files?.[0]; setCandidates([]); setOcrText(''); setApplied(null); if (!chosen) return; if (!['image/png', 'image/jpeg', 'image/webp'].includes(chosen.type) || chosen.size > 10 * 1024 * 1024) { setFile(null); setStatus('Pilih JPG, PNG, atau WebP dengan ukuran maksimal 10 MB.'); e.target.value = ''; return; } setFile(chosen); setStatus('Screenshot siap dibaca.'); }} /></div></div>
@@ -114,8 +118,8 @@ export default function Calculator() {
         </section>
 
         <section className={s.card} aria-labelledby="fees-title"><div className={s.cardHeading}><span className={s.step}>02</span><h2 id="fees-title">Atur biaya jualan</h2></div>
-          <h3 className={s.platform}>Biaya layanan NEMU</h3><div className={s.subscriptionNote}><b>Langganan + add-on NEMU</b><span>{moneyValid(nemuExtras) ? rupiah(coreMonthly + liveMonthly + parseRupiah(nemuExtras)) : 'Lengkapi add-on'} / bulan</span><small>Hanya layanan dari NEMU. Tidak termasuk pengeluaran usaha seller.</small></div>
-          <details className={s.disclosure}><summary>Add-on NEMU <span>Layanan opsional dari NEMU</span></summary><Amount label="Add-on NEMU lainnya / bulan" value={nemuExtras} onChange={setNemuExtras} /><p className={s.note}>Contoh: kelola sosial media atau iklan lewat NEMU. Isi sesuai rencana / penawaran. Core dan paket Live yang dipilih di bawah sudah dihitung terpisah, jangan dimasukkan lagi.</p></details>
+          <h3 className={s.platform}>Biaya layanan NEMU</h3><div className={s.subscriptionNote}><b>Langganan NEMU Core</b><span>Rp199.000 / bulan</span><small>Harga langganan utama saja. Add-on opsional dihitung terpisah di bawah.</small></div>
+          <details className={s.disclosure} open><summary>Add-on NEMU <span>Pilih hanya layanan yang kamu perlukan</span></summary><NemuAddonEditor value={nemuAddons} onChange={setNemuAddons} liveName={plan.name} liveMonthly={liveMonthly} /></details>
           <details className={s.disclosure}><summary>Pengeluaran usaha di luar NEMU <span>Bukan biaya admin atau potongan NEMU</span></summary><p className={s.note}>Biaya yang kamu keluarkan sendiri untuk menjalankan usaha, bukan untuk membeli layanan NEMU.</p>{feeRows(nemu, setNemu)}<Amount label="Host sendiri, iklan mandiri & operasional / bulan" value={sellerOperations} onChange={setSellerOperations} /><p className={s.note}>Contoh: gaji host sendiri, sewa, internet, atau iklan yang dibayar langsung ke Meta/TikTok/Google. Subsidi ongkir dan promo juga pengeluaran seller. Jangan masukkan biaya yang sudah ada di modal produk atau add-on NEMU.</p></details>
           <div className={s.platform}><label className={s.field}><span>Pembanding</span><select value={marketplace} onChange={e => setMarketplace(e.target.value)}><option>Marketplace lain</option><option>Shopee</option><option>TikTok Shop</option><option>Tokopedia</option><option>Lazada</option><option>Blibli</option></select></label></div>
           <MarketplaceFeeEditor marketplace={marketplace} rows={activeRows} orders={orders} onChange={rows => setMarketplaceRows(previous => ({ ...previous, [marketplace]: rows }))} />
@@ -126,7 +130,7 @@ export default function Calculator() {
           <div className={s.core}><div><span className={s.eyebrow}>PAKET UTAMA</span><h3>NEMU Core</h3><strong>Rp199.000 <small>/ bulan</small></strong></div><label className={s.check}><input type="checkbox" checked={coreCharged} onChange={e => setCoreCharged(e.target.checked)} />Hitung tagihan Core</label></div>
           <ul className={s.features}>{['Dashboard, pesanan & chat pembeli', 'Produk, halaman toko & pengiriman', 'Saldo, penarikan & rekening bank', 'Gambar, video & Studio Posting sesuai kuota dasar', 'Pengaturan gratis ongkir', 'Usulan kampanye harga & promosi mandiri'].map(feature => <li key={feature}><Check size={16} />{feature}</li>)}</ul>
           <p className={s.note}>Sumber: screenshot Paket & Add-on yang kamu berikan. Belum ada pemotongan otomatis dari Saldo Toko; tim NEMU menghubungi seller sebelum penagihan diaktifkan.</p>
-          <div className={s.liveHeading}><h3>Tambahkan Live</h3><span className={s.beta}>HARGA BETA · REFERENSI INTERNAL</span></div>
+          <div className={s.liveHeading} id="paket-live"><h3>Tambahkan Live</h3><span className={s.beta}>HARGA BETA · REFERENSI INTERNAL</span></div>
           {live !== 'human' && <label className={s.field}><span>Durasi paket Live</span><select value={term} onChange={e => setTerm(Number(e.target.value) as 1 | 6 | 12)}><option value={1}>1 bulan</option><option value={6}>6 bulan</option><option value={12}>12 bulan</option></select></label>}
           <div className={s.plans} role="group" aria-label="Pilih paket Live">{Object.entries(livePlans).map(([key, value]) => <button className={live === key ? s.selectedPlan : s.plan} key={key} aria-pressed={live === key} onClick={() => setLive(key as keyof typeof livePlans)}><span>{value.name}</span><strong>{rupiah(value.prices[term])}<small>/bulan</small></strong><p>{value.hours}</p>{key === 'human' && <p><b>Total {10 * term} jam selama {term} bulan</b></p>}</button>)}</div>
           {live === 'human' && <><h3>Durasi Human Live</h3><div className={s.plans} role="group" aria-label="Durasi Human Live">{humanLiveTerms.map(option => <button key={option.months} className={term === option.months ? s.selectedPlan : s.plan} aria-pressed={term === option.months} onClick={() => setTerm(option.months)}><span>{option.months} bulan · {option.totalHours} jam total</span><strong>{rupiah(option.monthly)}<small>/bulan</small></strong><p>Total kontrak: {rupiah(option.total)}</p></button>)}</div><p className={s.note}>10 jam per bulan. Harga di atas per bulan, bukan harga total selama kontrak. Host manusia disediakan seller.</p></>}
@@ -135,7 +139,7 @@ export default function Calculator() {
       </div>
 
       <aside className={s.results} aria-labelledby="result-title"><div className={`${s.summary} ${s.compactSummary}`} aria-live="polite"><h2 id="result-title">{!valid ? 'Lengkapi angka untuk membandingkan.' : difference > 0 ? 'Total pengeluaran saat jualan di NEMU lebih rendah.' : difference < 0 ? `Total pengeluaran saat jualan di ${marketplace} lebih rendah.` : 'Total pengeluarannya sama.'}</h2>{valid ? <><strong className={s.bigNumber}>{rupiah(Math.abs(difference))} / bulan</strong><p>Selisih seluruh biaya layanan dan pengeluaran usaha yang diisi, bukan selisih admin saja.</p></> : <p>Cek input produk dan tarif pembanding yang dicentang. Layanan NEMU dan pengeluaran usaha seller dihitung terpisah.</p>}</div>
-        <ComparisonTable marketplace={marketplace} onMarketplaceChange={setMarketplace} rows={activeRows} price={moneyValid(price) ? parseRupiah(price) : null} cost={moneyValid(cost) ? parseRupiah(cost) : null} orders={numberValid(orders, 1000000) && Number.isInteger(Number(orders)) ? Number(orders) : null} nemu={nemu} extras={nemuExtras} sellerOperations={sellerOperations} core={coreMonthly} live={liveMonthly} liveName={plan.name} resultNemu={resultNemu} resultOther={resultOther} />
+        <ComparisonTable marketplace={marketplace} onMarketplaceChange={setMarketplace} rows={activeRows} price={moneyValid(price) ? parseRupiah(price) : null} cost={moneyValid(cost) ? parseRupiah(cost) : null} orders={numberValid(orders, 1000000) && Number.isInteger(Number(orders)) ? Number(orders) : null} nemu={nemu} extras={String(nemuAddonTotal)} sellerOperations={sellerOperations} core={coreMonthly} live={liveMonthly} liveName={plan.name} resultNemu={resultNemu} resultOther={resultOther} />
         <Link href="/#jadwal-onboarding" className={s.consult}>Konfirmasi paket bersama NEMU <ArrowUpRight size={18} /></Link>
       </aside></div></div>
       <footer className={s.footer}>NEMU · Kalkulator biaya seller <Link href="/">Kembali ke beranda</Link></footer>

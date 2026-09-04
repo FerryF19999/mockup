@@ -45,6 +45,16 @@ test('disabled marketing retains edits but removes costs from forecast', () => {
   input.socialEnabled = false;
   assert.equal(calculateMarketingBudget(input).total, 0);
 });
+test('collab posting is optional and only uses a confirmed quote', () => {
+  const input = initialMarketingBudget();
+  input.collabEnabled = true;
+  assert.equal(calculateMarketingBudget(input).valid, false);
+  input.collabBudget = '175.000';
+  const result = calculateMarketingBudget(input);
+  assert.equal(result.valid, true);
+  assert.equal(result.collab, 175000);
+  assert.equal(result.total, 175000);
+});
 test('subscription and selected marketing flow into price and forecast once', () => {
   const input = initialMarketingBudget();
   Object.assign(input, { socialEnabled: true, perVideo: '50000' });

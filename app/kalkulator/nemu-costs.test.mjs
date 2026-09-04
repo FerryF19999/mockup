@@ -25,6 +25,14 @@ test('only seller expenses never increase the NEMU service subtotal', () => {
   assert.equal(nemuCostTotals(split).services, 0);
   assert.equal(nemuCostTotals(split).monthly, 800000);
 });
+test('collab posting is counted as a NEMU add-on, not a seller expense', () => {
+  const budget = initialMarketingBudget();
+  Object.assign(budget, { collabEnabled: true, collabBudget: '175000' });
+  const split = splitNemuCosts(true, 'none', 1, 0, calculateMarketingBudget(budget));
+  assert.equal(split.addons, 175000);
+  assert.equal(split.sellerOperations, 0);
+  assert.equal(nemuCostTotals(split).services, 374000);
+});
 test('missing seller expenses do not make valid service costs disappear', () => {
   const lines = nemuComparisonLines(100000, 100, { percent: '0', perOrder: '0', shipping: '0', promotion: '0' }, '49000', 199000, 0, 'Tanpa paket Live', '');
   assert.equal(subtotalLines(lines.monthly), 248000);
