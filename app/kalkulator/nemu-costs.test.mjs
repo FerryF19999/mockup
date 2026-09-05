@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { initialMarketingBudget, calculateMarketingBudget } from './marketing-budget.ts';
-import { splitNemuCosts, nemuCostTotals } from './nemu-costs.ts';
+import { splitNemuCosts, nemuCostTotals, nemuExpenseSummary } from './nemu-costs.ts';
+import { calculate } from './calculation.ts';
 import { nemuComparisonLines, subtotalLines } from './comparison-details.ts';
 
 test('NEMU services exclude external advertising and own operational spending', () => {
@@ -37,4 +38,33 @@ test('missing seller expenses do not make valid service costs disappear', () => 
   const lines = nemuComparisonLines(100000, 100, { percent: '0', perOrder: '0', shipping: '0', promotion: '0' }, '49000', 199000, 0, 'Tanpa paket Live', '');
   assert.equal(subtotalLines(lines.monthly), 248000);
   assert.equal(subtotalLines(lines.sellerMonthly), null);
+});
+
+test('seller screenshot reconciles fixed costs, shipping and promo at target volume', () => {
+  const totals = nemuCostTotals({ coreCharged: true, live: 'hybrid', term: 1, addons: 109000, sellerOperations: 1500000 });
+  assert.equal(totals.services, 2698000);
+  const summary = nemuExpenseSummary(totals, 100, 20000, 35000);
+  assert.equal(summary.shipping, 2000000);
+  assert.equal(summary.promotion, 3500000);
+  assert.equal(summary.seller, 7000000);
+  assert.equal(summary.total, 9698000);
+  const result = calculate(200000, 50000, 100, { percent: 0, perOrder: 0, shipping: 20000, promotion: 35000, monthly: totals.monthly });
+  assert.equal(result.totalFees, summary.total);
+  assert.equal(result.remainder, result.revenue - result.productCost - summary.total);
+  assert.equal(nemuExpenseSummary(totals, 50, 20000, 35000).total, 6948000);
+  assert.equal(nemuExpenseSummary(totals, 0, 20000, 35000).total, totals.monthly);
+});
+
+test('incomplete inputs never appear as zero monthly spending', () => {
+  const totals = nemuCostTotals({ coreCharged: true, live: 'none', term: 1, addons: 0, sellerOperations: 0 });
+  for (const orders of [null, NaN, Infinity, -1, 1.5, 1000001]) {
+    const summary = nemuExpenseSummary(totals, orders, 20000, 35000);
+    assert.equal(summary.orders, null);
+    assert.equal(summary.total, null);
+    assert.equal(summary.services, 199000);
+  }
+  assert.equal(nemuExpenseSummary(totals, 100, null, 0).total, null);
+  assert.equal(nemuExpenseSummary(totals, 100, 0, -1).total, null);
+  assert.equal(nemuExpenseSummary({ ...totals, sellerOperations: NaN }, 100, 0, 0).seller, null);
+  assert.equal(nemuExpenseSummary(totals, 100, 0, 0).total, 199000);
 });

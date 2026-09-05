@@ -1,10 +1,10 @@
 // Research snapshot, not a live feed or sales-weighted market average.
 export const researchedOn = '4 September 2026';
 type Sample = { name: string; price: number; url: string; note: string };
-export const skincareReferences: Record<string, { label: string; size: string; samples: Sample[] }> = {
-  serum: { label: 'Serum', size: '30 ml', samples: [
+export const skincareReferences: Record<string, { label: string; size: string; checkedOn?: string; samples: Sample[] }> = {
+  serum: { label: 'Serum', size: '30 ml', checkedOn: '5 September 2026', samples: [
     { name: 'Emina Ms. Pimple Acne Solution', price: 61500, url: 'https://www.watsons.co.id/id/emina-emina-ms.-pimple-acne-solution-face-serum-30ml/p/BP_27004', note: 'Harga tampil' },
-    { name: 'Garnier Light Complete Vitamin C 30x', price: 147200, url: 'https://www.watsons.co.id/id/garnier-light-complete-vitamin-c-30x-booster-serum-30ml/p/BP_15123', note: 'Harga promo; harga normal Rp184.000' },
+    { name: 'Garnier Light Complete Vitamin C 30x', price: 129000, url: 'https://www.watsons.co.id/id/garnier-light-complete-vitamin-c-30x-booster-serum-30ml/p/BP_15123', note: 'Harga promo; harga normal Rp184.000' },
     { name: 'Avoskin Your Skin Bae Vitamin C', price: 140000, url: 'https://www.watsons.co.id/id/avoskin-avoskin-your-skin-bae-vitamin-c-30ml-serum-30ml/p/BP_43886', note: 'Harga promo; harga normal Rp175.000' },
   ] },
   cleanser: { label: 'Facial wash', size: '100 ml', samples: [

@@ -14,6 +14,33 @@ export function liveCapacity(plan: keyof typeof livePlans, term: 1 | 6 | 12, tar
 }
 
 export type PricingInput = { cost: number; orders: number; margin: number; fees: Costs };
+// Ad spending is already part of fees.monthly. Never add it again here.
+export function promotionBudget(input: PricingInput, price: number) {
+  const { cost, orders, margin, fees } = input;
+  const plan = planPrice(input);
+  if ('error' in plan) return { error: plan.error } as const;
+  calculate(price, cost, orders, fees);
+  if (price === 0) return { error: 'Isi harga transaksi lebih dari Rp0.' } as const;
+  const allocatedMonthly = fees.monthly / orders;
+  const beforePromo = cost + fees.perOrder + fees.shipping + allocatedMonthly;
+  const available = price * (1 - (fees.percent + margin) / 100) - beforePromo;
+  const maximum = Math.floor(Math.max(0, available));
+  // 3–5% is an editable planning illustration, not a market discount benchmark.
+  const roundDown = (n: number) => Math.floor(n / 100) * 100;
+  const low = roundDown(Math.min(price * .03, maximum));
+  const high = roundDown(Math.min(price * .05, maximum));
+  const current = calculate(price, cost, orders, fees);
+  const withSuggestedPromo = planPrice({ ...input, fees: { ...fees, promotion: high } });
+  return {
+    maximum, low, high, allocatedMonthly,
+    shortfall: Math.max(0, fees.promotion - available),
+    beforePromoShortfall: Math.max(0, -available),
+    actualMargin: current.remainder / current.revenue * 100,
+    monthlyRemainder: current.remainder,
+    suggestedPrice: 'error' in withSuggestedPromo ? null : withSuggestedPromo.recommended,
+  };
+}
+
 export function planPrice({ cost, orders, margin, fees }: PricingInput) {
   calculate(0, cost, orders, fees);
   if (!Number.isFinite(margin) || margin < 0 || margin >= 100) throw new Error('Margin tidak valid');
